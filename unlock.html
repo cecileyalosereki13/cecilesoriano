@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNLOCK — Cécile Soriano · Yalo Sereki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust:    #c27a4a;
+    --rust2:   #d99060;
+    --terra:   #e0a868;
+    --sand:    #ecdcc4;
+    --cream:   #f7f0e6;
+    --dark:    #3d3028;
+    --charcoal:#5a4a3a;
+    --gold:    #d4a050;
+    --muted:   #9a8878;
+    --line:    rgba(194,122,74,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--sand);
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 999;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(61,48,40,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(194,122,74,0.15);
+  }
+
+  .nav-name {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--terra); }
+  .nav-links a.active { color: var(--terra); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 clamp(24px, 8vw, 120px) 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 75% 35%, rgba(194,122,74,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 15% 75%, rgba(212,160,80,0.08) 0%, transparent 55%);
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    font-weight: 600;
+    display: block;
+    opacity: 0;
+    animation: rise 1s 0.3s ease forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(64px, 12vw, 130px);
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: rise 1s 0.5s ease forwards;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(20px, 3vw, 30px);
+    font-style: italic;
+    color: var(--terra);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: rise 1s 0.7s ease forwards;
+    line-height: 1.4;
+  }
+
+  .hero-meta {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(236,220,196,0.65);
+    opacity: 0;
+    animation: rise 1s 0.9s ease forwards;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(194,122,74,0.2);
+    max-width: 60px;
+  }
+
+  /* RECOGNITION BLOCK */
+  .recognition {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(194,122,74,0.2);
+    padding: 48px 40px;
+    margin-bottom: 80px;
+  }
+
+  .recognition-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 400;
+    color: var(--sand);
+    margin-bottom: 36px;
+    line-height: 1.2;
+  }
+
+  .recognition-title em { font-style: italic; color: var(--terra); }
+
+  .check-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .check-list li {
+    font-size: 19px;
+    color: rgba(236,220,196,0.9);
+    font-weight: 400;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .check-list li::before {
+    content: '✓';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-style: normal;
+    font-size: 14px;
+    top: 2px;
+  }
+
+  .check-list li.no::before {
+    content: '✗';
+    color: var(--rust);
+  }
+
+  /* RUPTURE */
+  .rupture {
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-style: italic;
+    color: var(--terra);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 48px 0;
+    padding-left: 24px;
+    border-left: 3px solid var(--rust);
+  }
+
+  /* BODY TEXT */
+  .body-text {
+    font-size: 20px;
+    color: rgba(236,220,196,0.88);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  .body-text strong {
+    color: var(--sand);
+    font-weight: 400;
+  }
+
+  /* WORK ITEMS — séances */
+  .work-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 48px 0;
+  }
+
+  .work-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(194,122,74,0.15);
+    padding: 32px 28px;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+  }
+
+  .work-item:hover {
+    border-color: rgba(194,122,74,0.4);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .work-item-num {
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 300;
+    color: rgba(212,160,80,0.12);
+    line-height: 1;
+    margin-bottom: 12px;
+    display: block;
+    letter-spacing: -2px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .work-item-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--sand);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .work-item-sub {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .work-item-desc {
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(236,220,196,0.80);
+    line-height: 1.7;
+  }
+
+  /* FORMAT BOX */
+  .format-box {
+    border: 1px solid rgba(194,122,74,0.3);
+    background: rgba(194,122,74,0.05);
+    padding: 48px 40px;
+    margin: 48px 0;
+    text-align: center;
+  }
+
+  .format-main {
+    font-size: 22px;
+    color: var(--sand);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .format-detail {
+    font-size: 19px;
+    font-style: italic;
+    color: rgba(236,220,196,0.75);
+    margin-bottom: 32px;
+  }
+
+  .format-divider {
+    width: 40px; height: 1px;
+    background: rgba(194,122,74,0.3);
+    margin: 24px auto;
+  }
+
+  .format-price {
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--terra);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .format-payment {
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(236,220,196,0.55);
+    margin-bottom: 32px;
+  }
+
+  .format-rare {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* MESURES — résultats concrets */
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 48px 0;
+  }
+
+  .result-item {
+    font-size: 19px;
+    font-style: italic;
+    color: rgba(236,220,196,0.88);
+    padding: 20px 24px;
+    border-left: 2px solid var(--rust);
+    background: rgba(255,255,255,0.02);
+    line-height: 1.6;
+  }
+
+  /* CONTRAST GRID — pour qui / pas pour qui */
+  .contrast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 48px 0;
+  }
+
+  .contrast-col {
+    padding: 36px 28px;
+  }
+
+  .contrast-col.not {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .contrast-col.yes {
+    background: rgba(194,122,74,0.08);
+    border: 1px solid rgba(194,122,74,0.25);
+  }
+
+  .contrast-label {
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .not .contrast-label { color: var(--muted); }
+  .yes .contrast-label { color: var(--gold); }
+
+  .contrast-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contrast-col li {
+    font-size: 18px;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+    font-style: italic;
+  }
+
+  .not li { color: rgba(236,220,196,0.45); }
+  .not li::before { content: '×'; position: absolute; left: 0; color: var(--muted); font-style: normal; }
+
+  .yes li { color: rgba(236,220,196,0.85); }
+  .yes li::before { content: '→'; position: absolute; left: 0; color: var(--terra); font-style: normal; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--rust);
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212,160,80,0.2) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    position: relative; z-index: 2;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .cta-quote {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+
+  .cta-condition {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,240,230,0.7);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--sand);
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 18px 52px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+
+  .cta-btn:hover {
+    background: transparent;
+    color: var(--cream);
+    border-color: rgba(247,240,230,0.4);
+  }
+
+  .cta-rare {
+    display: block;
+    margin-top: 16px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,240,230,0.65);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(212,160,80,0.15);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: 22px;
+    color: var(--sand);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .footer-tag {
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-title, .recognition-title, .rupture, .format-price {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 16px; }
+    .nav-name { font-size: 16px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 14px; }
+    .contrast-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .recognition { padding: 32px 20px; }
+    .format-box { padding: 32px 20px; }
+    .hero { padding-left: 20px; padding-right: 20px; }
+    .check-list li { font-size: 18px; }
+    .body-text { font-size: 19px; }
+    .work-item-desc { font-size: 17px; }
+    .contrast-col li { font-size: 17px; }
+    .result-item { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://cecilesoriano.fr" class="nav-name">Cécile Soriano</a>
+  <div class="nav-links">
+    <a href="https://cecilesoriano.fr/cecile">Qui je suis</a>
+    <a href="https://cecilesoriano.fr/yalo-ni-yago">Yalo Ni Yago</a>
+    <a href="https://cecilesoriano.fr/unlock" class="active">Unlock</a>
+    <a href="https://cecilesoriano.fr/athena">Athéna</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Yalo Ni Yago a identifié la panne. UNLOCK effectue les réparations.</span>
+    <h1 class="hero-title">UNLOCK</h1>
+    <p class="hero-subtitle">30 jours pour lever<br>le frein à main biologique.</p>
+    <p class="hero-meta" style="font-style:italic; text-transform:none; font-size:18px; color:rgba(236,220,196,0.75); letter-spacing:0.5px; margin-bottom:16px;">Tu as la stratégie, l'ambition, les compétences. Ce qu'il te manque, c'est un corps capable de soutenir ton expansion sans déclencher le mode alerte.</p>
+    <p class="hero-meta">À partir de 900 €</p>
+  </div>
+</section>
+
+<!-- SECTION RECONNAIS-TU -->
+<div class="section">
+  <div class="recognition reveal">
+    <h2 class="recognition-title">On ne "discute" pas de ton business.<br><em>On intervient sur la machine.</em></h2>
+    <p class="body-text">Tu stagnes. Tu tournes. Tu regardes tes efforts partir en fumée sans comprendre pourquoi.</p>
+    <p class="body-text">Ce n'est pas un manque de motivation. Ce n'est pas ton positionnement. C'est ton système nerveux qui a associé l'expansion au danger — et tant qu'il perçoit la réussite comme une menace, il coupe le circuit. Toujours.</p>
+    <ul class="check-list" style="margin-bottom: 32px;">
+      <li>Tu bloques juste avant de proposer, de closer, de te montrer</li>
+      <li>Tu produis du contenu lisse pour ne pas déranger</li>
+      <li>Tu t'agites sur des tâches inutiles pour éviter ce qui rapporte vraiment</li>
+    </ul>
+    <div class="rupture">UNLOCK est une intervention de haute précision. On recâble les circuits. On sort du mode survie.</div>
+    <p class="body-text"><strong>Condition d'accès : avoir fait Yalo Ni Yago. Non négociable.</strong></p>
+  </div>
+
+  <div class="section-label reveal">UNLOCK est fait pour toi si</div>
+  <ul class="check-list reveal">
+    <li>Tu as déjà fait YNY et tu sais où est la panne</li>
+    <li>Tu bloques sur une action business précise — closing, visibilité, proposition</li>
+    <li>Tu veux du résultat concret en un mois, pas de la compréhension supplémentaire</li>
+    <li>Tu es prête à agir entre les séances</li>
+  </ul>
+
+  <div class="rupture reveal">Un mois. Trois phases. Du déminage, pas du coaching.</div>
+</div>
+
+<!-- CE QU'ON FAIT ENSEMBLE -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label reveal">Le protocole sur 30 jours</div>
+  <p class="body-text reveal">Trois phases. Une progression logique. On descend la pression, on recâble, on intègre dans le business.</p>
+
+  <div class="work-items reveal">
+
+    <div class="work-item">
+      <span class="work-item-num">01</span>
+      <div class="work-item-title">Phase 1 — Stabilisation & Déminage</div>
+      <span class="work-item-sub">Séance individuelle · 60 min</span>
+      <p class="work-item-desc">Désactivation des circuits d'alerte chronique. On descend la pression dans la chaudière pour que ton mental retrouve sa capacité de décision froide et lucide. Tu ne peux pas construire sur un système en état d'urgence permanent.</p>
+    </div>
+
+    <div class="work-item">
+      <span class="work-item-num">02</span>
+      <div class="work-item-title">Phase 2 — Recâblage de l'Autorité</div>
+      <span class="work-item-sub">Séance individuelle · 60 min</span>
+      <p class="work-item-desc">Installation d'une sécurité interne profonde. Ton système apprend que "vendre", "être vue" et "réussir" ne sont pas des menaces. On ancre la régulation là où elle compte : dans les décisions, les propositions, les actions qui rapportent.</p>
+    </div>
+
+    <div class="work-item">
+      <span class="work-item-num">03</span>
+      <div class="work-item-title">Phase 3 — Intégration Business</div>
+      <span class="work-item-sub">Séance individuelle · 60 min</span>
+      <p class="work-item-desc">Alignement de ta communication et de tes actions de vente sur ton nouveau calme souverain. Ce que tu dis, comment tu le dis, à qui. Ton business ne transpire plus l'effort. Il transpire la puissance.</p>
+    </div>
+
+    <div class="work-item">
+      <span class="work-item-num">+</span>
+      <div class="work-item-title">Hotline WhatsApp</div>
+      <span class="work-item-sub">30 jours · Accès direct</span>
+      <p class="work-item-desc">Pour désamorcer les triggers en temps réel lors de tes phases de rush. Pas un suivi administratif — une intervention au moment où ton système bascule, avant que le contre-mouvement prenne le dessus.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- CE QUE TU VAS MESURER -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label reveal">Ce que tu vas mesurer</div>
+  <p class="body-text reveal">Après UNLOCK, la régulation se mesure dans le corps — et dans les actes.</p>
+  <div class="results reveal">
+    <div class="result-item">Les circuits d'alerte désactivés — tu décides depuis la lucidité, pas depuis la peur.</div>
+    <div class="result-item">Tu proposes, tu closes, tu te montres — sans le contre-mouvement systématique.</div>
+    <div class="result-item">Ta communication n'est plus lisse par peur du jugement. Elle est tranchante parce que tu sais ce que tu es.</div>
+    <div class="result-item">Ton business ne transpire plus l'effort. Il transpire la puissance.</div>
+    <div class="result-item">30 jours. Du concret. Pas des intentions.</div>
+  </div>
+</div>
+
+<!-- POUR QUI / PAS POUR QUI -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label reveal">Pour qui et pour qui pas</div>
+  <p class="body-text reveal"><strong>UNLOCK n'est pas un programme de développement personnel.</strong><br>C'est une intervention somatique appliquée au business. Il faut avoir fait YNY. Il faut être prête à agir.</p>
+  <div class="contrast-grid reveal">
+    <div class="contrast-col yes">
+      <span class="contrast-label">Pour toi si</span>
+      <ul>
+        <li>Tu as fait Yalo Ni Yago</li>
+        <li>Tu sais où est la panne et tu veux la réparer</li>
+        <li>Tu bloques sur une action précise et tu veux passer</li>
+        <li>Tu passes à l'action même quand c'est inconfortable</li>
+        <li>Tu veux du résultat en 30 jours</li>
+      </ul>
+    </div>
+    <div class="contrast-col not">
+      <span class="contrast-label">Pas pour toi si</span>
+      <ul>
+        <li class="no">Tu n'as pas fait YNY</li>
+        <li class="no">Tu veux comprendre sans agir</li>
+        <li class="no">Tu cherches de la validation, pas du résultat</li>
+        <li class="no">Tu n'as pas de business actif</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FORMAT & PRIX -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label reveal">L'investissement</div>
+  <p class="body-text reveal">30 jours d'intervention somatique individuelle · 3 séances · Hotline WhatsApp · Protocole personnalisé</p>
+
+  <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0;">
+
+    <!-- AVEC YNY -->
+    <div style="background:rgba(194,122,74,0.08); border:1px solid rgba(194,122,74,0.35); padding:40px 32px;">
+      <p style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:20px;">Tu as fait Yalo Ni Yago</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,52px); color:var(--terra); font-weight:600; margin-bottom:6px; line-height:1;">900 €</p>
+      <p style="font-size:14px; letter-spacing:2px; text-transform:uppercase; color:rgba(236,220,196,0.5); margin-bottom:32px;">Paiement en 3 fois disponible — nous contacter</p>
+      <div style="width:30px; height:1px; background:rgba(194,122,74,0.3); margin-bottom:28px;"></div>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:36px;">
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.82); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--terra);font-style:normal;">→</span>3 séances individuelles · 60 min</li>
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.82); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--terra);font-style:normal;">→</span>Hotline WhatsApp 30 jours</li>
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.82); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--terra);font-style:normal;">→</span>Protocole de régulation personnalisé</li>
+      </ul>
+      <a href="https://buy.stripe.com/7sY9ATgSP2UudnT7XV2oE0j" target="_blank" style="display:block; text-align:center; background:var(--rust); color:var(--cream); font-family:'Lora',serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; padding:14px 24px; text-decoration:none; transition:background 0.3s;">Rejoindre UNLOCK</a>
+    </div>
+
+    <!-- SANS YNY -->
+    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); padding:40px 32px;">
+      <p style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:20px;">Sans Yalo Ni Yago</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,52px); color:var(--terra); font-weight:600; margin-bottom:6px; line-height:1;">1 100 €</p>
+      <p style="font-size:14px; letter-spacing:2px; text-transform:uppercase; color:rgba(236,220,196,0.5); margin-bottom:32px;">Paiement en 3 fois disponible — nous contacter</p>
+      <div style="width:30px; height:1px; background:rgba(255,255,255,0.1); margin-bottom:28px;"></div>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:36px;">
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.72); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--muted);font-style:normal;">→</span>Diagnostic intégré en séance 1</li>
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.72); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--muted);font-style:normal;">→</span>3 séances individuelles · 60 min</li>
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.72); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--muted);font-style:normal;">→</span>Hotline WhatsApp 30 jours</li>
+        <li style="font-size:17px; font-style:italic; color:rgba(236,220,196,0.72); padding-left:18px; position:relative; line-height:1.5;"><span style="position:absolute;left:0;color:var(--muted);font-style:normal;">→</span>Protocole de régulation personnalisé</li>
+      </ul>
+      <a href="https://buy.stripe.com/14AcN5463dz8dnT1zx2oE0k" target="_blank" style="display:block; text-align:center; background:transparent; color:var(--sand); font-family:'Lora',serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; padding:14px 24px; text-decoration:none; border:1px solid rgba(236,220,196,0.25); transition:border-color 0.3s;">Rejoindre UNLOCK</a>
+    </div>
+
+  </div>
+
+  <p class="body-text reveal" style="font-size:16px; color:rgba(236,220,196,0.5); font-style:italic; text-align:center;">Le paiement en 3 fois se discute directement avec Cécile.</p>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="cta-quote">Yalo Ni Yago a identifié la panne.<br>UNLOCK répare.</p>
+    
+    <div style="display:flex; flex-direction:column; gap:12px; align-items:center; margin-bottom:24px;">
+      <a href="https://buy.stripe.com/7sY9ATgSP2UudnT7XV2oE0j" target="_blank" class="cta-btn">Unlock Classique · déjà passée par YNY</a>
+      <a href="https://buy.stripe.com/14AcN5463dz8dnT1zx2oE0k" target="_blank" class="cta-btn" style="background:transparent; border:1px solid rgba(247,240,230,0.25); color:rgba(247,240,230,0.75); font-size:15px;">Unlock Sans YNY · entrée directe</a>
+    </div>
+    <span class="cta-rare">Réponds directement à ce message ou envoie un DM</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Cécile Soriano</p>
+  <p class="footer-tag">Yalo Sereki · Comportement business · Performance concrète</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
