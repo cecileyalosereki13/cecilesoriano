@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui je suis — Cécile Soriano · Yalo Sereki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust:    #c27a4a;
+    --rust2:   #d99060;
+    --terra:   #e0a868;
+    --sand:    #ecdcc4;
+    --cream:   #f7f0e6;
+    --dark:    #3d3028;
+    --charcoal:#5a4a3a;
+    --gold:    #d4a050;
+    --muted:   #9a8878;
+    --line:    rgba(194,122,74,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 999;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(61,48,40,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(194,122,74,0.15);
+  }
+
+  .nav-name {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .nav-links { display: flex; gap: 32px; }
+
+  .nav-links a {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--terra); }
+  .nav-links a.active { color: var(--terra); }
+
+  /* HERO */
+  .hero {
+    min-height: 60vh;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 10vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 80% 50%, rgba(194,122,74,0.15) 0%, transparent 65%),
+      radial-gradient(ellipse 30% 30% at 10% 80%, rgba(212,160,80,0.08) 0%, transparent 55%);
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    font-weight: 600;
+    display: block;
+    opacity: 0;
+    animation: rise 1s 0.2s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 8vw, 88px);
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 0.95;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: rise 1s 0.4s ease forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--terra); }
+
+  .hero-sub {
+    font-size: clamp(19px, 2vw, 22px);
+    font-style: italic;
+    color: rgba(236,220,196,0.8);
+    max-width: 520px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: rise 1s 0.6s ease forwards;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 100px 24px 60px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    max-width: 80px;
+  }
+
+  /* BODY TEXT */
+  .body-text {
+    font-size: 20px;
+    color: var(--charcoal);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 28px;
+    margin: 44px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-style: italic;
+    color: var(--rust2);
+    line-height: 1.45;
+  }
+
+  /* DARK BLOCK */
+  .dark-block {
+    background: var(--dark);
+    padding: 40px 44px;
+    margin: 44px 0;
+    border-left: 3px solid var(--rust);
+  }
+
+  .dark-block p {
+    font-size: 19px;
+    font-style: italic;
+    color: rgba(236,220,196,0.88);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .dark-block p:last-child { margin-bottom: 0; }
+
+  /* STATEMENT BLOCK */
+  .statement {
+    background: rgba(194,122,74,0.07);
+    border: 1px solid rgba(194,122,74,0.2);
+    padding: 36px 40px;
+    margin: 44px 0;
+  }
+
+  .statement p {
+    font-size: 20px;
+    color: var(--charcoal);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .statement p:last-child { margin-bottom: 0; }
+
+  .statement strong {
+    color: var(--rust);
+    font-weight: 500;
+  }
+
+  /* SECTION DIVIDER */
+  .section-break { height: 80px; }
+
+  /* SKILLS BOX */
+  .skills-box {
+    border: 1px solid var(--line);
+    padding: 36px 40px;
+    margin: 40px 0;
+    background: rgba(255,255,255,0.5);
+  }
+
+  .skills-label {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    font-weight: 600;
+    display: block;
+  }
+
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skill-tag {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    border: 1px solid rgba(194,122,74,0.35);
+    padding: 8px 16px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .skill-tag:hover { border-color: var(--rust); color: var(--rust); }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--dark);
+    padding: 100px 24px;
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cta-label {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+    font-weight: 600;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    color: var(--sand);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-title em { font-style: italic; color: var(--terra); }
+
+  .cta-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 32px auto;
+  }
+
+  .offers-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    text-align: left;
+  }
+
+  .offer-mini {
+    border: 1px solid rgba(194,122,74,0.2);
+    padding: 28px 24px;
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-mini::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(to right, var(--rust), var(--gold));
+    transition: width 0.4s ease;
+  }
+
+  .offer-mini:hover { border-color: rgba(194,122,74,0.5); background: rgba(255,255,255,0.04); }
+  .offer-mini:hover::before { width: 100%; }
+
+  .offer-mini-tag {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+    display: block;
+  }
+
+  .offer-mini-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 2.2vw, 30px);
+    font-weight: 400;
+    color: var(--sand);
+    margin-bottom: 10px;
+  }
+
+  .offer-mini-desc {
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(236,220,196,0.7);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .offer-mini-link {
+    display: block;
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rust2);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(212,160,80,0.15);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: 22px;
+    color: var(--sand);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .footer-tag {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 16px; }
+    .nav-name { font-size: 16px; }
+    .nav-links { gap: 10px; }
+    .nav-links a { font-size: 13px; }
+    .hero { padding: 100px 20px 60px; }
+    .dark-block { padding: 28px 20px; }
+    .statement { padding: 28px 20px; }
+    .skills-box { padding: 28px 20px; }
+    .offers-row { grid-template-columns: 1fr; }
+    .body-text { font-size: 19px; }
+    .dark-block p { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Cécile Soriano</a>
+  <div class="nav-links">
+    <a href="cecile.html" class="active">Qui je suis</a>
+    <a href="yalo-ni-yago.html">Yalo Ni Yago</a>
+    <a href="unlock.html">Unlock</a>
+    <a href="athena.html">Athéna</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Qui je suis</span>
+    <h1 class="hero-title">Cécile<br><em>Soriano</em></h1>
+    <p class="hero-sub">Ton système nerveux est le pilote caché de ton business. Je suis celle qui lit les circuits et les recâble.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- 01 LA RÉALITÉ BIOLOGIQUE -->
+  <div class="reveal">
+    <div class="section-label">01 · La réalité biologique</div>
+    <p class="body-text">Tu penses prendre des décisions stratégiques. La vérité, c'est que tu prends des décisions de survie.</p>
+    <p class="body-text">Chaque tension dans ton diaphragme, chaque contraction dans ton corps quand tu dois envoyer ce message ou proposer cette offre — c'est un signal de danger qui court-circuite ton intelligence. Pas ta volonté. Pas ton courage. Ton hardware.</p>
+
+    <div class="pull-quote">
+      <p>Ton business ne stagne pas à cause de ton offre. Il stagne à cause de la saturation de tes circuits nerveux.</p>
+    </div>
+
+    <p class="body-text">La stratégie ne peut pas résoudre ça. Le mindset non plus. Quand le système nerveux est en mode survie, il ne fait pas la différence entre un email à envoyer et une menace réelle. Il coupe l'accès à ton intelligence préfrontale et te ramène dans tes automatismes. Encore. Et encore.</p>
+    <p class="body-text">Je ne travaille pas sur ce que tu penses. Je travaille sur ce que ton corps fait avant même que tu aies le temps de penser.</p>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- 02 L'ORIGINE -->
+  <div class="reveal">
+    <div class="section-label">02 · L'origine</div>
+    <p class="body-text">Depuis petite, je captais ce que les gens ne disaient pas.</p>
+    <p class="body-text">La tension dans une pièce. L'émotion qu'on ravale. Le non-dit qui prend toute la place. Ce qui se passait derrière le masque de chacun, je le percevais avant même qu'ils ouvrent la bouche. Longtemps, j'ai cru que c'était un défaut. Trop sensible. Trop dans les autres.</p>
+
+    <div class="pull-quote">
+      <p>C'était un don. Je ne le savais pas encore.</p>
+    </div>
+
+    <p class="body-text">Je suis devenue le pilier émotionnel de ma famille très tôt. Celle sur laquelle on s'appuie, celle qui absorbe, celle qui tient. Je connaissais ce terrain de l'intérieur — pas depuis un livre, pas depuis une formation. Depuis mon propre corps.</p>
+    <p class="body-text">Puis ma fille est née après une grossesse à risque. Le jour où j'ai dû envisager de retourner à ma vie d'avant, quelque chose a lâché.</p>
+
+    <div class="dark-block">
+      <p>J'ai passé un mois et demi à pleurer. Pas des larmes discrètes. Des pleurs que je ne comprenais pas. Mon corps répondait avant que ma tête comprenne.</p>
+      <p>C'est là que j'ai su. Je n'allais pas retourner à cette vie.</p>
+    </div>
+
+    <p class="body-text">Je me suis formée à l'hypnose, au Reiki, au coaching, à la synergologie, à l'Human Design. J'ai ouvert un cabinet. J'ai commencé à accompagner.</p>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- 03 CE QUE J'AI COMPRIS À MES DÉPENS -->
+  <div class="reveal">
+    <div class="section-label">03 · Ce que j'ai compris à mes dépens</div>
+    <p class="body-text">Pendant deux ans, j'ai construit. Et regardé s'effondrer. Construit. Et regardé s'effondrer.</p>
+    <p class="body-text">Mon cabinet fonctionnait, puis plus de clients. Mon business en ligne démarrait, puis s'arrêtait. Chaque système que je mettais en place tenait quelques semaines, puis s'écroulait. J'ai mis du temps à voir que c'était moi qui remettais le chaos en place.</p>
+
+    <div class="dark-block">
+      <p>Je ne me sentais vivante que dans la tension. Le calme me terrifiait. Sans chaos, je ne savais plus qui j'étais. Sans combat, j'avais l'impression de ne plus servir à rien.</p>
+      <p>Mon système nerveux était câblé survie. Et il recréait les conditions de sa propre survie encore et encore.</p>
+    </div>
+
+    <p class="body-text">C'est quand j'ai compris ça — pas intellectuellement, corporellement — que tout a changé. Dans ma vie. Et dans ma façon d'accompagner.</p>
+    <p class="body-text">J'avais accumulé des compréhensions. Des prises de conscience. Des outils mentaux. Aucun n'avait atteint ce que la régulation nerveuse réelle a atteint en quelques semaines.</p>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- 04 CE QUE LE CORPS M'A APPRIS -->
+  <div class="reveal">
+    <div class="section-label">04 · Ce que le corps m'a appris</div>
+    <p class="body-text">Dans mon travail avec mes clientes, j'ai vu quelque chose se répéter. On comprenait ensemble. On nommait les schémas. Et puis rien ne changeait vraiment. La tête avait tout saisi. Le corps, lui, n'avait pas reçu le mémo.</p>
+
+    <div class="dark-block">
+      <p>Une cliente. Des séances entières à explorer, à comprendre, à déconstruire. De vraies avancées dans la tête.</p>
+      <p>Et puis le jour où je l'ai ramenée dans son corps, sur le lieu exact de ce qui s'était gelé. Pas pour en parler dans une pièce sécurisée. Pour laisser son système nerveux traverser ce qu'il avait mis en veille.</p>
+      <p>Quelque chose s'est déverrouillé ce jour-là que deux ans de parole n'avaient pas touché.</p>
+    </div>
+
+    <p class="body-text">Le système nerveux ne se déverrouille pas comme une pensée. Il a sa propre mémoire, sa propre logique, ses propres verrous. J'ai plongé dans le système vagal, la régulation somatique, les soins énergétiques. Et j'ai compris que c'était ça la vraie porte.</p>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- 05 MON INTERVENTION -->
+  <div class="reveal">
+    <div class="section-label">05 · Mon intervention</div>
+    <p class="body-text">Je n'ai aucune complaisance pour le "mindset". Je travaille sur le hardware : ton corps.</p>
+    <p class="body-text">Ma fonction est de voir les failles systémiques là où les autres voient des problèmes de volonté. Je suis construite pour initier, pas pour suivre — ce qui m'a valu des années à ne pas comprendre pourquoi je ne fonctionnais dans aucun cadre qui n'était pas le mien. Quand j'ai compris la mécanique de mon propre design, j'ai arrêté de me battre contre ma nature et j'ai commencé à l'utiliser. C'est ce que je fais avec mes clientes.</p>
+    <p class="body-text">J'ai étudié comment la biologie du trauma et de l'hypervigilance sature les capacités de leadership — et surtout, comment les recalibrer.</p>
+
+    <div class="statement">
+      <p><strong>Mon job n'est pas de t'analyser.</strong> C'est de lire tes archives émotionnelles et de recalibrer tes réponses nerveuses.</p>
+      <p>Je traduis ce que ton corps hurle en protocoles d'action clairs. On ne cherche pas à ce que tu "ailles mieux". On cherche à ce que ton système nerveux autorise enfin la performance que tu vises.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Je ne t'accompagne pas depuis une position de sagesse acquise. Je marche quelques pas devant toi, avec mes propres outils, sur le même chemin."</p>
+    </div>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- FORMATIONS -->
+  <div class="reveal">
+    <div class="section-label">Formations et certifications</div>
+    <div class="skills-box">
+      <span class="skills-label">Ce que je porte dans mon arc</span>
+      <div class="skills-tags">
+        <span class="skill-tag">Hypnose</span>
+        <span class="skill-tag">Reiki</span>
+        <span class="skill-tag">Synergologie</span>
+        <span class="skill-tag">Human Design</span>
+        <span class="skill-tag">EFT</span>
+        <span class="skill-tag">Système nerveux vagal</span>
+        <span class="skill-tag">Régulation somatique</span>
+        <span class="skill-tag">Soins énergétiques</span>
+        <span class="skill-tag">École des guérisseuses</span>
+        <span class="skill-tag">Coaching</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- 06 L'EXIGENCE -->
+  <div class="reveal">
+    <div class="section-label">06 · L'exigence</div>
+    <p class="body-text">Je travaille avec des femmes qui ont compris que forcer sur une machine déréglée ne mène nulle part. Qui ont arrêté d'attendre que la prochaine formation, la prochaine méthode, le prochain mentor règle ce que leur corps continue de saboter.</p>
+    <p class="body-text">Si tu es prête à arrêter de piloter à l'aveugle et à commencer à piloter depuis une sécurité biologique réelle, on a du travail.</p>
+
+    <div class="statement">
+      <p>Pas de place pour celles qui cherchent une validation. Pas de place pour celles qui veulent comprendre sans rien changer. Pas de place pour celles qui ne sont pas prêtes à regarder en face ce que leur corps fait vraiment.</p>
+      <p><strong>Si tu te reconnais dans ce que tu lis ici, la première étape est Yalo Ni Yago.</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <span class="cta-label">Ta trajectoire de pilotage</span>
+    <h2 class="cta-title">Par où<br><em>commencer ?</em></h2>
+    <div class="cta-line"></div>
+    <div class="offers-row">
+      <a href="yalo-ni-yago.html" class="offer-mini">
+        <span class="offer-mini-tag">Le diagnostic</span>
+        <div class="offer-mini-name">Yalo Ni Yago</div>
+        <p class="offer-mini-desc">Une heure pour identifier l'endroit exact où ton système nerveux bloque ton business. Tu repars avec ton protocole de régulation.</p>
+        <span class="offer-mini-link">Réserver · 90 €</span>
+      </a>
+      <a href="unlock.html" class="offer-mini">
+        <span class="offer-mini-tag">Le recâblage</span>
+        <div class="offer-mini-name">Unlock</div>
+        <p class="offer-mini-desc">1 mois pour ne pas te saboter en direct. 3 séances et une hotline. Je suis le spotter quand la pression monte.</p>
+        <span class="offer-mini-link">Découvrir · 900 €</span>
+      </a>
+      <a href="athena.html" class="offer-mini">
+        <span class="offer-mini-tag">L'infrastructure · 3 mois</span>
+        <div class="offer-mini-name">Athéna</div>
+        <p class="offer-mini-desc">On change le moteur. Ingénierie identitaire. Un business qui tourne à plein régime, sans surchauffe biologique.</p>
+        <span class="offer-mini-link">Découvrir Athéna</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Cécile Soriano</p>
+  <p class="footer-tag">Yalo Sereki · Ingénierie nerveuse · Performance business</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
