@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture Sereki — Cécile Soriano</title>
+<meta name="description" content="60 minutes pour comprendre ce qui se débranche entre ton offre et ton compte en banque. Une lecture business du système nerveux entrepreneurial.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brown: #2C1A12;
+  --brown-soft: #3D2820;
+  --gold: #C6A25A;
+  --gold-dark: #A88847;
+  --terracotta: #9C4A2F;
+  --cream: #F5EFE6;
+  --cream-deep: #EBE3D5;
+  --ink: #1A0F0A;
+  --muted: #6B5B4F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: var(--brown);
+  background: var(--cream);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+.mono { font-family: 'DM Mono', monospace; font-weight: 400; }
+
+/* — LAYOUT — */
+section {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.container-narrow {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* — TYPOGRAPHIE — */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  color: var(--brown);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  margin-bottom: 32px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+em {
+  font-style: italic;
+  color: var(--brown-soft);
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 48px auto;
+  border: none;
+}
+
+.divider-left {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 32px 0;
+  border: none;
+}
+
+/* — HERO — */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--brown);
+  color: var(--cream);
+  padding: 120px 24px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(198, 162, 90, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(156, 74, 47, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero .container { position: relative; z-index: 1; }
+
+.hero h1 {
+  color: var(--cream);
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.hero h1 em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero p {
+  color: var(--cream-deep);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 580px;
+}
+
+.hero .eyebrow {
+  color: var(--gold);
+}
+
+.hero-promise {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+  margin: 40px 0;
+  line-height: 1.5;
+  max-width: 580px;
+}
+
+/* — BOUTONS — */
+.cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--brown);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 18px 38px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  margin-top: 12px;
+}
+
+.cta:hover {
+  background: var(--cream);
+  color: var(--brown);
+  transform: translateY(-1px);
+}
+
+.cta-meta {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 14px;
+  letter-spacing: 0.05em;
+}
+
+.hero .cta-meta { color: var(--cream-deep); opacity: 0.7; }
+
+/* — SECTIONS ALTERNÉES — */
+.section-cream { background: var(--cream); }
+.section-cream-deep { background: var(--cream-deep); }
+.section-brown {
+  background: var(--brown);
+  color: var(--cream);
+}
+.section-brown h2, .section-brown h3 { color: var(--cream); }
+.section-brown strong { color: var(--gold); }
+.section-brown em { color: var(--cream-deep); }
+.section-brown .divider-left { background: var(--gold); }
+
+/* — LISTE TIRETS — */
+.tiret-list {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0;
+}
+
+.tiret-list li {
+  padding: 10px 0 10px 32px;
+  position: relative;
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(44, 26, 18, 0.08);
+}
+
+.section-brown .tiret-list li {
+  border-bottom: 1px solid rgba(245, 239, 230, 0.1);
+}
+
+.tiret-list li:last-child { border-bottom: none; }
+
+.tiret-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* — PHRASE-SIGNATURE — */
+.signature-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--terracotta);
+  text-align: center;
+  padding: 48px 0;
+  margin: 40px 0;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+
+.section-brown .signature-phrase {
+  color: var(--gold);
+  border-color: rgba(198, 162, 90, 0.4);
+}
+
+/* — POUR QUI / PAS POUR — */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.split-block h3 {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+/* — FORMAT BOX — */
+.format-box {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 56px 40px;
+  margin: 48px 0;
+  text-align: center;
+  position: relative;
+}
+
+.format-box::before, .format-box::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  top: 50%;
+}
+.format-box::before { left: -10px; }
+.format-box::after { right: -10px; }
+
+.format-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 8px 0;
+  color: var(--cream);
+}
+
+.format-line strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* — OBJECTIONS — */
+.objection {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(44, 26, 18, 0.1);
+}
+
+.objection:last-child { border-bottom: none; }
+
+.objection-q {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--terracotta);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.objection-a {
+  color: var(--brown);
+  font-size: 1rem;
+}
+
+/* — FAQ — */
+.faq-item {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(245, 239, 230, 0.12);
+}
+
+.section-brown .faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.faq-a {
+  color: var(--cream-deep);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* — CTA FINAL — */
+.cta-final {
+  background: var(--brown);
+  color: var(--cream);
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.cta-final p { color: var(--cream-deep); }
+
+.cta-final .closing-punch {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  font-style: italic;
+  color: var(--cream);
+  margin: 40px auto;
+  max-width: 580px;
+  line-height: 1.35;
+}
+
+.cta-final .closing-punch strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* — SIGNATURE CECILE — */
+.cecile-sig {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(198, 162, 90, 0.3);
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* — KLARNA BADGE — */
+.klarna-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  background: rgba(198, 162, 90, 0.1);
+  border: 1px solid var(--gold);
+  color: var(--gold-dark);
+  padding: 6px 14px;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.hero .klarna-badge {
+  background: rgba(198, 162, 90, 0.15);
+  color: var(--gold);
+}
+
+/* — FOOTER — */
+footer {
+  background: var(--ink);
+  color: var(--cream-deep);
+  text-align: center;
+  padding: 40px 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: var(--gold);
+  text-decoration: none;
+  margin: 0 12px;
+}
+
+footer a:hover { color: var(--cream); }
+
+/* — RESPONSIVE — */
+@media (max-width: 640px) {
+  section { padding: 70px 20px; }
+  .hero { padding: 100px 20px 80px; min-height: auto; }
+  .hero-promise { font-size: 1.15rem; padding-left: 18px; }
+  .format-box { padding: 40px 24px; }
+  .format-line { font-size: 1.2rem; }
+  .signature-phrase { padding: 32px 0; }
+  .cta { padding: 16px 28px; font-size: 0.9rem; width: 100%; text-align: center; }
+}
+
+/* — ANIMATION SUBTILE AU SCROLL — */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Lecture Sereki — 60 minutes</span>
+    <h1>Tu disparais<br>au moment <em>de vendre.</em></h1>
+    <p>Ton offre est solide. Ton expertise est réelle. Ton compte Instagram tourne.</p>
+    <p>Et pourtant, quelque chose se coupe au moment précis où il faudrait encaisser.</p>
+
+    <div class="hero-promise">
+      La Lecture Sereki : 60 minutes pour comprendre ce qui se débranche entre ton offre et ton compte en banque.
+    </div>
+
+    <a href="#reserver" class="cta">Réserver ma Lecture · 250€</a>
+    <span class="cta-meta">ou 3× avec Klarna</span>
+  </div>
+</section>
+
+<!-- SECTION 2 — LE PARADOXE -->
+<section class="section-cream">
+  <div class="container-narrow">
+    <span class="eyebrow">Le paradoxe</span>
+    <h2>Tu n'as pas un problème de stratégie.</h2>
+
+    <p>Tu as déjà appris énormément de choses.</p>
+
+    <p>Tu connais les tunnels, les formats, les leviers de conversion. Tu as fait des formations sur la prise de parole, sur les reels, sur le copywriting. Tu suis depuis des mois des mentors qui te répètent les mêmes principes.</p>
+
+    <p>Pourtant, au moment d'appliquer, quelque chose se coupe.</p>
+
+    <p>Tu retouches ton carrousel pendant deux heures puis tu le supprimes. Tu écris la story de vente, tu la relis, tu la trouves <em>"trop."</em> Tu repousses le mail de lancement à demain. Demain devient la semaine prochaine. La semaine prochaine devient un autre cycle.</p>
+
+    <p>Tu n'es pas paresseuse. Tu n'es pas indisciplinée. Tu n'as pas <em>"perdu la flamme."</em></p>
+
+    <p><strong>Quelque chose, dans ton corps, refuse l'exposition.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 3 — LE MÉCANISME -->
+<section class="section-brown">
+  <div class="container-narrow">
+    <span class="eyebrow">Le mécanisme</span>
+    <h2>Le corps ne réagit pas à Instagram.<br>Il réagit à ce que l'exposition représente.</h2>
+
+    <p>Pour ton système nerveux, se rendre visible peut être interprété comme une mise en danger. Et quand c'est le cas, il déclenche exactement ce qu'il est conçu pour déclencher : il te fait disparaître.</p>
+
+    <p>C'est ça qui pilote en sous-marin :</p>
+
+    <ul class="tiret-list">
+      <li>la story que tu n'as pas postée</li>
+      <li>le live que tu as annulé <em>"parce que ta fille était malade"</em></li>
+      <li>le prix que tu as baissé en DM <em>"pour cette fois"</em></li>
+      <li>le lancement que tu as repoussé <em>"le temps de finaliser"</em></li>
+      <li>la cliente que tu as laissée partir sans contre-proposition</li>
+      <li>le mois où ton CA s'est effondré sans raison apparente</li>
+      <li>les semaines où tu n'arrives pas à poster, alors que ton offre est prête</li>
+    </ul>
+
+    <div class="signature-phrase">
+      Tu crois que tu procrastines.<br>Ton corps fait son boulot.
+    </div>
+
+    <p>Il te protège d'une menace qu'il a identifiée comme réelle. Ce n'est pas conscient. Ce n'est pas volontaire. <strong>L'énergie disparaît avant même le passage à l'action.</strong></p>
+
+    <p>Tant qu'on ne touche pas ça, tu peux empiler les formations marketing comme on empile les régimes. Le résultat sera le même.</p>
+  </div>
+</section>
+
+<!-- SECTION 4 — CE QUE JE VOIS -->
+<section class="section-cream-deep">
+  <div class="container-narrow">
+    <span class="eyebrow">Ce que je vois chez mes clientes</span>
+    <h2>80% des femmes que j'accompagne savent déjà quoi faire.</h2>
+
+    <p>Elles ont les compétences. Elles ont l'offre. Elles ont parfois même les vues. Le problème n'est pas l'information. C'est ce qui se passe dans le corps au moment de s'exposer.</p>
+
+    <p>Quand ce mécanisme bouge, ce n'est pas leur stratégie qui change. C'est leur capacité à rester visibles sans disparaître au moment de vendre.</p>
+
+    <p><strong>Certaines doublent leur visibilité en quelques semaines. Pas parce qu'elles ont changé de tunnel. Parce qu'elles ont cessé de couper.</strong></p>
+  </div>
+</section>
+
+<!-- SECTION 5 — POUR QUI -->
+<section class="section-cream">
+  <div class="container">
+    <span class="eyebrow">Pour qui</span>
+    <h2>La Lecture est faite pour toi si :</h2>
+
+    <ul class="tiret-list">
+      <li>Tu as une offre claire, un positionnement, un compte qui tourne. Tu n'es pas débutante.</li>
+      <li>Tu vois ce qu'il faudrait faire. Au moment d'appliquer, quelque chose se ferme.</li>
+      <li>Tu as des semaines <em>"ON"</em> suivies de mois <em>"OFF"</em> inexplicables.</li>
+      <li>Tu prépares les lancements à fond. Le CA ne suit pas.</li>
+      <li>Tu attires des prospects. Ils ne deviennent pas clients.</li>
+      <li>Tu baisses tes prix <em>"exceptionnellement"</em> sans pouvoir t'en empêcher.</li>
+      <li>Tu vois des comptes plus petits que le tien faire trois fois ton CA.</li>
+    </ul>
+
+    <hr class="divider-left">
+
+    <h3 class="serif">Ce n'est pas pour toi si :</h3>
+
+    <ul class="tiret-list">
+      <li>Tu cherches une stratégie marketing. Tu en as déjà six dans Notion.</li>
+      <li>Tu veux qu'on te dise quoi poster. Ce n'est pas le problème.</li>
+      <li>Tu veux te sentir mieux. Ici, on travaille à rendre la visibilité soutenable pour ton système.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECTION 6 — CE QU'ON FAIT -->
+<section class="section-brown">
+  <div class="container-narrow">
+    <span class="eyebrow">Ce qu'on fait en 60 minutes</span>
+    <h2>On regarde ton activité des trois derniers mois.</h2>
+
+    <p><em>Pas tes posts. Ton comportement.</em></p>
+
+    <p>Où l'énergie se coupe. Quand le système se ferme. Ce que tu repousses en boucle. Ce que tu sur-prépares pour ne jamais lancer. Ce que tu offres <em>"exceptionnellement"</em> sans pouvoir t'en empêcher. Les mois où ton CA chute et que tu ne sais pas pourquoi.</p>
+
+    <p>Je te montre le mécanisme qui pilote tout ça. Pas en théorie : sur tes faits, tes chiffres, tes décisions de la semaine dernière.</p>
+
+    <p>À la sortie de la séance, tu sais :</p>
+
+    <ul class="tiret-list">
+      <li>pourquoi ton business plafonne précisément là où il plafonne</li>
+      <li>quel mécanisme se déclenche, et à quel moment de ton cycle de vente</li>
+      <li>ce qui doit bouger pour que ton corps cesse de couper la visibilité</li>
+      <li>si la suite passe par <strong>Unlock</strong> (déblocage ciblé, 900€) ou <strong>Athéna</strong> (restructuration profonde, 3000€)</li>
+    </ul>
+
+    <div class="signature-phrase">
+      La Lecture, c'est voir.<br>La suite, c'est activer le changement.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 — POURQUOI MOI -->
+<section class="section-cream">
+  <div class="container-narrow">
+    <span class="eyebrow">Pourquoi moi</span>
+    <h2>Je ne suis pas thérapeute.<br>Je ne suis pas coach business non plus.</h2>
+
+    <p><strong>Je suis entrepreneure.</strong> J'ai construit Yalo Sereki de 400 à 14 000 abonnés en deux ans, avec des reels à plus d'un million de vues. Et j'ai aussi connu la séquence inverse : la viralité sans une seule vente, les mois sans DM, les lancements qui s'effondrent.</p>
+
+    <p>Ce que je fais avec mes clientes, ce n'est pas du mindset. Ce n'est pas de la respiration. C'est un travail précis sur ce que ton système nerveux fait à ton business, et sur la façon de le recâbler pour qu'il cesse de couper l'énergie au moment de vendre.</p>
+
+    <p><strong>Mes clientes Athéna ne sont pas plus "alignées." Elles encaissent.</strong></p>
+
+    <hr class="divider">
+
+    <p style="text-align: center; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--brown-soft);">
+      Moi c'est Cécile, je travaille sur ta visibilité,<br>ton talent et ton business en régulant ton système nerveux.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 8 — LE FORMAT -->
+<section class="section-cream-deep" id="reserver">
+  <div class="container-narrow">
+    <span class="eyebrow">Le format</span>
+    <h2>Tu réserves, tu viens, on travaille.</h2>
+
+    <div class="format-box">
+      <p class="format-line">60 minutes <strong>en visio</strong></p>
+      <p class="format-line"><strong>250€</strong></p>
+      <p class="format-line">payables en <strong>3 fois avec Klarna</strong></p>
+    </div>
+
+    <p>Pas de séance découverte gratuite. Pas d'appel préalable.</p>
+
+    <p>À la fin de la Lecture, je te dis ce que je vois et où on va si tu veux continuer. Sans pression. Mes clientes Athéna ne viennent pas parce que je les convaincs : elles viennent parce que pendant 60 minutes, elles ont vu quelque chose qu'aucune formation ne leur avait montré.</p>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="#" class="cta">Je réserve ma Lecture Sereki</a>
+      <span class="cta-meta">250€ · ou 3× avec Klarna</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9 — OBJECTIONS -->
+<section class="section-cream">
+  <div class="container-narrow">
+    <span class="eyebrow">Objections</span>
+    <h2>Ce que tu penses peut-être en lisant ça.</h2>
+
+    <div class="objection">
+      <p class="objection-q">"250€ pour une heure, c'est cher."</p>
+      <p class="objection-a">Tu as raison. Si tu cherches une consultation, c'est cher. Si tu cherches à comprendre pourquoi tu ne convertis pas malgré six mois de contenu, c'est le prix d'arrêter de saigner ton CA. Et tu peux payer en 3 fois avec Klarna.</p>
+    </div>
+
+    <div class="objection">
+      <p class="objection-q">"Je préfère essayer encore une formation avant."</p>
+      <p class="objection-a">Fais-le. Reviens quand tu auras compris que ce n'est pas l'info qui te manque.</p>
+    </div>
+
+    <div class="objection">
+      <p class="objection-q">"Et si je ne suis pas prête ?"</p>
+      <p class="objection-a">Tu n'es jamais prête. C'est le symptôme, pas une raison de reporter.</p>
+    </div>
+
+    <div class="objection">
+      <p class="objection-q">"Je veux d'abord savoir si ça marche pour mon cas."</p>
+      <p class="objection-a">C'est exactement à ça que sert la Lecture.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10 — FAQ -->
+<section class="section-brown">
+  <div class="container-narrow">
+    <span class="eyebrow">Questions fréquentes</span>
+    <h2>FAQ</h2>
+
+    <div class="faq-item">
+      <p class="faq-q">Est-ce que c'est de la thérapie ?</p>
+      <p class="faq-a">Non. C'est une lecture business. Le système nerveux est l'outil, pas le sujet de la séance.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Tu vas me faire faire des exercices de respiration ?</p>
+      <p class="faq-a">Non. On regarde tes données, tes comportements, tes décisions. Le travail somatique, c'est dans Unlock et Athéna, pas dans la Lecture.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Je suis débutante, c'est pour moi ?</p>
+      <p class="faq-a">Non. La Lecture est pour les entrepreneures déjà installées qui plafonnent. Si tu n'as pas encore d'offre ou de compte actif, ce n'est pas le bon moment.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Combien de temps avant de voir des résultats ?</p>
+      <p class="faq-a">La Lecture te donne le diagnostic. Les résultats viennent du travail qui suit, Unlock ou Athéna. Aucun changement durable ne se fait en 60 minutes.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Comment fonctionne le paiement en 3 fois avec Klarna ?</p>
+      <p class="faq-a">Tu choisis Klarna au moment du paiement. Trois prélèvements échelonnés sur 60 jours. Décision en quelques secondes, sans dossier bancaire.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Tu prends combien de clientes par mois ?</p>
+      <p class="faq-a">Six Lectures maximum. Deux à trois places d'Athéna.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container-narrow">
+    <p>Tu peux continuer à empiler les formations.</p>
+    <p>Tu peux continuer à attendre d'être prête.</p>
+    <p>Tu peux continuer à supprimer la story trois minutes après l'avoir postée.</p>
+
+    <div class="closing-punch">
+      Le problème n'est peut-être pas que tu ne sais pas vendre.<br>
+      <strong>Le problème est peut-être que ton corps considère encore la visibilité comme dangereuse.</strong>
+    </div>
+
+    <a href="#" class="cta">Je réserve ma Lecture Sereki</a>
+    <span class="cta-meta" style="color: var(--cream-deep); opacity: 0.7;">250€ · ou 3× avec Klarna</span>
+  </div>
+</section>
+
+<footer>
+  © Cécile Soriano — Yalo Sereki
+  &nbsp;·&nbsp;
+  <a href="/mentions-legales.html">Mentions légales</a>
+  <a href="/cgv.html">CGV</a>
+  <a href="https://instagram.com/yalo.sereki">Instagram</a>
+</footer>
+
+<script>
+// Animation au scroll subtile
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('section').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
