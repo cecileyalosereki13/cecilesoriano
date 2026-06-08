@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les gestes qui parlent — Gossip de Cécile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nuit:#09131F;--encre:#1D1D1B;--kraft:#CEAE88;--creme:#F2EAD9;--creme-2:#E4D7C0;
+    --brun:#7A3A14;--brun-fonce:#5A2E0F;--taupe-clair:#CBB99E;--taupe-fonce:#7A6A55;
+    --rouge:#A8392C;--rouge-vif:#E85B40;--rouge-clair:#C0492F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--nuit);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(40,60,82,.55), transparent 60%),
+      radial-gradient(ellipse 100% 60% at 50% 110%, rgba(8,14,22,.9), transparent 55%);
+    color:var(--creme);font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:48px 22px 90px;position:relative;z-index:1;}
+
+  .kicker{text-align:center;font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.26em;color:var(--taupe-clair);text-transform:uppercase;margin-bottom:12px;}
+  .dossier-ref{display:block;text-align:center;font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.24em;color:var(--rouge-vif);margin-bottom:38px;}
+
+  /* hero */
+  .hero{text-align:center;margin-bottom:30px;}
+  .hero h1{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(38px,9.5vw,68px);line-height:1.02;color:var(--creme);}
+  .hero .h1sub{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;text-transform:none;letter-spacing:.5px;font-size:clamp(22px,5vw,30px);color:var(--rouge-vif);margin-top:14px;line-height:1.25;}
+  .hero-sub{max-width:560px;margin:26px auto 0;font-size:24px;color:var(--creme-2);font-style:italic;line-height:1.5;}
+
+  /* intro voix */
+  .intro{text-align:center;margin:50px auto;max-width:600px;}
+  .intro .stack{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5.5vw,32px);line-height:1.4;color:var(--creme);}
+  .intro .stack span{display:block;}
+  .intro p{margin-top:24px;font-size:22px;color:var(--creme-2);line-height:1.55;}
+
+  /* phrase signature */
+  .punch{text-align:center;margin:54px auto;max-width:560px;}
+  .punch .no{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(18px,4.5vw,23px);color:var(--taupe-clair);}
+  .punch .no s{text-decoration-color:var(--rouge-vif);text-decoration-thickness:3px;}
+  .punch .yes{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(26px,6.5vw,40px);color:var(--rouge-vif);margin-top:10px;line-height:1.2;}
+
+  /* fiche */
+  .fiche{position:relative;background:var(--creme);color:var(--encre);border-radius:2px;padding:42px 32px 44px;margin:54px 0;box-shadow:0 22px 45px rgba(0,0,0,.45);}
+  .fiche.kraft{background:var(--kraft);}
+  .fiche.tilt-l{transform:rotate(-.6deg);}
+  .scotch{position:absolute;width:130px;height:36px;top:-17px;left:50%;transform:translateX(-50%) rotate(-2deg);background:rgba(206,174,136,.5);border-left:1px dashed rgba(120,95,60,.3);border-right:1px dashed rgba(120,95,60,.3);box-shadow:0 2px 5px rgba(0,0,0,.15);}
+  .scotch.left{left:34px;transform:rotate(-7deg);}
+  .scotch.right{left:auto;right:34px;transform:rotate(6deg);}
+  .fiche-title{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:clamp(22px,5.5vw,28px);color:var(--brun-fonce);line-height:1.15;}
+  .fiche-rule{display:flex;align-items:center;gap:12px;color:var(--taupe-fonce);margin:14px 0 24px;}
+  .fiche-rule::before,.fiche-rule::after{content:"";height:1px;background:rgba(110,85,55,.5);flex:1;}
+  .fiche-rule span{font-family:'Special Elite',monospace;font-size:16px;}
+
+  ol.indices{list-style:none;counter-reset:i;}
+  ol.indices li{position:relative;counter-increment:i;padding:11px 0 11px 48px;border-bottom:1px dashed rgba(110,85,55,.32);font-size:20px;line-height:1.4;color:var(--encre);}
+  ol.indices li:last-child{border-bottom:none;}
+  ol.indices li::before{content:counter(i,decimal-leading-zero);position:absolute;left:0;top:11px;font-family:'Special Elite',monospace;font-size:16px;color:var(--rouge);}
+  ol.indices li.bonus::before{content:"+";font-size:22px;top:9px;}
+
+  /* grille d'analyse */
+  .grille-intro{text-align:center;font-size:22px;color:var(--creme-2);font-style:italic;margin:40px auto 18px;max-width:560px;}
+  .grille{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:620px;margin:0 auto;}
+  @media(max-width:560px){.grille{grid-template-columns:1fr;}}
+  .grille .g{background:rgba(206,174,136,.08);border:1px solid rgba(203,185,158,.2);border-radius:3px;padding:16px 18px;}
+  .grille .g .t{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--rouge-vif);margin-bottom:6px;}
+  .grille .g .d{font-size:18px;color:var(--creme-2);line-height:1.4;}
+
+  /* bénéfice */
+  .benef{text-align:center;margin:56px auto;max-width:600px;}
+  .benef h2{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(24px,6vw,34px);color:var(--creme);margin-bottom:18px;}
+  .benef p{font-size:23px;color:var(--creme-2);line-height:1.55;margin-bottom:14px;}
+  .benef .em{color:var(--rouge-vif);font-style:italic;}
+
+  /* offre */
+  .offre{position:relative;background:var(--creme);color:var(--encre);border-radius:3px;padding:46px 32px 48px;margin:60px 0 30px;text-align:center;box-shadow:0 22px 50px rgba(0,0,0,.5);}
+  .punaise{position:absolute;top:-10px;left:50%;width:20px;height:20px;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle at 35% 30%, #c95a48, var(--rouge) 60%, #7a261c);box-shadow:0 3px 6px rgba(0,0,0,.4);}
+  .offre .lbl{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe-fonce);}
+  .offre .nom{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,6.5vw,36px);color:var(--brun-fonce);margin:8px 0 6px;line-height:1.1;}
+  .offre .meta{font-size:20px;color:var(--taupe-fonce);font-style:italic;margin-bottom:24px;}
+  .offre .prix{font-family:'Oswald',sans-serif;font-weight:700;font-size:64px;color:var(--rouge);line-height:1;}
+  .offre .prix small{font-size:28px;font-weight:500;}
+  .offre .accesnow{font-family:'Caveat',cursive;font-size:23px;color:var(--taupe-fonce);margin:10px 0 26px;}
+  a.buy{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:22px;color:#fff;background:var(--rouge);text-decoration:none;border-radius:3px;padding:20px 44px;box-shadow:0 10px 24px rgba(168,57,44,.45);transition:transform .15s,box-shadow .15s,background .15s;}
+  a.buy:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(168,57,44,.55);background:var(--rouge-clair);}
+  .offre .rassure{margin-top:18px;font-size:18px;color:var(--taupe-fonce);}
+
+  /* signature */
+  .sign{text-align:center;margin:50px auto 0;max-width:600px;font-size:21px;color:var(--creme-2);line-height:1.55;font-style:italic;}
+
+  footer{text-align:center;margin-top:70px;padding-top:40px;border-top:1px solid rgba(203,185,158,.22);}
+  .logo{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.18em;font-size:28px;color:var(--creme);text-transform:uppercase;}
+  .logo .star{color:var(--rouge-vif);}
+  footer .tag{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-clair);margin-top:10px;}
+
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .8s ease forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker reveal d1">Gossip de Cécile · Enquêtes sur les comportements humains</div>
+  <span class="dossier-ref reveal d1">— Dossier d'enquête —</span>
+
+  <div class="hero reveal d2">
+    <h1>Les gestes<br>qui parlent
+      <span class="h1sub">Enquête sur 13 comportements que le corps trahit avant les mots.</span>
+    </h1>
+  </div>
+
+  <div class="intro reveal d2">
+    <div class="stack">
+      <span>Une manche que l'on tire.</span>
+      <span>Une mâchoire qui se serre.</span>
+      <span>Une nuque que l'on frotte.</span>
+    </div>
+    <p>La plupart du temps, on n'y prête aucune attention. Pourtant ces gestes apparaissent toujours au même moment : quand une tension monte, qu'une vérité dérange, qu'une décision approche, ou que quelque chose essaie d'être retenu.</p>
+  </div>
+
+  <div class="punch reveal d3">
+    <div class="no"><s>Un dictionnaire des gestes.</s></div>
+    <div class="yes">C'est une enquête.</div>
+  </div>
+
+  <div class="fiche kraft tilt-l reveal d3">
+    <span class="scotch left"></span><span class="scotch right"></span>
+    <div class="fiche-title">Les 13 indices du dossier</div>
+    <div class="fiche-rule"><span>&#10022;</span></div>
+    <ol class="indices">
+      <li>Toucher les cheveux, les replacer</li>
+      <li>Toucher ou frotter le front, les tempes</li>
+      <li>Se frotter la nuque, l'arrière du cou</li>
+      <li>La mâchoire qui serre</li>
+      <li>Toucher ou cacher la bouche</li>
+      <li>Plaques rouges dans le cou, le haut de la poitrine</li>
+      <li>Se toucher le bas-ventre, le plexus</li>
+      <li>Se tenir les épaules, croiser les bras</li>
+      <li>Tirer les manches vers le bas</li>
+      <li>Se frotter les bras, se tenir les avant-bras</li>
+      <li>Se frotter les mains, les essuyer</li>
+      <li>Toucher l'épaule, la tirer en arrière</li>
+      <li class="bonus">Bonus : croiser et décroiser les jambes</li>
+    </ol>
+  </div>
+
+  <p class="grille-intro reveal d3">Pour chaque comportement, la même grille d'enquête :</p>
+  <div class="grille reveal d3">
+    <div class="g"><div class="t">L'observation</div><div class="d">Ce que tu vois, le geste tel qu'il apparaît.</div></div>
+    <div class="g"><div class="t">Ce qu'on croit</div><div class="d">L'explication évidente, celle que tout le monde donne.</div></div>
+    <div class="g"><div class="t">L'hypothèse</div><div class="d">Ce que le geste révèle vraiment, et quand.</div></div>
+    <div class="g"><div class="t">La piste</div><div class="d">Où regarder, parce que le sujet n'est presque jamais le geste.</div></div>
+  </div>
+
+  <div class="benef reveal d4">
+    <h2>Ce que tu vas apprendre</h2>
+    <p>À repérer le moment exact où un geste trahit ce que les mots cachent. Chez les autres. Et chez toi.</p>
+    <p>Pas pour jouer au profiler de comptoir. <span class="em">Pour apprendre à regarder ailleurs que là où tout le monde regarde.</span></p>
+    <p>Parce que le vrai problème n'est pas toujours celui qu'on croit.</p>
+  </div>
+
+  <div class="offre reveal d4">
+    <span class="punaise"></span>
+    <div class="lbl">Le dossier complet</div>
+    <div class="nom">Les gestes qui parlent</div>
+    <div class="meta">PDF · 55 pages · 13 comportements décryptés</div>
+    <div class="prix"><small>€</small>19</div>
+    <div class="accesnow">Accès immédiat après paiement</div>
+    <a class="buy" href="https://buy.stripe.com/bJeaEX7if7aK2Jf2DB2oE0r">Ouvrir le dossier</a>
+    <div class="rassure">Paiement sécurisé · téléchargeable et lisible sur ton téléphone</div>
+  </div>
+
+  <p class="sign reveal d4">J'utilise la lecture du corps comme un point d'entrée. Pas pour étiqueter, pour comprendre ce qui se joue vraiment derrière une situation. Ce dossier, c'est la même chose que je fais en enquête, mis entre tes mains.</p>
+
+  <footer class="reveal d4">
+    <div class="logo">GOSSIP <span class="star">&#10022;</span> DE CÉCILE</div>
+    <div class="tag">Enquêtes sur les comportements humains</div>
+  </footer>
+
+</div>
+</body>
+</html>

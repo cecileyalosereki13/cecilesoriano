@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton dossier est à toi — Gossip de Cécile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nuit:#09131F;--encre:#1D1D1B;--kraft:#CEAE88;--creme:#F2EAD9;--creme-2:#E4D7C0;
+    --brun-fonce:#5A2E0F;--taupe-clair:#CBB99E;--taupe-fonce:#7A6A55;
+    --rouge:#A8392C;--rouge-vif:#E85B40;--rouge-clair:#C0492F;--vert:#5C7A4A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--nuit);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(40,60,82,.55), transparent 60%),
+      radial-gradient(ellipse 100% 60% at 50% 110%, rgba(8,14,22,.9), transparent 55%);
+    color:var(--creme);font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .wrap{max-width:680px;margin:0 auto;padding:64px 22px 80px;position:relative;z-index:1;text-align:center;}
+
+  .kicker{font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.26em;color:var(--taupe-clair);text-transform:uppercase;margin-bottom:28px;}
+  .tampon{display:inline-block;font-family:'Special Elite',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:18px;color:var(--vert);border:3px solid var(--vert);padding:12px 26px;border-radius:4px;transform:rotate(-2.5deg);box-shadow:inset 0 0 10px rgba(92,122,74,.18);margin-bottom:28px;}
+  .tampon .check{font-size:20px;margin-right:8px;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,8.5vw,54px);line-height:1.1;color:var(--creme);margin-bottom:16px;}
+  .sub{max-width:520px;margin:0 auto 38px;font-size:23px;color:var(--creme-2);font-style:italic;line-height:1.5;}
+
+  a.dl{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:22px;color:#fff;background:var(--rouge);text-decoration:none;border-radius:3px;padding:22px 48px;box-shadow:0 10px 24px rgba(168,57,44,.45);transition:transform .15s,box-shadow .15s,background .15s;}
+  a.dl:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(168,57,44,.55);background:var(--rouge-clair);}
+  .dlnote{font-family:'Caveat',cursive;font-size:23px;color:var(--taupe-clair);margin-top:18px;}
+
+  .pont{margin-top:60px;padding-top:40px;border-top:1px solid rgba(203,185,158,.22);}
+  .pont .t{font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--rouge-vif);margin-bottom:14px;}
+  .pont p{font-size:22px;color:var(--creme-2);line-height:1.55;max-width:520px;margin:0 auto 22px;}
+  a.pont-link{font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:18px;color:var(--rouge-vif);text-decoration:none;border-bottom:2px solid var(--rouge-vif);padding-bottom:3px;}
+
+  footer{margin-top:64px;padding-top:36px;border-top:1px solid rgba(203,185,158,.18);}
+  .logo{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.18em;font-size:26px;color:var(--creme);text-transform:uppercase;}
+  .logo .star{color:var(--rouge-vif);}
+  footer .tag{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-clair);margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Gossip de Cécile · Enquêtes sur les comportements humains</div>
+  <span class="tampon"><span class="check">&#10003;</span> Dossier débloqué</span>
+
+  <h1>Ton dossier est à toi.</h1>
+  <p class="sub">Merci pour ta confiance. Tu peux le télécharger maintenant, le garder, et le relire autant de fois que tu veux.</p>
+
+  <a class="dl" href="les-gestes-qui-parlent.pdf" download>Télécharger le dossier (PDF)</a>
+  <p class="dlnote">Il s'ouvre aussi très bien sur ton téléphone.</p>
+
+  <div class="pont">
+    <div class="t">Et si on enquêtait sur ta situation à toi ?</div>
+    <p>Ce dossier te montre comment je regarde. La prochaine étape, c'est de tourner ce regard vers ce qui te bloque, toi.</p>
+    <a class="pont-link" href="dossier.html">Soumettre mon dossier →</a>
+  </div>
+
+  <footer>
+    <div class="logo">GOSSIP <span class="star">&#10022;</span> DE CÉCILE</div>
+    <div class="tag">Enquêtes sur les comportements humains</div>
+  </footer>
+
+</div>
+</body>
+</html>
