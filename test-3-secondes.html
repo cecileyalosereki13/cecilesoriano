@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le test 3 secondes</title>
+<meta name="description" content="On décide en 3 secondes si on reste sur ton profil. Le test gratuit qui te dit pourquoi on scrolle, et quoi changer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir:#0A0A0A;
+    --noir-2:#141414;
+    --blanc:#F5F5F5;
+    --rose:#FF1E8A;
+    --cyan:#19E0E0;
+    --gris:#8A8A8A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--noir);
+    color:var(--blanc);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 22px;
+    overflow-x:hidden;
+  }
+  .wrap{width:100%;max-width:560px}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--noir);background:var(--cyan);
+    padding:7px 12px;border-radius:2px;
+  }
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--noir);
+    animation:blink 1.6s steps(1) infinite}
+  @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:.25}}
+
+  h1{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    font-size:clamp(36px,8.4vw,58px);
+    line-height:1.22;
+    letter-spacing:.005em;
+    text-transform:uppercase;
+    margin:22px 0 0;
+  }
+  .mk{position:relative;white-space:nowrap;padding:0 .08em;color:var(--noir);z-index:0}
+  .mk::before{content:"";position:absolute;left:-.04em;right:-.04em;
+    top:50%;height:1em;transform:translateY(-50%) rotate(-1.2deg);
+    z-index:-1}
+  .mk.cyan::before{background:var(--cyan)}
+  .mk.rose::before{background:var(--rose)}
+
+  .sub{margin-top:20px;font-size:clamp(16px,4.4vw,18px);color:#D8D8D8;max-width:46ch}
+  .sub b{color:var(--blanc);font-weight:600}
+
+  .why{
+    margin-top:16px;font-size:15px;color:var(--gris);
+    border-left:3px solid var(--rose);padding-left:14px;
+  }
+  .why em{font-style:normal;color:var(--blanc);font-weight:600}
+
+  form{margin-top:30px}
+  .field{display:flex;flex-direction:column;gap:10px}
+  label.l{font-size:13px;font-weight:600;color:var(--blanc)}
+  input[type=email]{
+    width:100%;font-family:inherit;font-size:16px;color:var(--blanc);
+    background:var(--noir-2);border:1.5px solid #2A2A2A;border-radius:4px;
+    padding:16px 16px;transition:border-color .15s;
+  }
+  input[type=email]::placeholder{color:#5A5A5A}
+  input[type=email]:focus{outline:none;border-color:var(--cyan)}
+  button{
+    width:100%;font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--noir);background:var(--rose);
+    border:none;border-radius:4px;padding:17px;cursor:pointer;
+    transition:transform .12s ease, background .15s;
+  }
+  button:hover{background:#ff3d9c}
+  button:active{transform:translateY(1px)}
+  button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+  button:disabled{opacity:.55;cursor:default}
+
+  .micro{margin-top:12px;font-size:12.5px;color:var(--gris);text-align:center}
+  .err{margin-top:10px;font-size:13px;color:var(--rose);font-weight:600;min-height:1em}
+
+  .proof{margin-top:34px;padding-top:22px;border-top:1px solid #222;
+    display:flex;align-items:baseline;gap:10px}
+  .proof .n{font-family:'Anton',sans-serif;font-size:30px;color:var(--cyan)}
+  .proof .t{font-size:13px;color:var(--gris);text-transform:uppercase;letter-spacing:.1em}
+
+  /* success */
+  .done{display:none;text-align:left}
+  .done.show{display:block;animation:rise .4s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .done h2{font-family:'Anton',sans-serif;font-size:clamp(34px,8vw,50px);
+    text-transform:uppercase;line-height:1;margin-bottom:16px}
+  .done p{color:#D8D8D8;font-size:16px;margin-bottom:8px}
+  .botlink{
+    display:block;margin-top:22px;text-align:center;text-decoration:none;
+    font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--noir);background:var(--cyan);border-radius:4px;padding:17px;
+  }
+  .botlink:hover{background:#3df0f0}
+  .recall{margin-top:22px;font-size:14px;color:var(--gris);
+    border-left:3px solid var(--cyan);padding-left:14px}
+  .recall b{color:var(--blanc)}
+  .recall .kw{color:var(--cyan);font-weight:700}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- ÉTAT 1 : capture -->
+    <section id="capture">
+      <span class="chip"><span class="dot"></span>Test gratuit · 3 secondes</span>
+
+      <h1>On décide en <span class="mk cyan">3 secondes</span> si on reste sur ton profil. Ou si on <span class="mk rose">scrolle</span>.</h1>
+
+      <p class="sub">Colle ton profil dans le test. Il te dit <b>pourquoi on passe sans s'arrêter</b>, pourquoi on ne s'abonne pas, et les <b>3 axes à changer tout de suite</b>.</p>
+
+      <p class="why">Et surtout <em>pourquoi</em>. Le mécanisme dans la tête de celui qui te regarde, pas juste une liste de conseils.</p>
+
+      <form id="optin" novalidate>
+        <div class="field">
+          <label class="l" for="email">Ton email, et je t'envoie le test.</label>
+          <input type="email" id="email" name="email" inputmode="email" autocomplete="email" placeholder="ton@email.com" required>
+          <button type="submit" id="submit">Recevoir le test</button>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+        <p class="micro">Pas de spam. Juste le test, direct dans ta boîte.</p>
+      </form>
+
+      <div class="proof">
+        <span class="n">+10M</span>
+        <span class="t">de vues générées</span>
+      </div>
+    </section>
+
+    <!-- ÉTAT 2 : succès -->
+    <section id="success" class="done" aria-live="polite">
+      <span class="chip"><span class="dot"></span>C'est bon</span>
+      <h2>C'est parti.</h2>
+      <p>Ton test t'attend. Colle ton profil, lis le verdict, applique les 3 axes.</p>
+      <a class="botlink" id="botlink" href="#" target="_blank" rel="noopener">Ouvrir le test 3 secondes →</a>
+      <p class="recall">Quand tu as ton <b>axe numéro 1</b>, viens me le dire en DM avec le mot <span class="kw">RÉSULTAT</span>. C'est comme ça que je sais sur quoi t'aider ensuite.</p>
+    </section>
+
+  </main>
+
+<script>
+  /* ====== À REMPLACER PAR CÉCILE ====== */
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xrevreko"; // ton endpoint Formspree
+  const BOT_URL = "https://chatgpt.com/g/g-6a29bce3bb0c8191a2f0927f06d8af49-le-test-des-3-secondes"; // le lien de ton bot
+  /* ===================================== */
+
+  const form = document.getElementById('optin');
+  const emailInput = document.getElementById('email');
+  const submitBtn = document.getElementById('submit');
+  const err = document.getElementById('err');
+
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    err.textContent = "";
+    const email = emailInput.value.trim();
+
+    if(!validEmail(email)){
+      err.textContent = "Mets une adresse email valide pour recevoir le test.";
+      emailInput.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Une seconde...";
+
+    try{
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method:"POST",
+        headers:{"Accept":"application/json"},
+        body:(()=>{const d=new FormData();d.append("email",email);return d;})()
+      });
+
+      if(res.ok){
+        document.getElementById('botlink').setAttribute('href', BOT_URL);
+        document.getElementById('capture').style.display = "none";
+        document.getElementById('success').classList.add('show');
+        window.scrollTo({top:0,behavior:'smooth'});
+      } else {
+        throw new Error("formspree");
+      }
+    } catch(_){
+      err.textContent = "Ça a coincé. Réessaie dans un instant.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Recevoir le test";
+    }
+  });
+</script>
+</body>
+</html>
