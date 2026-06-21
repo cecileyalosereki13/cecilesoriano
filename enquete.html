@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gossip de Cécile</title>
+
+<!--
+  =========================================================
+  À CHANGER : remplace les 2 liens ci-dessous, rien d'autre.
+  1) data-lien="dossier"  → ta page dossier
+  2) data-lien="guide"    → ta page 19€
+  Cherche LIEN_DOSSIER et LIEN_GUIDE plus bas dans les href.
+  =========================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --charcoal:#211d1a;
+    --charcoal-deep:#16120e;
+    --cream:#f1e6cf;
+    --cream-edge:#e1d2b1;
+    --ink:#2a2520;
+    --ink-soft:#6f6354;
+    --brick:#a6402f;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html,body{min-height:100%}
+
+  body{
+    background:var(--charcoal);
+    background-image:
+      radial-gradient(120% 90% at 50% -10%, #2b2620 0%, var(--charcoal) 55%, var(--charcoal-deep) 100%);
+    color:var(--cream);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:48px 22px 36px;
+    min-height:100vh;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:430px;
+    text-align:center;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  /* En-tête : la question émotionnelle, posée en Cormorant */
+  .kicker{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-bottom:26px;
+    padding-left:.42em;
+  }
+
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(30px, 8.5vw, 40px);
+    line-height:1.12;
+    color:var(--cream);
+    margin-bottom:14px;
+  }
+
+  .sub{
+    font-family:'Oswald', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-bottom:40px;
+  }
+
+  /* Fiche 1 — l'offre principale, dominante */
+  .dossier{
+    display:block;
+    text-decoration:none;
+    position:relative;
+    background:var(--cream);
+    background-image:linear-gradient(160deg, #f4ead4 0%, #e9dabd 100%);
+    color:var(--ink);
+    border-radius:3px;
+    padding:30px 26px 26px;
+    text-align:left;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.4) inset,
+      0 18px 38px -16px rgba(0,0,0,.6);
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+  }
+  .dossier::before{
+    /* le trombone / fil rouge du détective */
+    content:"";
+    position:absolute;
+    top:-9px;
+    left:32px;
+    width:46px;
+    height:22px;
+    border:2px solid var(--brick);
+    border-bottom:none;
+    border-radius:14px 14px 0 0;
+    opacity:.85;
+  }
+  .dossier .tab{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    font-size:10.5px;
+    color:var(--brick);
+    margin-bottom:14px;
+  }
+  .dossier .label{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    font-size:clamp(20px, 5.8vw, 25px);
+    line-height:1.08;
+    color:var(--ink);
+  }
+  .dossier .desc{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    line-height:1.4;
+    color:var(--ink-soft);
+    margin-top:12px;
+  }
+  .dossier .go{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:22px;
+    padding:15px 18px;
+    background:var(--brick);
+    border-radius:3px;
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:13.5px;
+    color:#fbf3e2;
+    box-shadow:0 8px 18px -8px rgba(166,64,47,.7);
+    transition:background .25s ease, transform .25s ease;
+  }
+  .dossier .go::after{content:"\2192"; font-size:16px; line-height:0}
+  .dossier:hover, .dossier:focus-visible{
+    transform:translateY(-4px) rotate(-.4deg);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.4) inset,
+      0 26px 46px -16px rgba(0,0,0,.7);
+    outline:none;
+  }
+  .dossier:hover .go, .dossier:focus-visible .go{
+    background:#92372a;
+    transform:translateY(-1px);
+  }
+
+  /* Séparateur — fil tendu entre deux pièces du dossier */
+  .sep{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:26px 4px;
+    color:var(--ink-soft);
+  }
+  .sep::before,.sep::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(125,113,98,.5), transparent);
+  }
+  .sep span{
+    font-family:'Oswald', sans-serif;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+  }
+
+  /* Fiche 2 — secondaire, volontairement plus discrète */
+  .guide{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    text-decoration:none;
+    border:1px solid rgba(225,210,177,.4);
+    border-radius:3px;
+    padding:18px 20px;
+    color:var(--cream);
+    background:rgba(241,230,207,.04);
+    transition:border-color .3s ease, background .3s ease, transform .3s ease;
+  }
+  .guide .g-text{text-align:left}
+  .guide .g-label{
+    font-family:'Oswald', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:13.5px;
+    color:var(--cream);
+  }
+  .guide .price{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.02em;
+    color:#fbf3e2;
+    background:rgba(166,64,47,.85);
+    padding:2px 8px;
+    border-radius:3px;
+    margin-left:6px;
+    white-space:nowrap;
+  }
+  .guide .g-desc{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-top:5px;
+    line-height:1.3;
+  }
+  .guide .g-arrow{
+    flex:none;
+    font-family:'Oswald', sans-serif;
+    font-size:18px;
+    color:var(--ink-soft);
+    transition:color .3s ease, transform .3s ease;
+  }
+  .guide:hover, .guide:focus-visible{
+    border-color:rgba(225,210,177,.7);
+    background:rgba(241,230,207,.08);
+    transform:translateY(-2px);
+    outline:none;
+  }
+  .guide:hover .g-arrow, .guide:focus-visible .g-arrow{
+    color:var(--cream);
+    transform:translateX(3px);
+  }
+
+  footer{
+    margin-top:38px;
+    font-family:'Oswald', sans-serif;
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:rgba(125,113,98,.65);
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(16px)}
+    to{opacity:1; transform:translateY(0)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wrap{animation:none}
+    .dossier,.guide{transition:none}
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="kicker">Gossip de Cécile</p>
+
+    <h1>Tu sens que quelque chose ne colle pas&nbsp;?</h1>
+    <p class="sub">Choisis par où tu veux commencer</p>
+
+    <!-- LIEN_DOSSIER -->
+    <a class="dossier" href="https://site.cecilesoriano.fr/Dossier/dossier.html" data-lien="dossier">
+      <span class="tab">Dossier n°___</span>
+      <span class="label">🔍 J'ouvre mon dossier personnalisé</span>
+      <span class="desc">Tu décris ta situation. J'analyse. On se retrouve en visio.</span>
+      <span class="go">J'ouvre le dossier</span>
+    </a>
+
+    <div class="sep"><span>ou</span></div>
+
+    <!-- LIEN_GUIDE -->
+    <a class="guide" href="https://site.cecilesoriano.fr/gestes/les-gestes-qui-parlent.html" data-lien="guide">
+      <span class="g-text">
+        <span class="g-label">📄 Les 13 signes comportementaux <span class="price">19€</span></span>
+        <span class="g-desc">Pour commencer à comprendre ce qui se passe vraiment.</span>
+      </span>
+      <span class="g-arrow">→</span>
+    </a>
+
+    <footer>@gossipdececile</footer>
+  </main>
+</body>
+</html>
