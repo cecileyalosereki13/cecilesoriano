@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Les gestes qui avouent — Le dossier · Gossip de Cécile</title>
+  <meta name="description" content="Le hors-série complet : 9 gestes décodés, en vidéo, à replacer dans leur contexte. Ce que le corps révèle quand les mots mentent." />
+  <meta name="theme-color" content="#111111" />
+  <meta name="robots" content="noindex" /><!-- réservé aux inscrits : hors index Google -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <!-- Design system partagé avec la landing -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Styles propres au dossier (gestes + vidéos verticales) -->
+  <style>
+    .doc-hero { padding-block: calc(var(--sp-section) + 1rem) var(--sp-6); border-bottom: 1px solid var(--c-line); text-align: center; }
+    .doc-hero__inner { max-width: 44rem; margin-inline: auto; }
+    .doc-hero__title { font-size: var(--fs-hero); line-height: 0.98; margin: var(--sp-5) 0 var(--sp-4); }
+    .doc-hero__sub { margin-bottom: var(--sp-5); }
+    .doc-intro { max-width: var(--measure); margin-inline: auto; color: var(--c-ink-muted); text-align: left; }
+    .doc-intro > p + p { margin-top: var(--sp-3); }
+
+    /* Mise en garde */
+    .warning { max-width: var(--measure); border: 1px solid var(--c-accent); border-radius: var(--radius); padding: var(--sp-4) var(--sp-4) var(--sp-3); }
+    .warning__label { color: var(--c-accent-hi); margin-bottom: var(--sp-3); }
+    .warning p { color: var(--c-ink-muted); }
+    .warning p + p { margin-top: var(--sp-2); }
+    .warning strong { color: var(--c-ink); font-weight: 400; }
+
+    /* Bloc geste */
+    .gesture { padding-block: var(--sp-section); border-bottom: 1px solid var(--c-line); }
+    .gesture__no { color: var(--c-accent-hi); margin-bottom: var(--sp-2); }
+    .gesture__title { font-size: var(--fs-h2); margin-bottom: var(--sp-5); }
+    .gesture__body { display: grid; gap: var(--sp-6); align-items: start; }
+    .gesture__text { max-width: var(--measure); }
+    .block-label { display: block; font-family: var(--font-stamp); font-size: var(--fs-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-ink-muted); margin-bottom: var(--sp-1); }
+    .gesture__text p { color: var(--c-ink-muted); }
+    .gesture__row { margin-bottom: var(--sp-4); }
+
+    /* À croiser avec le contexte */
+    .cross { border-left: 2px solid var(--c-accent); padding: var(--sp-1) 0 var(--sp-1) var(--sp-4); margin: var(--sp-4) 0; }
+    .cross .block-label { color: var(--c-accent-hi); }
+
+    /* Note stratégique */
+    .note .block-label { color: var(--c-ink-muted); }
+
+    /* Vidéo verticale (YouTube Shorts, 9:16) */
+    .video { width: 100%; max-width: 300px; margin-inline: auto; }
+    .video__frame { position: relative; aspect-ratio: 9 / 16; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--c-line); background: var(--c-bg-raise); }
+    .video__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+    .video__cap { margin-top: var(--sp-2); text-align: center; }
+
+    /* Clôture */
+    .outro { text-align: center; }
+    .outro__body { max-width: 40rem; margin-inline: auto; }
+    .outro__lead { color: var(--c-ink-muted); }
+    .outro__lead > p + p { margin-top: var(--sp-3); }
+
+    @media (min-width: 52rem) {
+      .gesture__body { grid-template-columns: 1fr minmax(260px, 300px); gap: var(--sp-7); }
+      .video { margin-inline: 0; position: sticky; top: var(--sp-5); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barre de classification -->
+  <header class="topbar" role="banner">
+    <div class="u-container topbar__row">
+      <span class="u-mono">Dossier&nbsp;·&nbsp;Confidentiel</span>
+      <span class="u-mono topbar__ref">Réf.&nbsp;GC—09</span>
+      <span class="u-mono topbar__aside">Gossip&nbsp;de&nbsp;Cécile</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== OUVERTURE ===================== -->
+    <section class="doc-hero">
+      <div class="u-container doc-hero__inner">
+        <p class="stamp">Hors&nbsp;série</p>
+        <h1 class="doc-hero__title">Les gestes qui avouent</h1>
+        <p class="display-italic doc-hero__sub">Ce que le corps révèle quand les mots mentent.</p>
+
+        <div class="doc-intro">
+          <p>Tu sens que quelque chose ne colle pas. Une personne te dit une chose… mais tout, dans son corps, raconte l'inverse.</p>
+          <p>Cette petite voix qui murmure « il y a un truc » ? Elle a raison. Ton corps repère des signaux que ta tête n'a pas encore décodés.</p>
+          <p>Dans ce dossier, tu vas apprendre à lire ces aveux silencieux : les gestes, les micro-réactions, ce que le corps trahit sans un mot. Pas pour juger. Pour enfin voir clair.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MISE EN GARDE ===================== -->
+    <section class="section" aria-labelledby="warn">
+      <div class="u-container">
+        <div class="warning">
+          <p class="u-mono warning__label" id="warn">⚠ Mise en garde — à lire avant d'ouvrir le dossier</p>
+          <p>Ce guide est une porte d'entrée vers une meilleure lecture de l'autre et de soi, <strong>pas un outil de diagnostic</strong>. Chaque geste doit être interprété dans son contexte : la personnalité, l'environnement, la dynamique relationnelle.</p>
+          <p><strong>Un seul geste ne suffit jamais à conclure quoi que ce soit.</strong> Ce qui compte, c'est la cohérence d'ensemble : le timing, la répétition, l'intensité, et les signaux qui l'entourent.</p>
+          <p>Un enquêteur observe. Il ne juge pas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LES 9 PIÈCES ===================== -->
+
+    <!-- 1 -->
+    <section class="gesture" aria-labelledby="g1">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°1</p>
+        <h2 class="gesture__title" id="g1">Croiser / décroiser les jambes</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Croiser et décroiser les jambes de manière répétitive, parfois complètement inconsciente, lorsque la personne est assise.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Souvent une tension intérieure, un inconfort émotionnel, ou un désir de fuir symboliquement la situation.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Si la posture change simplement pour se détendre, ou si la personne gigote par habitude, c'est peut-être neutre. Le geste prend du sens s'il survient au moment d'un échange chargé émotionnellement.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Il peut signaler l'émergence d'un point de tension intérieure que la personne ne verbalise pas encore.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/8LkOpSrbTVk" title="Croiser / décroiser les jambes" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°1 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="gesture" aria-labelledby="g2">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°2</p>
+        <h2 class="gesture__title" id="g2">Le grattage du dessus de la main</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Se frotter ou gratter doucement le dos de la main opposée, parfois du bout des doigts, souvent sans s'en rendre compte.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Un geste d'auto-apaisement discret : inconfort émotionnel, gêne intérieure, ou tentative de garder le contrôle face à un stress.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Il prend tout son sens s'il surgit au moment d'un mot précis, d'un reproche, d'un instant d'introspection. Mais il peut aussi n'être qu'un automatisme s'il se répète sans lien clair avec l'échange.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Fréquent chez les personnes en surcharge émotionnelle ou en difficulté à verbaliser ce qu'elles ressentent. Il invite à ralentir, à laisser un silence.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/8ZB8BVXsoDA" title="Le grattage du dessus de la main" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°2 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="gesture" aria-labelledby="g3">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°3</p>
+        <h2 class="gesture__title" id="g3">Le regard vers le bas à gauche</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Un mouvement oculaire, bref ou prolongé, où la personne baisse les yeux vers sa gauche sans regarder un objet précis. Souvent inconscient, difficile à maîtriser.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Un accès à la mémoire émotionnelle ou à un dialogue intérieur chargé : malaise, culpabilité, ou retrait intérieur. Un possible écart entre ce qu'on ressent et ce qu'on dit.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Après une question directe, un compliment ou un sujet sensible, il est hautement révélateur. Il peut aussi n'être qu'un tic de concentration s'il se répète sans cohérence émotionnelle.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Il peut indiquer un point de tension qui mérite d'être exploré avec délicatesse — sans interpréter trop vite.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/7BYp3JLgNCQ" title="Le regard vers le bas à gauche" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°3 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="gesture" aria-labelledby="g4">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°4</p>
+        <h2 class="gesture__title" id="g4">Le frottement de l'œil ou du sourcil</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Un geste rapide ou répété où la personne touche, frotte ou gratte un œil ou un sourcil, souvent du bout des doigts. D'une fraction de seconde à plusieurs secondes.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Souvent un refus implicite ou une gêne face à ce qui est vu ou entendu : désaccord intériorisé, envie de ne pas voir la réalité, mécanisme de fuite inconscient.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Surveille le moment exact : après une affirmation, une question ou une remarque, il prend tout son sens. Si la personne est fatiguée ou irritée physiquement, cela peut être purement physiologique.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Un indice de rupture entre la surface et le fond émotionnel : ce qui vient d'être évoqué touche peut-être un point sensible, même si tout semble lisse.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/dUPTiymiwfo" title="Le frottement de l'œil ou du sourcil" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°4 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="gesture" aria-labelledby="g5">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°5</p>
+        <h2 class="gesture__title" id="g5">Le grattage sous le nez</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Un geste soudain et rapide, souvent avec l'index ou le dos de la main, où la personne frotte le dessous de son nez sans raison apparente. Généralement inconscient et très bref.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Un signal classique de dissonance : gêne à verbaliser, tentative de dissimulation ou d'évitement, parfois associé à une demi-vérité.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>À observer au moment précis d'un énoncé ou d'un engagement. S'il se répète au cœur d'un échange tendu, il devient précieux. Attention aux causes physiques (allergie, nez qui gratte).</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Très utile pour repérer un non-alignement entre le verbal et le non-verbal : un point de rupture ou de doute intérieur.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/UQFUqDw7Pck" title="Le grattage sous le nez" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°5 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="gesture" aria-labelledby="g6">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°6 · signaux discrets</p>
+        <h2 class="gesture__title" id="g6">Le mini-recul du buste</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Un léger mouvement de recul du haut du corps, parfois imperceptible, lors d'un échange verbal ou visuel. Pas un retrait franc — un réflexe subtil de mise à distance.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Un rejet symbolique, une prise de distance émotionnelle, une désapprobation non verbalisée. Une réaction viscérale à ce qui vient d'être dit ou entendu.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Il prend tout son sens s'il suit une phrase à fort impact émotionnel ou un sujet sensible. À ne pas confondre avec un simple changement de posture ou un étirement.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Un frein silencieux dans l'échange : il peut indiquer un point de friction invisible, une personne pas totalement en phase avec ce qui se dit.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/c05gN9kJxiw" title="Le mini-recul du buste" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°6 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="gesture" aria-labelledby="g7">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°7</p>
+        <h2 class="gesture__title" id="g7">Le doigt du « fuck » inconscient</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Quand une personne, souvent inconsciemment, désigne quelque chose ou quelqu'un avec son majeur plutôt que son index. Furtif, intégré à un mouvement naturel, ou dissimulé dans une gestuelle plus large.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Une forme de désaccord non assumé, de mépris voilé ou d'irritation retenue. Un message inconscient de rejet ou de domination passive-agressive, sans confrontation directe.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Il prend son sens s'il intervient après une critique, un désaccord ou une remarque dérangeante. Attention : certains tics moteurs peuvent créer une confusion avec ce geste.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Repérer ce geste peut prévenir d'une rupture de lien ou d'une opposition implicite, et inviter à ouvrir un espace de parole sans l'imposer.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/FsrLOMGSz9A" title="Le doigt du fuck inconscient" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°7 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="gesture" aria-labelledby="g8">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°8</p>
+        <h2 class="gesture__title" id="g8">Le rictus unilatéral de la bouche</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Un micro-sourire qui ne concerne qu'un seul côté de la bouche, souvent le droit. Généralement inconscient, il apparaît furtivement, lors d'un moment de tension, de gêne ou d'ironie intérieure.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Un désaccord intériorisé, une moquerie silencieuse, ou un mensonge. Un décalage entre ce que la personne ressent et ce qu'elle verbalise — l'indice possible d'un conflit intérieur.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>S'il apparaît pile au moment d'une affirmation importante, d'un compliment ou d'un engagement, c'est là qu'il faut y prêter attention. Hors contexte, il peut n'être qu'un tic ou une asymétrie naturelle.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>Cette micro-expression ne ment pas : elle alerte sur un non-dit, une fausse adhésion ou une tension mal formulée.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/D1JHGwr78J4" title="Le rictus unilatéral de la bouche" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°8 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="gesture" aria-labelledby="g9">
+      <div class="u-container">
+        <p class="u-mono gesture__no">Pièce N°9</p>
+        <h2 class="gesture__title" id="g9">Le ravalé d'air / son de rétention</h2>
+        <div class="gesture__body">
+          <div class="gesture__text">
+            <div class="gesture__row"><span class="block-label">Ce que c'est</span><p>Ce petit bruit de gorge discret, ou cette inspiration retenue, où la personne semble ravaler quelque chose — de l'air, de la salive, une émotion. Il intervient souvent juste après une phrase ou une question sensible.</p></div>
+            <div class="gesture__row"><span class="block-label">Ce que ça peut révéler</span><p>Une émotion forte contenue : une envie de parler freinée par l'hésitation, un désaccord non exprimé, une souffrance ou un blocage que la personne tente de masquer.</p></div>
+            <div class="cross"><span class="block-label">À croiser avec le contexte</span><p>Il prend son sens s'il est suivi d'un silence, d'un regard fuyant ou d'un changement de posture. Souvent accompagné d'un micro-geste : bouche qui se ferme, regard qui se baisse, épaules qui se contractent.</p></div>
+            <div class="note"><span class="block-label">Note stratégique</span><p>L'un des signes les plus subtils d'un trop-plein émotionnel. À accueillir avec délicatesse plutôt qu'à confronter : un point d'intensité ou de fragilité.</p></div>
+          </div>
+          <div class="video">
+            <div class="video__frame"><iframe src="https://www.youtube.com/embed/PWwswn4mv1s" title="Le ravalé d'air / son de rétention" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <p class="u-mono video__cap">Pièce n°9 — en vidéo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLÔTURE → L'ENQUÊTE ===================== -->
+    <section class="section section--flush outro" aria-labelledby="outro">
+      <div class="u-container outro__body">
+        <p class="u-eyebrow">Tu veux aller plus loin ?</p>
+        <h2 class="cta__title" id="outro">Une enquête ne se résout jamais<br>avec un seul indice.</h2>
+        <div class="outro__lead display-italic" style="max-width:34rem;margin-inline:auto">
+          <p>Ce dossier t'a appris à repérer des indices que la plupart des gens ne voient même pas.</p>
+        </div>
+        <div class="outro__lead" style="margin-top:2rem">
+          <p>Le vrai défi, c'est de comprendre pourquoi <em>toi</em>, tu tournes en rond. Pourquoi tu répètes les mêmes schémas. Pourquoi certaines situations reviennent malgré tout ce que tu as déjà compris.</p>
+          <p>C'est exactement ce que nous faisons dans L'Enquête. Pendant une séance en visio, je mène l'enquête avec toi : nous relions les indices, nous replaçons chaque élément dans son contexte, et nous faisons émerger ce qui était invisible jusqu'ici. Tu repars avec un regard nouveau sur ta situation — et des réponses que tu n'arrivais plus à trouver seule.</p>
+        </div>
+        <p style="margin-top:2.5rem">
+          <a class="btn btn--primary" href="https://site.cecilesoriano.fr/Dossier/dossier.html">J'ouvre mon enquête</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="u-container footer__row">
+      <span class="u-mono">Gossip&nbsp;de&nbsp;Cécile</span>
+      <span class="u-mono footer__aside">Hors-série · Dossier GC—09</span>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
