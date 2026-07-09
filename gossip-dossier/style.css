@@ -12,7 +12,7 @@
      F. Composants réutilisables
         F1. Bouton (.btn)
         F2. Champ / formulaire (.field, .input)
-        F3. Intégration Kit (.formkit-*)
+        F3. Intégration MailerLite (.ml-form-*)
         F4. Carte (.card)
         F5. Tampon (.stamp)
         F6. Section (.section)
@@ -309,58 +309,66 @@ h1, h2, h3, .h1, .h2, .h3 {
   text-align: center;
 }
 
-/* F3. Intégration Kit -----------------------------------------
-   Habille l'embed Kit SANS toucher à son balisage (action / method /
-   name inchangés). Le préfixe `.form-slot .formkit-form[data-sv-form]`
-   passe au-dessus des styles internes de Kit par spécificité, et reste
-   générique (valable pour n'importe quel formulaire Kit collé dans un
-   .form-slot). Les rares propriétés que Kit pose en style INLINE
-   (couleur du texte, bordure, fond/rayon du bouton) sont neutralisées
-   avec !important — le strict minimum. */
+/* F3. Intégration MailerLite ----------------------------------
+   Habille l'embed MailerLite aux couleurs de la marque, sans toucher
+   à l'action ni aux noms de champs. On préfixe par `.form-slot` pour
+   passer au-dessus des styles internes de MailerLite. */
 .form-slot { max-width: 34rem; margin-inline: auto; }
-.form-slot .formkit-form[data-sv-form] { max-width: 100%; }
-.form-slot .formkit-form[data-sv-form] [data-style="clean"] { padding: 0 !important; }
+#form-hero-anchor { scroll-margin-top: 5rem; }
 
-.form-slot .formkit-form[data-sv-form] .formkit-fields { gap: var(--sp-2); margin: 0; }
+.form-slot .ml-form-embedContainer,
+.form-slot .ml-form-embedWrapper.embedForm { width: 100% !important; max-width: 100% !important; }
+.form-slot .ml-form-embedWrapper { background: transparent !important; }
+.form-slot .ml-form-embedBody { padding: 0 !important; }
+.form-slot .ml-form-embedContent { display: none !important; } /* masque le titre par défaut de ML */
+.form-slot .ml-form-fieldRow { margin: 0 0 var(--sp-2) 0 !important; }
 
 /* Champ e-mail */
-.form-slot .formkit-form[data-sv-form] .formkit-input {
+.form-slot .ml-form-fieldRow input,
+.form-slot input.form-control {
   background: transparent !important;
   color: var(--c-ink) !important;
   border: 1px solid var(--c-line-strong) !important;
   border-radius: var(--radius) !important;
-  padding: var(--field-pad);
-  font-family: var(--font-ui);
-  font-size: var(--fs-body);
-  font-weight: 400;
+  font-family: var(--font-ui) !important;
+  font-size: var(--fs-body) !important;
+  padding: var(--field-pad) !important;
+  line-height: 1.4 !important;
 }
-.form-slot .formkit-form[data-sv-form] .formkit-input::placeholder { color: #6b6b6b !important; opacity: 1; }
-.form-slot .formkit-form[data-sv-form] .formkit-input:focus { border-color: var(--c-accent-hi) !important; }
+.form-slot .ml-form-fieldRow input::placeholder { color: #6b6b6b !important; }
+.form-slot .ml-form-fieldRow input:focus { border-color: var(--c-accent-hi) !important; outline: none; }
 
 /* Bouton */
-.form-slot .formkit-form[data-sv-form] .formkit-submit {
-  background-color: var(--c-accent) !important;
-  color: var(--c-ink) !important;
+.form-slot .ml-form-embedSubmit { margin: 0 !important; }
+.form-slot .ml-form-embedSubmit button.primary {
+  background: var(--c-accent) !important;
+  border: 1px solid var(--c-accent) !important;
   border-radius: var(--radius) !important;
-  font-family: var(--font-ui);
-  font-weight: 700;
-  margin: 0;
+  color: var(--c-ink) !important;
+  font-family: var(--font-ui) !important;
+  font-weight: 700 !important;
+  font-size: var(--fs-body) !important;
+  padding: var(--btn-pad-y) var(--btn-pad-x) !important;
+  width: 100% !important;
 }
-.form-slot .formkit-form[data-sv-form] .formkit-submit:hover { background-color: var(--c-accent-hi) !important; }
-.form-slot .formkit-form[data-sv-form] .formkit-submit > span { padding: var(--btn-pad-y) var(--btn-pad-x); }
+.form-slot .ml-form-embedSubmit button.primary:hover { background: var(--c-accent-hi) !important; border-color: var(--c-accent-hi) !important; }
 
-/* Messages d'erreur / succès */
-.form-slot .formkit-form[data-sv-form] .formkit-alert {
-  background: var(--c-bg-raise);
-  border: 1px solid var(--c-line-strong);
-  color: var(--c-ink);
-  border-radius: var(--radius);
-  margin: 0 0 var(--sp-3);
+/* Message de succès (au cas où la redirection tarde) */
+.form-slot .ml-form-successContent h4 { color: var(--c-ink) !important; font-family: var(--font-display) !important; font-weight: 500; }
+.form-slot .ml-form-successContent p { color: var(--c-ink-muted) !important; font-family: var(--font-ui) !important; }
+
+/* Spinner de chargement + accessibilité (repris de ML, minimal) */
+.form-slot .ml-form-embedSubmitLoad { display: inline-block; width: 20px; height: 20px; }
+.form-slot .ml-form-embedSubmitLoad:after {
+  content: " "; display: block; width: 11px; height: 11px; margin: 1px;
+  border-radius: 50%; border: 4px solid #fff;
+  border-color: #fff #fff #fff transparent; animation: ml-spin 1.2s linear infinite;
 }
-.form-slot .formkit-form[data-sv-form] .formkit-alert-error { border-color: var(--c-accent); }
-
-/* Badge « Built with Kit » : discret (désactivable dans les réglages Kit) */
-.form-slot .formkit-powered-by-convertkit-container { margin-top: var(--sp-2) !important; justify-content: center; opacity: 0.4; }
+@keyframes ml-spin { to { transform: rotate(360deg); } }
+.form-slot .sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
 
 /* F4. Carte ---------------------------------------------------- */
 .card {
@@ -547,4 +555,121 @@ input:focus-visible {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+
+/* ------------------------------------------------------------------
+   K. PAGE — HORS-SÉRIE (lecture en ligne, 9 gestes + vidéos)
+   Réutilise les tokens et composants du design system.
+   ------------------------------------------------------------------ */
+
+/* Encadré d'avertissement (garde méthodologique) */
+.callout {
+  max-width: var(--measure);
+  border: 1px solid var(--c-line-strong);
+  border-left: 3px solid var(--c-accent);
+  border-radius: var(--radius);
+  background: var(--c-bg-raise);
+  padding: var(--sp-4);
+}
+.callout__label { display: block; margin-bottom: var(--sp-2); color: var(--c-accent-hi); }
+.callout p { color: var(--c-ink-muted); }
+.callout p + p { margin-top: var(--sp-2); }
+.callout .callout__sign { margin-top: var(--sp-3); font-family: var(--font-display); font-style: italic; color: var(--c-ink); }
+
+/* Intertitre de groupe (Pièces 1–5 / 6–9) */
+.group-head { padding-block: var(--sp-6) var(--sp-2); }
+.group-head__title { font-size: var(--fs-h2); }
+
+/* Une pièce = analyse + vidéo verticale */
+.piece-full {
+  padding-block: var(--sp-6);
+  border-bottom: 1px solid var(--c-line);
+  display: grid;
+  gap: var(--sp-5);
+}
+.piece-full__head { }
+.piece-full__no {
+  display: block;
+  font-family: var(--font-stamp);
+  font-size: 0.8rem; letter-spacing: 0.12em;
+  color: var(--c-accent-hi);
+  margin-bottom: var(--sp-1);
+}
+.piece-full__title {
+  font-family: var(--font-display);
+  font-weight: 500; line-height: 1.05;
+  font-size: var(--fs-h3);
+}
+
+/* Lecteur vertical Shorts (9:16) avec façade cliquable */
+.short {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+}
+.short__facade {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0; padding: 0; margin: 0;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.short__thumb {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.short__facade::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(17,17,17,0.4);
+  transition: background var(--dur) var(--ease);
+}
+.short__facade:hover::after { background: rgba(17,17,17,0.2); }
+.short__play {
+  position: relative; z-index: 1;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--c-accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.short__play::before {
+  content: "";
+  border-style: solid;
+  border-width: 9px 0 9px 15px;
+  border-color: transparent transparent transparent var(--c-ink);
+  margin-left: 3px;
+}
+.short iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Blocs d'analyse */
+.readout { max-width: var(--measure); }
+.readout__block + .readout__block { margin-top: var(--sp-4); }
+.readout__label {
+  display: block; margin-bottom: var(--sp-1);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--c-ink-muted);
+}
+.readout__text { color: var(--c-ink-muted); font-size: 0.98rem; line-height: 1.7; }
+.readout__text + .readout__text { margin-top: var(--sp-2); }
+/* Le bloc « à croiser avec le contexte » : nuance mise en valeur */
+.readout__block--context { border-left: 2px solid var(--c-accent); padding-left: var(--sp-3); }
+.readout__block--context .readout__label { color: var(--c-accent-hi); }
+
+/* Desktop : analyse à gauche, vidéo sticky à droite */
+@media (min-width: 52rem) {
+  .piece-full {
+    grid-template-columns: 1fr 300px;
+    align-items: start;
+    gap: var(--sp-6);
+  }
+  .piece-full__head { grid-column: 1 / -1; }
+  .short { position: sticky; top: var(--sp-4); order: 2; }
+  .readout { order: 1; }
 }
