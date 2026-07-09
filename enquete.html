@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gossip de Cécile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --black:#0f0f0f;
+    --black-2:#171717;
+    --kraft:#d9bd83;
+    --kraft-light:#efd8a3;
+    --paper:#f4ead4;
+    --paper-edge:#d7bd82;
+    --red:#a8241d;
+    --red-dark:#861c17;
+    --text:#171717;
+    --text-soft:#56514a;
+    --white:#f8f1e2;
+    --muted:#bda56f;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{min-height:100%}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(110% 80% at 50% -10%, #252525 0%, var(--black) 56%, #070707 100%);
+    color:var(--white);
+    font-family:"Courier New", Courier, monospace;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding:36px 18px 34px;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:520px;
+    animation:rise .75s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  .brand{
+    text-align:center;
+    margin-bottom:28px;
+  }
+
+  .kicker{
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:15px;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--kraft);
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(42px, 12vw, 64px);
+    line-height:.98;
+    color:var(--white);
+    margin-bottom:18px;
+  }
+
+  .intro{
+    font-size:17px;
+    line-height:1.55;
+    color:#d7c8a4;
+    max-width:430px;
+    margin:0 auto;
+  }
+
+  .primary-card{
+    display:block;
+    text-decoration:none;
+    position:relative;
+    background:var(--kraft);
+    background-image:linear-gradient(160deg, var(--kraft-light) 0%, var(--kraft) 100%);
+    color:var(--text);
+    border:1px solid var(--paper-edge);
+    border-radius:4px;
+    padding:34px 28px 28px;
+    margin-top:34px;
+    box-shadow:0 24px 48px -22px rgba(0,0,0,.9);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+
+  .primary-card::before{
+    content:"HORS SÉRIE";
+    position:absolute;
+    top:-15px;
+    left:22px;
+    background:var(--red);
+    color:var(--white);
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:14px;
+    letter-spacing:.16em;
+    padding:8px 12px 6px;
+    transform:rotate(-2deg);
+  }
+
+  .primary-card:hover,
+  .primary-card:focus-visible{
+    transform:translateY(-4px);
+    box-shadow:0 32px 54px -22px rgba(0,0,0,1);
+    outline:none;
+  }
+
+  .eyebrow{
+    display:block;
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:14px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--red-dark);
+    margin-bottom:20px;
+  }
+
+  .primary-title{
+    display:block;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(38px, 10vw, 50px);
+    font-weight:700;
+    line-height:.98;
+    color:var(--text);
+    margin-bottom:16px;
+  }
+
+  .primary-desc{
+    display:block;
+    font-size:20px;
+    line-height:1.45;
+    color:var(--text-soft);
+    margin-bottom:24px;
+  }
+
+  .button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    padding:17px 20px;
+    background:var(--red);
+    color:var(--white);
+    border-radius:3px;
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:18px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .button::after{
+    content:"→";
+    margin-left:10px;
+    font-size:20px;
+  }
+
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:32px 0 18px;
+    color:var(--muted);
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+
+  .section-label::before,
+  .section-label::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:rgba(217,189,131,.35);
+  }
+
+  .links{
+    display:grid;
+    gap:14px;
+  }
+
+  .link-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    text-decoration:none;
+    color:var(--white);
+    background:rgba(244,234,212,.055);
+    border:1px solid rgba(217,189,131,.42);
+    border-radius:4px;
+    padding:22px 22px;
+    transition:background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+
+  .link-card:hover,
+  .link-card:focus-visible{
+    background:rgba(244,234,212,.095);
+    border-color:rgba(217,189,131,.8);
+    transform:translateY(-2px);
+    outline:none;
+  }
+
+  .link-text{display:block;text-align:left}
+
+  .link-title{
+    display:block;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:30px;
+    font-weight:700;
+    line-height:1.05;
+    color:var(--paper);
+  }
+
+  .link-desc{
+    display:block;
+    margin-top:7px;
+    font-size:16px;
+    line-height:1.45;
+    color:#cdbf9a;
+  }
+
+  .price{
+    display:inline-block;
+    margin-left:8px;
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:14px;
+    color:var(--white);
+    background:var(--red);
+    padding:4px 7px 3px;
+    border-radius:2px;
+    vertical-align:middle;
+  }
+
+  .arrow{
+    flex:none;
+    font-size:28px;
+    color:var(--kraft);
+  }
+
+  footer{
+    margin-top:32px;
+    text-align:center;
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:rgba(217,189,131,.62);
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px)}
+    to{opacity:1; transform:translateY(0)}
+  }
+
+  @media (max-width:430px){
+    body{padding:26px 14px 28px}
+    .brand{margin-bottom:22px}
+    .intro{font-size:16px}
+    .primary-card{padding:32px 22px 24px;margin-top:30px}
+    .primary-desc{font-size:19px}
+    .button{font-size:16px;padding:16px 14px}
+    .link-card{padding:20px 18px}
+    .link-title{font-size:28px}
+    .link-desc{font-size:15px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .wrap{animation:none}
+    .primary-card,.link-card{transition:none}
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="brand">
+      <p class="kicker">Gossip de Cécile</p>
+      <h1>Chaque enquête commence par un premier indice.</h1>
+      <p class="intro">Ouvre le hors-série gratuit, puis continue si tu veux aller plus loin dans le dossier.</p>
+    </header>
+
+    <a class="primary-card" href="https://site.cecilesoriano.fr/gossip-dossier/" data-lien="lead-magnet">
+      <span class="eyebrow">Commence ici</span>
+      <span class="primary-title">Les gestes qui avouent</span>
+      <span class="primary-desc">Le dossier gratuit pour repérer les 9 gestes qui révèlent ce que les mots taisent.</span>
+      <span class="button">J'ouvre le dossier gratuit</span>
+    </a>
+
+    <div class="section-label">Continuer</div>
+
+    <nav class="links" aria-label="Liens principaux">
+      <a class="link-card" href="https://site.cecilesoriano.fr/Dossier/dossier.html" data-lien="enquete">
+        <span class="link-text">
+          <span class="link-title">L'Enquête</span>
+          <span class="link-desc">Tu décris ta situation. J'analyse. On se retrouve en visio.</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-card" href="https://site.cecilesoriano.fr/gestes/les-gestes-qui-parlent.html" data-lien="13-signes">
+        <span class="link-text">
+          <span class="link-title">Les 13 signes <span class="price">19€</span></span>
+          <span class="link-desc">Pour approfondir ton regard sur ce qui se passe vraiment.</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link-card" href="https://open.spotify.com/show/1vWgLo0KfXFCjyfvg3oLmE?si=93a8fcbfe7964346" data-lien="podcast">
+        <span class="link-text">
+          <span class="link-title">Le podcast</span>
+          <span class="link-desc">Des enquêtes, des observations et des décryptages à écouter.</span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+
+    <footer>@gossipdececile</footer>
+  </main>
+</body>
+</html>
