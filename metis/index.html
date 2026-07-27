@@ -756,11 +756,13 @@ details.cap .cap-corps p{margin:0;font-size:1.06rem;line-height:1.72;text-align:
       .catch(function(err){
         bouton.disabled = false;
         bouton.innerHTML = texte;
-        var t = ((err && (err.message || err.msg)) || "").toLowerCase();
-        if (t.indexOf("exist") > -1 || t.indexOf("taken") > -1 || t.indexOf("already") > -1){
-          msg.innerHTML = 'Cette adresse est déjà enregistrée. <a href="' + CONNEX + '">Connecte-toi ici</a>, puis reviens sur cette page.';
-        } else {
+        var brut = "";
+        try { brut = JSON.stringify(err); } catch(e){}
+        var t = (((err && (err.message || err.msg)) || "") + " " + brut).toLowerCase();
+        if (t.indexOf("checkout") > -1 || t.indexOf("price") > -1 || t.indexOf("stripe") > -1){
           msg.textContent = "Le paiement n'a pas pu s'ouvrir. Réessaie, ou écris-moi à contact@cecilesoriano.fr";
+        } else {
+          msg.innerHTML = 'Cette adresse est déjà enregistrée. <a href="' + CONNEX + '">Connecte-toi ici</a> pour reprendre, ou écris-moi à contact@cecilesoriano.fr';
         }
       });
   }
