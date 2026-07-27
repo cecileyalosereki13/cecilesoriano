@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
+<script data-memberstack-app="app_cmrw9yskg008v0stpc5llgjeg" src="https://static.memberstack.com/scripts/v2/memberstack.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mètis</title>
@@ -225,6 +226,61 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
   .mark{font-size:3rem;letter-spacing:.04em}
   .mark-sub{letter-spacing:.2em}
 }
+
+/* ---------- VARIABLE MANQUANTE (le surlignage ne s'affichait pas) ---------- */
+:root{--yellow:#F2DF63}
+
+/* ---------- FORMULAIRE D'ACHAT ---------- */
+.achat{max-width:460px;margin:34px 0 0}
+.achat-lbl{display:block;font-family:var(--f-label);font-weight:500;font-size:.62rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--red);margin:0 0 12px}
+.achat-champ{width:100%;padding:16px 18px;font-family:var(--f-display);font-size:1.05rem;font-weight:500;
+  color:var(--ink);background:var(--paper-3);border:1px solid var(--paper-edge);border-radius:8px}
+.achat-champ:focus{outline:none;border-color:var(--red)}
+.achat-msg{min-height:1.2em;margin:12px 2px 0;font-family:var(--f-display);font-size:.98rem;
+  line-height:1.55;color:var(--red);text-align:left}
+.achat-msg a{color:inherit}
+button.btn{border:0;cursor:pointer;font-family:var(--f-label)}
+button.btn[disabled]{opacity:.55;cursor:default}
+
+/* ---------- OBJECTIONS REPLIABLES ---------- */
+.faq{border-top:1px solid rgba(199,177,131,.22)}
+.faq:last-of-type{border-bottom:1px solid rgba(199,177,131,.22)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 34px 22px 0;position:relative;
+  font-family:var(--f-display);font-style:italic;font-weight:600;font-size:1.2rem;line-height:1.32;color:#fff}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:20px;font-style:normal;font-weight:400;
+  font-size:1.5rem;line-height:1;color:var(--kraft)}
+.faq[open] summary::after{content:"\2013"}
+.faq p{margin:0 0 22px;font-size:1.04rem;line-height:1.72;color:var(--cream)}
+
+/* ---------- JUSTIFICATION : uniquement sur une largeur suffisante ---------- */
+/* Colonnes etroites : la justification ecarterait trop les mots. */
+.cap p,.offre p,.ab p,.courts .c p,.offre .prix small{text-align:left}
+
+/* Sous 680px, la colonne principale devient elle aussi trop etroite. */
+@media(max-width:680px){
+  p{text-align:left;hyphens:auto;-webkit-hyphens:auto}
+  .pull,.banner p,.last,.cta-note,.sig,.hero p,.hero-tag{text-align:center}
+}
+
+/* ---------- CAPACITES REPLIABLES ---------- */
+details.cap{display:block;padding:0}
+details.cap summary{list-style:none;cursor:pointer;display:grid;
+  grid-template-columns:auto 1fr auto;gap:clamp(18px,2.6vw,30px);align-items:center;
+  padding:clamp(24px,3.2vw,34px) clamp(26px,3.4vw,40px)}
+details.cap summary::-webkit-details-marker{display:none}
+details.cap summary h3{margin:0}
+details.cap summary::after{content:"";width:9px;height:9px;flex:none;
+  border-right:1.5px solid var(--red);border-bottom:1.5px solid var(--red);
+  transform:rotate(45deg) translate(-3px,-3px);transition:transform .22s}
+details.cap[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+details.cap .cap-corps{padding:0 clamp(26px,3.4vw,40px) clamp(24px,3.2vw,32px)}
+details.cap .cap-corps p{margin:0;font-size:1.06rem;line-height:1.72;text-align:left}
+@media(max-width:600px){
+  details.cap summary{gap:14px;grid-template-columns:auto 1fr auto}
+  details.cap summary .rn{font-size:1.9rem}
+}
 </style>
 </head>
 <body>
@@ -236,13 +292,13 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
     <div class="mark-rule"></div>
     <p class="mark-sub">Formation pour praticiennes</p>
     <p class="hero-tag">Le corps ne ment pas. Encore faut-il savoir le lire.</p>
-    <h1 class="hero-h1"><span class="hook">Tu sais accompagner.</span>Alors pourquoi certaines séances te laissent dans le doute sur ce que tu aurais pu faire ?</h1>
+    <h1 class="hero-h1"><span class="hook">Tu sais accompagner.</span>Alors pourquoi certaines séances te laissent dans le doute sur ce que tu aurais pu faire ?</h1>
     <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
     <p class="cta-note">Tarif d'ouverture pendant le premier mois.</p>
   </div>
 </header>
 
-<!-- ================= 1 ================= -->
+<!-- ================= 1 · CE QUE TU VIS ================= -->
 <section class="sheet">
   <div class="wrap">
     <p class="kicker">Ce que tu vis</p>
@@ -257,59 +313,51 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 
     <p>Puis elle revient, et tu retrouves exactement le même problème, avec parfois les mêmes phrases, les mêmes blocages, les mêmes stratégies, comme si rien n'avait réellement bougé.</p>
 
-    <p>Alors tu recommences. Tu changes légèrement ton approche, tu poses une autre question, tu proposes un autre exercice, tu modifies ton protocole, tu retournes dans tes notes, et tu repenses à la séance en te demandant où tu as bien pu passer à côté de quelque chose. Parce que tu sens qu'il y avait quelque chose. Tu l'as senti, mais tu n'arrives pas à dire quoi.</p>
-
     <p>Et comme énormément de praticiennes sérieuses, tu finis par tirer une conclusion.</p>
 
     <p class="pull">Il me manque sûrement une compétence.</p>
 
-    <p>Alors tu cherches une nouvelle formation, une nouvelle approche, un nouvel outil. Pas parce que tu aimes accumuler les certifications, mais parce que tu refuses de rester une praticienne qui obtient des résultats seulement parfois. Tu veux comprendre pourquoi certaines séances transforment une vie quand d'autres semblent tourner en rond malgré toute ta bonne volonté.</p>
-
     <div class="banner">
-      <p>Et si je te disais que la réponse n'a jamais été dans une nouvelle méthode ?</p>
+      <p>Et si je te disais que la réponse n'a jamais été dans une nouvelle méthode ?</p>
     </div>
   </div>
 </section>
 
-<!-- ================= 2 ================= -->
+<!-- ================= 2 · CE QUE PERSONNE NE REGARDE ================= -->
 <section class="dark">
   <div class="wrap">
     <p class="kicker">Ce que j'ai cru, moi aussi</p>
 
-    <p class="lead">Pendant longtemps, j'ai cru exactement la même chose. Comme beaucoup de praticiennes, j'ai pensé que plus j'apprendrais de techniques, plus je serais capable d'aider les personnes qui venaient me consulter. Alors je me suis formée. Encore, et encore.</p>
+    <p class="lead">Pendant longtemps, j'ai cru exactement la même chose. Chaque nouvel apprentissage répondait à certaines questions, mais il y en avait une qui revenait toujours. Pourquoi cette même approche produit-elle une transformation spectaculaire chez une cliente, et presque aucun mouvement chez une autre ?</p>
 
-    <p>Chaque nouvel apprentissage répondait à certaines questions, mais il y en avait une qui revenait toujours. Pourquoi cette même approche produit-elle une transformation spectaculaire chez une cliente, et presque aucun mouvement chez une autre ?</p>
+    <p>Jusqu'au jour où j'ai compris que je posais la mauvaise question. La vraie question n'était pas « quelle est la meilleure technique ». La vraie question était celle-ci.</p>
 
-    <p>Au début, j'ai pensé que cela venait des clientes, que certaines étaient prêtes et d'autres non. Puis j'ai pensé que cela venait de moi, que je manquais encore d'expérience, qu'il me fallait continuer à apprendre. Alors j'ai continué.</p>
-
-    <p>Jusqu'au jour où j'ai compris que je posais la mauvaise question. La vraie question n'était pas « quelle est la meilleure technique ». La vraie question était celle-ci.</p>
-
-    <p class="pull">À qui suis-je en train de parler ?</p>
+    <p class="pull">À qui suis-je en train de parler ?</p>
 
     <p>Et cette question a absolument tout changé.</p>
+
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
   </div>
 </section>
 
-<!-- ================= 3 ================= -->
+<!-- ================= 3 · LES TROIS PORTRAITS ================= -->
 <section class="sheet">
   <div class="wrap">
     <p class="kicker">Ce que personne ne regarde</p>
 
-    <p class="lead">Parce que tu ne parles jamais seulement à une cliente. Tu parles à l'état dans lequel son système nerveux se trouve au moment où elle est assise en face de toi, et cet état décide déjà de presque tout : de ce qu'elle peut entendre, de ce qu'elle peut ressentir, de ce qu'elle peut raconter, de ce qu'elle peut supporter, et de ce qu'elle est capable de transformer aujourd'hui.</p>
+    <p class="lead">Parce que tu ne parles jamais seulement à une cliente. Tu parles à l'état dans lequel son système nerveux se trouve au moment où elle est assise en face de toi, et cet état décide déjà de presque tout : de ce qu'elle peut entendre, de ce qu'elle peut ressentir, de ce qu'elle peut raconter, de ce qu'elle peut supporter, et de ce qu'elle est capable de transformer aujourd'hui.</p>
 
     <div class="portrait">
       <span class="num">I</span>
       <p>Imagine une femme qui vient te voir après des années à devoir toujours être forte. Elle sourit, elle te dit que tout va bien, elle répond à toutes tes questions, elle est polie, coopérative, et elle valide tout ce que tu proposes. Tu pourrais croire que tu travailles avec une cliente très engagée.</p>
       <p>Mais si son système nerveux est en train de faire tout son possible pour maintenir une impression de contrôle, tu n'es pas en train de travailler avec elle, <mark>tu travailles avec sa stratégie de protection</mark>. Et cette stratégie est infiniment plus forte que les mots qu'elle prononce.</p>
       <p>C'est pour cette raison que certaines clientes disent oui à tout sans que rien ne change. Ce n'est pas parce qu'elles mentent, ce n'est pas parce qu'elles ne veulent pas avancer, c'est parce que leur système nerveux considère que <strong>changer est plus dangereux que rester exactement là où elles sont</strong>.</p>
-      <p>Personne ne te l'a appris, et pourtant ça change absolument toute la séance.</p>
     </div>
 
     <div class="portrait">
       <span class="num">II</span>
-      <p>Imagine maintenant une autre femme. Tu lui demandes : « Qu'est-ce que tu ressens dans ton corps ? » Elle baisse les yeux, elle réfléchit, longtemps, puis elle répond : « Je ne sais pas. » Alors tu reformules, tu l'aides, tu cherches, tu insistes avec douceur, parce que c'est ce qu'on t'a appris à faire.</p>
+      <p>Imagine maintenant une autre femme. Tu lui demandes : « Qu'est-ce que tu ressens dans ton corps ? » Elle baisse les yeux, elle réfléchit, longtemps, puis elle répond : « Je ne sais pas. » Alors tu reformules, tu l'aides, tu cherches, tu insistes avec douceur, parce que c'est ce qu'on t'a appris à faire.</p>
       <p>Mais si son système nerveux est en shutdown, ce n'est pas qu'elle refuse de sentir, c'est qu'il lui est momentanément impossible d'accéder à cette sensation. À cet instant précis, ton accompagnement ne crée pas de sécurité, il augmente son sentiment d'échec. Et ni toi, ni elle, ne comprenez pourquoi.</p>
-      <p>Tu crois qu'elle manque de connexion, elle croit qu'elle fait mal l'exercice, alors qu'en réalité son corps est simplement en train de faire exactement ce qu'il a appris à faire pour survivre.</p>
     </div>
 
     <div class="portrait">
@@ -318,34 +366,31 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
       <p>Ce n'est pas qu'elle manque d'intelligence. C'est précisément parce qu'elle est extrêmement intelligente que son système nerveux utilise cette intelligence comme protection. Et si tu ne sais pas reconnaître ce mécanisme, tu risques de confondre <strong>richesse d'analyse et profondeur de transformation</strong>.</p>
     </div>
 
-    <p style="margin-top:2em">Voilà pourquoi certaines séances donnent l'impression d'être extraordinaires alors qu'elles ne produisent aucun changement durable, et voilà pourquoi d'autres semblent presque simples mais changent une trajectoire de vie.</p>
-
-    <p class="pull">La différence n'est pas l'outil. La différence, c'est ce que la praticienne voit, et ce qu'elle décide d'en faire.</p>
+    <p class="pull">La différence n'est pas l'outil. La différence, c'est ce que la praticienne voit, et ce qu'elle décide d'en faire.</p>
 
     <p class="lead">Imagine terminer une séance sans te demander si tu as choisi la bonne technique, et savoir exactement pourquoi tu as ralenti, pourquoi tu as attendu, pourquoi tu as changé complètement de direction au milieu. Imagine ressortir de chez toi sans rejouer le film dans ta tête pendant deux jours.</p>
+
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
+    <p class="cta-note">Tarif d'ouverture pendant le premier mois.</p>
   </div>
 </section>
 
-<!-- ================= 4 ================= -->
+<!-- ================= 4 · POURQUOI PERSONNE NE T'A APPRIS CA ================= -->
 <section class="sheet" style="padding-top:0">
   <div class="wrap">
-    <h2>Pourquoi personne ne t'a appris ça ?</h2>
-
-    <p>Parce que ce n'était pas l'objet de tes formations, et ce n'est pas un reproche.</p>
+    <h2>Pourquoi personne ne t'a appris ça ?</h2>
 
     <p>Chaque méthode t'enseigne ce qu'elle sait faire. L'hypnose t'apprend à utiliser l'hypnose, le massage t'apprend le massage, et il en va de même pour la tienne, quelle qu'elle soit. Toutes ces approches peuvent être extrêmement puissantes, et le problème n'a jamais été là.</p>
 
-    <p>Le problème, c'est qu'elles partent toutes du même principe : que tu sais déjà à qui tu t'adresses. Or, c'est précisément ce que personne ne t'a appris.</p>
+    <p>Le problème, c'est qu'elles partent toutes du même principe : que tu sais déjà à qui tu t'adresses. Or, c'est précisément ce que personne ne t'a appris.</p>
 
     <p class="lead">On t'a appris quoi faire, pas comment savoir si cette femme est disponible pour ce que tu t'apprêtes à lui proposer. <strong>On t'a appris à intervenir, pas à observer. On t'a appris à guider, pas à lire.</strong></p>
-
-    <p>Alors le jour où une séance ne fonctionne pas, tu fais ce que ferait n'importe quelle praticienne consciencieuse : tu cherches une meilleure technique, tu changes de protocole, tu modifies tes questions, tu ajoutes un nouvel outil. Alors que le problème était déjà là avant même que tu ouvres la bouche.</p>
 
     <p>Parce qu'avant chaque question, avant chaque exercice, avant chaque technique, il y a toujours une lecture à faire. Et cette lecture détermine tout le reste.</p>
   </div>
 </section>
 
-<!-- ================= 5 ================= -->
+<!-- ================= 5 · NAISSANCE DE METIS ================= -->
 <section class="dark">
   <div class="wrap">
     <div class="moi">
@@ -363,58 +408,45 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 
     <p>Très vite, une habitude s'est installée. Je ne choisissais jamais un outil en début de séance, je me posais toujours la même question.</p>
 
-    <p class="pull">Qu'est-ce que son système nerveux est en train d'essayer de protéger ?</p>
-
-    <p>Parce que tant que je n'avais pas cette réponse, je considérais que je n'avais pas encore commencé mon travail.</p>
+    <p class="pull">Qu'est-ce que son système nerveux est en train d'essayer de protéger ?</p>
 
     <p>Cette lecture changeait tout. Parfois elle me confirmait l'idée que j'avais, parfois elle m'obligeait à abandonner complètement ce que j'avais prévu. Et presque à chaque fois, c'était cette deuxième option qui produisait les plus grandes transformations.</p>
-  </div>
-</section>
 
-<!-- ================= 6 ================= -->
-<section class="sheet">
-  <div class="wrap">
-    <p class="kicker">Ce qu'elles me demandaient</p>
-
-    <p class="lead">Pendant longtemps, je pensais que tout le monde travaillait comme ça, je pensais que c'était évident. Puis les praticiennes qui venaient me consulter ont commencé à me poser des questions, toujours les mêmes.</p>
+    <p>Puis les praticiennes qui venaient me consulter ont commencé à me poser des questions, toujours les mêmes.</p>
 
     <div class="portrait pale">
-      <p>« Comment tu as vu qu'elle était en train de se protéger ? »</p>
-      <p>« À quel moment tu as compris qu'il ne fallait pas continuer dans cette direction ? »</p>
-      <p>« Pourquoi tu as changé complètement de sujet alors qu'elle parlait enfin ? »</p>
-      <p>« Comment tu savais qu'il fallait attendre ? »</p>
+      <p>« Comment tu as vu qu'elle était en train de se protéger ? »</p>
+      <p>« À quel moment tu as compris qu'il ne fallait pas continuer dans cette direction ? »</p>
+      <p>« Pourquoi tu as changé complètement de sujet alors qu'elle parlait enfin ? »</p>
+      <p>« Comment tu savais qu'il fallait attendre ? »</p>
     </div>
 
     <p>Elles ne me demandaient jamais quelle technique j'utilisais. Elles voulaient comprendre comment je regardais.</p>
 
-    <p>C'est là que j'ai compris. Ce que je faisais ne ressemblait pas à une technique, c'était une manière de lire une séance, une manière de prendre des décisions, une manière de regarder les êtres humains. Et surtout, une manière de ne jamais laisser un protocole décider à ma place.</p>
-
     <p>Cette manière de travailler, je lui ai donné un nom.</p>
 
     <p class="pull">Mètis.</p>
+
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
   </div>
 </section>
 
-<!-- ================= 7 ================= -->
-<section class="sheet" style="padding-top:0">
+<!-- ================= 6 · PAS UNE METHODE DE PLUS ================= -->
+<section class="sheet">
   <div class="wrap">
     <h2><em>Mètis</em> n'est pas une méthode de plus.</h2>
 
     <p class="lead">C'est le regard qui donne enfin du sens à toutes celles que tu connais déjà.</p>
 
-    <p>Imagine entrer dans une séance sans te demander quelle technique tu vas utiliser aujourd'hui. Imagine entrer dans une séance avec une autre question : que suis-je en train de voir ?</p>
-
-    <p>Tout change. Tu n'as plus besoin de faire rentrer la cliente dans ton protocole, c'est ton accompagnement qui s'adapte à elle. Tu ne cherches plus à appliquer ce que tu as appris, tu prends une décision : tu observes, tu lis, puis tu choisis.</p>
+    <p>Tu n'as plus besoin de faire rentrer la cliente dans ton protocole, c'est ton accompagnement qui s'adapte à elle. Tu ne cherches plus à appliquer ce que tu as appris, tu prends une décision : tu observes, tu lis, puis tu choisis.</p>
 
     <p>Et soudain, toutes les formations que tu avais suivies prennent enfin leur place. Tu comprends pourquoi certaines fonctionnaient parfois et pourquoi elles semblaient complètement inefficaces avec d'autres personnes. Tu réalises que le problème n'était jamais l'outil, <mark>le problème était le moment où tu l'utilisais</mark>, parce qu'un outil extraordinaire utilisé au mauvais moment reste un mauvais choix, alors qu'une intervention toute simple, au bon moment, peut transformer une séance.</p>
 
     <p class="lead">C'est exactement ce que tu vas apprendre dans Mètis. Pas une nouvelle technique, <strong>un nouveau regard</strong>.</p>
-
-    <p>Un regard qui ne remplacera rien de ce que tu sais déjà, au contraire : il donnera enfin toute sa valeur à ce que tu as appris ces dernières années.</p>
   </div>
 </section>
 
-<!-- ================= 8 ================= -->
+<!-- ================= 7 · AVANT / APRES ================= -->
 <section class="dark">
   <div class="wrap">
     <h2>Il y a un avant, et un après.</h2>
@@ -434,14 +466,12 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
       </div>
     </div>
 
-    <p>Et c'est précisément cette différence que tes clientes ressentiront, sans forcément savoir l'expliquer. Elles auront simplement la sensation d'être comprises plus vite, plus profondément, comme si, pour la première fois, quelqu'un voyait ce qui se jouait derrière leurs mots.</p>
-
     <p class="last">Et c'est souvent à cet instant que la séance commence réellement.</p>
     <p class="sig">Cécile</p>
   </div>
 </section>
 
-<!-- ================= 9 · CE QUE TU VAS SAVOIR FAIRE ================= -->
+<!-- ================= 8 · CE QUE TU VAS SAVOIR FAIRE ================= -->
 <section class="sheet">
   <div class="wrap">
     <p class="kicker">Ce que tu vas savoir faire</p>
@@ -449,57 +479,56 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 
     <p class="lead">Mètis ne t'apprend pas une matière que tu réciteras. Elle installe quatre gestes qui deviennent les tiens, et que tu emmèneras dans chacune de tes séances, quelle que soit ta pratique.</p>
 
-    <div class="cap">
-      <span class="rn">I</span>
-      <div>
-        <h3>Tu arrêteras de confondre une stratégie de survie avec un trait de caractère</h3>
+    <details class="cap">
+      <summary><span class="rn">I</span><h3>Tu arrêteras de confondre une stratégie de survie avec un trait de caractère</h3></summary>
+      <div class="cap-corps">
         <p>Tu comprendras pourquoi une cliente qui paraît démotivée est peut-être seulement en train d'économiser ce qui lui reste d'énergie, pourquoi celle qui semble toujours forte est parfois en train de s'effondrer, et pourquoi celle qui a l'air d'aller bien a surtout un corps qui fait tout pour que rien ne se voie. <strong>Ce que tu prenais pour du caractère deviendra de l'information.</strong></p>
       </div>
-    </div>
+    </details>
 
-    <div class="cap">
-      <span class="rn">II</span>
-      <div>
-        <h3>Tu verras ce qui se joue avant même qu'elle commence à parler</h3>
+    <details class="cap">
+      <summary><span class="rn">II</span><h3>Tu verras ce qui se joue avant même qu'elle commence à parler</h3></summary>
+      <div class="cap-corps">
         <p>Ce que son corps raconte pendant qu'elle s'installe, l'écart entre deux de ses phrases, le moment précis où quelque chose se ferme et celui où quelque chose s'ouvre. Tu apprendras à observer sans conclure, à tenir plusieurs hypothèses à la fois, et à ne plus jamais faire dire quoi que ce soit à un signal isolé.</p>
       </div>
-    </div>
+    </details>
 
-    <div class="cap">
-      <span class="rn">III</span>
-      <div>
-        <h3>Tu arrêteras de travailler sur le mauvais problème</h3>
+    <details class="cap">
+      <summary><span class="rn">III</span><h3>Tu arrêteras de travailler sur le mauvais problème</h3></summary>
+      <div class="cap-corps">
         <p>Ce qu'elle vient chercher n'est presque jamais ce sur quoi il faut travailler, et c'est là que se perdent des mois d'accompagnement. Tu sauras construire l'objectif juste avec elle plutôt que de prendre sa demande au mot, et tenir cette position quand elle te ramènera vers son problème apparent.</p>
       </div>
-    </div>
+    </details>
 
-    <div class="cap">
-      <span class="rn">IV</span>
-      <div>
-        <h3>Tu n'auras plus peur qu'une séance sorte de ce que tu avais prévu</h3>
+    <details class="cap">
+      <summary><span class="rn">IV</span><h3>Tu n'auras plus peur qu'une séance sorte de ce que tu avais prévu</h3></summary>
+      <div class="cap-corps">
         <p>Tu liras l'état dans lequel elle arrive, tu sauras abandonner ton plan au moment où il ne tient plus, et tu la ramèneras au fil sans jamais forcer. <strong>Ce qui te fait paniquer aujourd'hui deviendra précisément le moment où tu es la plus utile.</strong></p>
       </div>
-    </div>
+    </details>
 
     <p style="margin-top:36px">Tout se lit et s'écoute en ligne, à ton rythme, sans session ni date imposée, avec ma voix sur chaque partie et un accès qui ne se referme pas.</p>
 
-    <div class="cta"><a class="btn" href="#offres">Rejoindre Mètis</a></div>
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
+    <p class="cta-note">Tarif d'ouverture pendant le premier mois.</p>
   </div>
 </section>
 
-<!-- ================= 9 bis · LES SEANCES COMMENTEES ================= -->
+<!-- ================= 9 · LES SEANCES COMMENTEES ================= -->
 <section class="dark">
   <div class="wrap">
-    <p class="kicker">Les séances commentées</p>
-    <h2>Quatorze séances, et ce qui se passe dans ma tête pendant.</h2>
+    <p class="kicker">Les quatorze cas</p>
+    <h2>Quatorze cas, et pourquoi je ne te donne pas la correction.</h2>
 
-    <p class="lead">La plupart des formations te montrent ce qu'il fallait voir. Je fais exactement l'inverse.</p>
+    <p class="lead">La plupart des formations te livrent des cas corrigés, avec la bonne réponse à la fin. J'ai commencé par faire ça, puis j'ai arrêté.</p>
 
-    <p>Tu reçois d'abord les indices bruts, c'est-à-dire exactement ce que j'avais devant moi avant de savoir. Puis on s'arrête, et c'est à toi. Tu construis ta lecture, tu prends position, tu te trompes parfois. Et seulement après, tu entends la mienne.</p>
+    <p>Une lecture ne se fait jamais sur un dossier. Elle se fait sur une femme assise en face de toi, avec ce qui change dans sa respiration pendant que tu parles, avec ce que tu perçois à cet instant précis et que tu ne saurais pas écrire. Au moment où je fige tout ça sur une page, j'ai déjà retiré ce qui rendait la lecture possible, et ce qui reste ressemble à une lecture sans en être une.</p>
 
-    <p>Ce n'est pas une coquetterie de pédagogue. Si je réponds avant que tu aies cherché, tu retiens ma conclusion et tu n'as rien appris. Je ne veux pas que tu apprennes à penser comme moi, <strong>je veux que tu apprennes à voir par toi-même</strong>, y compris le jour où tu vois autre chose que moi.</p>
+    <p>Te donner ma conclusion sur un cas figé t'apprendrait à retenir ma conclusion, et rien d'autre. Je ne veux pas que tu apprennes à penser comme moi, <strong>je veux que tu apprennes à voir par toi-même</strong>, y compris le jour où tu vois autre chose que moi.</p>
 
-    <p>Quatorze séances entières, décortiquées de bout en bout, plus les mécanismes qui reviennent d'un dossier à l'autre et les cas où tout se complique. C'est la partie de Mètis que tu ne trouveras nulle part ailleurs, parce qu'aucune formation n'accepte de te montrer son raisonnement en train de se faire.</p>
+    <p>Alors ces quatorze cas font autre chose. Ils te font traverser, avant que ça n'arrive en séance, les états que tu vas rencontrer et la façon très différente dont chacun se présente d'une femme à l'autre. Tu ne découvriras pas un figement le jour où une cliente s'éteindra devant toi. Tu l'auras déjà croisé ailleurs, et tu sauras que c'en est un.</p>
+
+    <p>Je t'explique tout ça de vive voix en ouvrant cette partie.</p>
   </div>
 </section>
 
@@ -507,9 +536,6 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 <section class="sheet">
   <div class="wrap">
     <p class="kicker">Ce qu'elles en disent</p>
-
-    <p class="lead">Tu pourrais croire que tout cela est séduisant sur le papier et théorique en séance. Ce regard produit pourtant toujours le même effet : les praticiennes cessent peu à peu de chercher une technique de plus, elles commencent à regarder autrement, et ce changement dépasse très vite le cadre de leurs séances.</p>
-
     <h2>Quatre praticiennes, quatre pratiques différentes.</h2>
 
     <p class="lead">Aucune n'est venue chercher une formation. Elles sont venues comme femmes, pour elles. C'est après seulement que certaines sont revenues me chercher, pour des choses très précises.</p>
@@ -517,13 +543,12 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
     <div class="temoin">
       <p class="qui">Une médium, mentor business énergétique</p>
       <p>Après le décès de son père, toute son armure est tombée. Elle avait déjà consulté des psychologues, un psychiatre, plusieurs thérapeutes, et personne ne lui avait parlé de son système nerveux. Elle écrit qu'avec le recul, elle pense sincèrement que ça aurait pu être une clé essentielle bien plus tôt.</p>
-      <p>Ce qu'elle repart avec, ce ne sont pas des exercices, ce sont des clés qu'elle gardera toute sa vie, pour comprendre son fonctionnement et finalement elle-même.</p>
     </div>
 
     <div class="temoin">
       <p class="qui">Une médium énergéticienne</p>
       <p>Elle était suivie pour un profil d'attachement anxieux, pour une dépression, et pour beaucoup d'autres choses que son corps exprimait. Elle écrit que dès le premier rendez-vous, elle a senti que je voyais au-delà des mots, et que j'ai tout de suite perçu son véritable besoin, sortir du mode survie.</p>
-      <p>Puis cette phrase, qui est la raison pour laquelle je fais ce métier : « Mais en fait, je ne suis pas cassée, je ne suis pas folle. »</p>
+      <p>Puis cette phrase, qui est la raison pour laquelle je fais ce métier : « Mais en fait, je ne suis pas cassée, je ne suis pas folle. »</p>
     </div>
 
     <div class="temoin">
@@ -533,31 +558,17 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 
     <div class="temoin">
       <p class="qui">Une mentor en Human Design</p>
-      <p>Elle est arrivée avec un objectif précis, chiffré, préparé. Trois mois plus tard, elle n'en parlait plus, parce que ce n'était pas là que se jouait son problème. Ce qu'elle en retient, elle l'a dit ainsi : tant que tu tournes autour de tes outils, tu doutes en permanence de ce que tu proposes.</p>
+      <p>Elle est arrivée avec un objectif précis, chiffré, préparé. Trois mois plus tard, elle n'en parlait plus, parce que ce n'était pas là que se jouait son problème. Ce qu'elle en retient, elle l'a dit ainsi : tant que tu tournes autour de tes outils, tu doutes en permanence de ce que tu proposes.</p>
     </div>
 
-    <p style="margin-top:44px" class="kicker">Et chez celles qui sont assises en face</p>
+    <p style="margin-top:26px;font-style:italic;color:var(--muted)">Ces retours sont anonymisés.</p>
 
-    <div class="courts">
-      <div class="c">
-        <strong>M.</strong>
-        <p>Venue avec un problème relationnel, repartie en comprenant que ce n'en était pas un, mais quelque chose dont elle peut se servir. Son questionnement sur le sentiment de dissociation a trouvé une réponse.</p>
-      </div>
-      <div class="c">
-        <strong>A.</strong>
-        <p>Venue pour son poids. Une semaine après, ce qui avait bougé, c'est qu'elle se surprenait à dire non facilement. Elle écrit qu'elle se sent mieux, et que c'est déjà une victoire.</p>
-      </div>
-      <div class="c">
-        <strong>E.</strong>
-        <p>Des prises de conscience sur des choses qu'elle savait déjà mais qu'elle se cachait tellement qu'elle ne les voyait plus. Quand je les ai nommées, ça ne l'a pas surprise, et ça a été un choc en même temps.</p>
-      </div>
-    </div>
-
-    <p style="margin-top:26px;font-style:italic;color:var(--muted)">Ces retours sont anonymisés. M. et E. sont elles aussi praticiennes, et elles étaient venues pour elles.</p>
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
+    <p class="cta-note">Tarif d'ouverture pendant le premier mois.</p>
   </div>
 </section>
 
-<!-- ================= 10 bis · ANTI-VENTE ================= -->
+<!-- ================= 11 · ANTI-VENTE ================= -->
 <section class="dark">
   <div class="wrap">
     <p class="kicker">Avant d'aller plus loin</p>
@@ -585,34 +596,35 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
       <p>Attends. Tout ce que j'enseigne se travaille sur des femmes réelles, assises en face de toi. Sans pratique, ça restera de la belle théorie, et c'est exactement ce que cette formation combat.</p>
     </div>
 
-    <div class="non">
-      <h4>Si tu n'as pas envie de remettre en question ta façon de mener une séance.</h4>
-      <p>Garde ton argent. Mètis n'ajoute rien à ce que tu fais, elle déplace la façon dont tu le fais, et ça demande d'accepter de voir ce que tu as manqué jusqu'ici. Ce n'est pas confortable, et c'est le prix d'entrée.</p>
-    </div>
-
     <p class="lead" style="margin-top:38px">Si tu es toujours là après avoir lu ça, c'est probablement pour toi.</p>
   </div>
 </section>
 
-<!-- ================= 11 · OFFRES ================= -->
-<section class="sheet" id="offres" style="padding-top:0">
+<!-- ================= 12 · OFFRES ================= -->
+<section class="sheet" id="offres">
   <div class="wrap-lg">
     <p class="kicker">Rejoindre Mètis</p>
     <h2>Deux façons d'entrer.</h2>
-    <p class="lead" style="max-width:62ch">Si tu es arrivée directement ici, voilà ce que tu achètes. Pas une technique de plus, mais le regard qui décide de la technique : savoir dans quel état est ta cliente avant de choisir quoi faire avec elle, comprendre ce qu'elle te montre et ce qu'elle te cache, construire l'objectif juste plutôt que celui qu'elle t'apporte, et décider en direct quand la séance ne ressemble pas à ce que tu avais prévu. Tu gardes tous tes outils, tu apprends à qui, quand, et dans quel ordre les poser.</p>
+    <p class="lead" style="max-width:62ch">Si tu es arrivée directement ici, voilà ce que tu achètes. Pas une technique de plus, mais le regard qui décide de la technique : savoir dans quel état est ta cliente avant de choisir quoi faire avec elle, comprendre ce qu'elle te montre et ce qu'elle te cache, construire l'objectif juste plutôt que celui qu'elle t'apporte, et décider en direct quand la séance ne ressemble pas à ce que tu avais prévu. Tu gardes tous tes outils, tu apprends à qui, quand, et dans quel ordre les poser.</p>
     <p style="max-width:62ch">La formation est exactement la même dans les deux cas. Ce qui change, c'est que dans l'une tu l'installes à ton rythme, et que dans l'autre je regarde ta pratique avec toi pendant que tu l'installes.</p>
+
+    <div class="achat">
+      <label class="achat-lbl" for="achat-email">Ton adresse e-mail</label>
+      <input class="achat-champ" type="email" id="achat-email" placeholder="prenom@exemple.fr" autocomplete="email" inputmode="email">
+      <p class="achat-msg" id="achat-msg" role="status"></p>
+    </div>
 
     <div class="offres">
       <div class="offre principale">
         <p class="nom">Mètis</p>
         <p class="sous">En autonomie</p>
-        <p>La formation entière, les cinq temps, les séances commentées, ma voix sur chaque partie. À ton rythme, sans date imposée, et l'accès ne se referme pas.</p>
+        <p>La formation entière, les cinq temps, les quatorze cas, ma voix sur chaque partie. À ton rythme, sans date imposée, et l'accès ne se referme pas.</p>
         <p class="prix">720 €
           <small>Tarif d'ouverture, le premier mois seulement. Ensuite 920 €.</small>
         </p>
         <div class="cta-group">
-          <a class="btn" href="LIEN-COMPTANT-AUTONOMIE">Paiement comptant<span class="btn-sub">(30 € de remise)</span></a>
-          <a class="btn ghost" href="LIEN-FRACTIONNE-AUTONOMIE">Paiement en plusieurs fois<span class="btn-sub">(selon éligibilité)</span></a>
+          <button type="button" class="btn" data-prix="prc_comptant-aqs00pl6">Paiement comptant<span class="btn-sub">(30 € de remise)</span></button>
+          <a class="btn ghost" href="mailto:contact@cecilesoriano.fr?subject=Paiement%20en%20plusieurs%20fois%20pour%20M%C3%A8tis">Payer en plusieurs fois<span class="btn-sub">(on le met en place ensemble)</span></a>
         </div>
       </div>
 
@@ -625,57 +637,52 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
           <small>Trois supervisions à prendre dans les neuf mois qui suivent ton achat.</small>
         </p>
         <div class="cta-group">
-          <a class="btn ghost" href="LIEN-PAIEMENT-ACCOMPAGNEE">Paiement<span class="btn-sub">(en plusieurs fois si éligible)</span></a>
+          <button type="button" class="btn ghost" data-prix="prc_tarif-public-10sj0j45">Rejoindre l'accompagnée<span class="btn-sub">(paiement en plusieurs fois possible, écris-moi)</span></button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 12 · OBJECTIONS ================= -->
+<!-- ================= 13 · OBJECTIONS ================= -->
 <section class="dark">
   <div class="wrap">
     <p class="kicker">Avant de te décider</p>
 
-    <div class="obj">
-      <h4>J'ai déjà fait une formation sur le système nerveux.</h4>
+    <details class="faq">
+      <summary>J'ai déjà fait une formation sur le système nerveux.</summary>
       <p>Tant mieux, tu iras plus vite sur le premier temps. Mais connaître les états ne dit pas quoi en faire à seize heures un mardi, quand ta cliente sourit et que tu sens que quelque chose cloche. Certaines de mes clientes travaillaient déjà avec le système nerveux, et c'est ici que quelque chose s'est débloqué. La théorie n'a jamais transformé une séance.</p>
-    </div>
+    </details>
 
-    <div class="obj">
-      <h4>Je n'ai pas le temps en ce moment.</h4>
+    <details class="faq">
+      <summary>Je n'ai pas le temps en ce moment.</summary>
       <p>Il n'y a ni date de début, ni session, ni rythme imposé. Tu ouvres quand tu peux, tu reprends où tu t'es arrêtée, et l'accès ne se referme pas. La seule chose qui a une date, c'est le tarif d'ouverture.</p>
-    </div>
+    </details>
 
-    <div class="obj">
-      <h4>Est-ce que ça marche avec ma pratique à moi ?</h4>
+    <details class="faq">
+      <summary>Est-ce que ça marche avec ma pratique à moi ?</summary>
       <p>Mètis ne remplace aucun outil et n'en impose aucun. Elle se pose avant, au moment où tu décides quoi faire. Peu importe tes outils de départ, tu gardes tout, et tu apprends <mark>à qui, quand, et dans quel ordre les poser</mark>. C'est vrai pour toute praticienne qui travaille avec un être humain assis en face d'elle.</p>
-    </div>
+    </details>
 
-    <div class="obj">
-      <h4>Et si je me trompe en lisant ?</h4>
+    <details class="faq">
+      <summary>Et si je me trompe en lisant ?</summary>
       <p>Tu te tromperas, souvent au début, et c'est exactement ce qu'on veut. Une lecture n'est pas une conclusion, c'est une hypothèse que la séance suivante confirme ou renverse. Tout ce que je transmets vise à ce que tu te trompes de mieux en mieux, jusqu'à ne plus avoir besoin de moi.</p>
-    </div>
+    </details>
 
-    <div class="obj">
-      <h4>Est-ce que c'est remboursable ?</h4>
+    <details class="faq">
+      <summary>Est-ce que c'est remboursable ?</summary>
       <p>Non. Tout s'ouvre au moment où tu paies, la formation entière est accessible immédiatement, donc il n'y a pas de retour possible. C'est précisément pour ça que je préfère que tu lises tout ce qui est au-dessus avant de cliquer, et que je t'ai dit franchement à qui ça ne s'adresse pas.</p>
-    </div>
+    </details>
 
-    <div class="obj">
-      <h4>Combien de temps ça va me prendre ?</h4>
-      <p>Le temps de l'écouter, quelques heures étalées comme tu veux. Le temps de l'installer, plusieurs mois, parce qu'un regard ne se télécharge pas, il se travaille séance après séance. C'est aussi pour ça que l'accès ne se referme pas : tu reviendras sur les mêmes passages en y voyant autre chose.</p>
-    </div>
-
-    <div class="obj">
-      <h4>Et si je prends l'autonomie et que j'ai finalement envie de ton regard sur ma pratique ?</h4>
+    <details class="faq">
+      <summary>Et si je prends l'autonomie et que j'ai finalement envie de ton regard sur ma pratique ?</summary>
       <p>Rien n'est fermé. Tu peux prendre une supervision à l'unité quand tu le décides, une seule fois pour débloquer quelque chose de précis, ou de temps en temps quand tu en ressens le besoin. La demande se fait depuis l'intérieur de la formation, et on regarde tes séances ensemble. Choisir l'autonomie au départ ne t'enferme dans rien.</p>
-    </div>
+    </details>
 
   </div>
 </section>
 
-<!-- ================= 13 · CLOTURE ================= -->
+<!-- ================= 14 · CLOTURE ================= -->
 <section class="sheet">
   <div class="wrap">
     <h2>Peut-être que lors d'une de tes prochaines séances...</h2>
@@ -688,10 +695,82 @@ p.lead{font-size:1.3rem;line-height:1.62;color:var(--ink)}
 
     <p>C'est probablement à ce moment-là que tu comprendras ce qu'est Mètis.</p>
 
-    <div class="cta"><a class="btn" href="#offres">Rejoindre Mètis</a></div>
+    <div class="cta"><a class="btn" href="#offres">Voir les deux formats</a></div>
     <p class="cta-note">Tarif d'ouverture pendant le premier mois.</p>
   </div>
 </section>
+
+<script>
+(function(){
+  var RETOUR = "https://metis.cecilesoriano.fr/Module-00/Accueil/?nouvelle=1";
+  var CONNEX = "https://metis.cecilesoriano.fr/Module-00/Connexion/";
+
+  var champ = document.getElementById("achat-email");
+  var msg   = document.getElementById("achat-msg");
+
+  function motDePasse(){
+    var a = new Uint8Array(24);
+    (window.crypto || window.msCrypto).getRandomValues(a);
+    return "Ms!" + Array.prototype.map.call(a, function(n){
+      return "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789".charAt(n % 58);
+    }).join("");
+  }
+
+  function acheter(bouton){
+    var prix = bouton.getAttribute("data-prix");
+    if (!prix || prix.indexOf("prc_") !== 0){
+      msg.textContent = "Ce mode de paiement n'est pas encore ouvert.";
+      return;
+    }
+
+    var email = (champ.value || "").trim().toLowerCase();
+    if (email.indexOf("@") < 1 || email.lastIndexOf(".") < email.indexOf("@") + 2){
+      msg.textContent = "Indique ton adresse e-mail juste au-dessus.";
+      champ.focus();
+      champ.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+
+    var ms = window.$memberstackDom;
+    if (!ms){
+      msg.textContent = "Le paiement ne se charge pas. Écris-moi à contact@cecilesoriano.fr";
+      return;
+    }
+
+    msg.textContent = "";
+    var texte = bouton.innerHTML;
+    bouton.disabled = true;
+    bouton.textContent = "Un instant";
+
+    var mdp = motDePasse();
+
+    ms.signupMemberEmailPassword({ email: email, password: mdp })
+      .then(function(){
+        try { sessionStorage.setItem("metis_mdp", mdp); } catch(e){}
+        return ms.purchasePlansWithCheckout({
+          priceId: prix,
+          successUrl: RETOUR,
+          cancelUrl: window.location.href
+        });
+      })
+      .catch(function(err){
+        bouton.disabled = false;
+        bouton.innerHTML = texte;
+        var t = ((err && (err.message || err.msg)) || "").toLowerCase();
+        if (t.indexOf("exist") > -1 || t.indexOf("taken") > -1 || t.indexOf("already") > -1){
+          msg.innerHTML = 'Cette adresse est déjà enregistrée. <a href="' + CONNEX + '">Connecte-toi ici</a>, puis reviens sur cette page.';
+        } else {
+          msg.textContent = "Le paiement n'a pas pu s'ouvrir. Réessaie, ou écris-moi à contact@cecilesoriano.fr";
+        }
+      });
+  }
+
+  var boutons = document.querySelectorAll("[data-prix]");
+  for (var i = 0; i < boutons.length; i++){
+    (function(b){ b.addEventListener("click", function(){ acheter(b); }); })(boutons[i]);
+  }
+})();
+</script>
 
 </body>
 </html>
