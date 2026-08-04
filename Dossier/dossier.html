@@ -249,6 +249,34 @@
   .logo .star{color:var(--or-clair);}
   footer .tag{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-clair);margin-top:10px;}
 
+  .consentements{
+    text-align:left;max-width:430px;margin:26px auto 0;
+    padding-top:22px;border-top:1px dashed rgba(122,58,20,.28);
+  }
+  .consentements label{
+    display:flex;align-items:flex-start;gap:11px;cursor:pointer;
+    font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.45;
+    color:var(--taupe-fonce);margin-bottom:14px;
+  }
+  .consentements input{
+    flex:0 0 auto;width:19px;height:19px;margin-top:2px;
+    accent-color:var(--rouge);cursor:pointer;
+  }
+  .consentements a{color:var(--brun);text-decoration:underline;}
+  .cta.verrou{
+    opacity:.4;pointer-events:none;background:var(--taupe-fonce);
+    box-shadow:none;cursor:not-allowed;
+  }
+
+  .legal-liens{
+    margin-top:26px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;
+  }
+  .legal-liens a{
+    font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--taupe-clair);text-decoration:none;
+  }
+  .legal-liens a:hover{color:var(--or-clair);}
+
   .reveal{opacity:0;transform:translateY(18px);animation:rise .8s ease forwards;}
   @keyframes rise{to{opacity:1;transform:none;}}
   .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
@@ -348,15 +376,45 @@
     <span class="scotch"></span>
     <div class="tarif">199<span class="dev">€</span></div>
     <div class="detail">Visio · 60 minutes · dossier préparé en amont</div>
-    <a class="cta" href="https://buy.stripe.com/bJebJ1cCz52CabH6TR2oE0s">J'ouvre mon enquête</a>
+    <div class="consentements">
+      <label>
+        <input type="checkbox" id="ok-cgv">
+        <span>J'ai lu et j'accepte les <a href="../cgv.html" target="_blank" rel="noopener">conditions générales de vente</a>.</span>
+      </label>
+      <label>
+        <input type="checkbox" id="ok-retract">
+        <span>Je demande expressément que ma séance ait lieu avant la fin du délai de quatorze jours et je renonce à mon droit de rétractation une fois la séance réalisée.</span>
+      </label>
+    </div>
+
+    <a class="cta verrou" id="cta-paiement" href="https://buy.stripe.com/bJebJ1cCz52CabH6TR2oE0s">J'ouvre mon enquête</a>
     <p class="pay-note">Tu règles ta place, puis tu choisis ton créneau et tu réponds aux questions du dossier.</p>
   </div>
 
   <footer class="reveal d5">
     <div class="logo">GOSSIP <span class="star">&#10022;</span> DE CÉCILE</div>
     <div class="tag">Enquêtes sur les comportements humains</div>
+    <div class="legal-liens">
+      <a href="../cgv.html">Conditions générales de vente</a>
+      <a href="../mentions-legales.html">Mentions légales</a>
+      <a href="mailto:contact@cecilesoriano.fr">contact@cecilesoriano.fr</a>
+    </div>
   </footer>
 
 </div>
+
+<script>
+  (function () {
+    var cgv = document.getElementById('ok-cgv');
+    var ret = document.getElementById('ok-retract');
+    var cta = document.getElementById('cta-paiement');
+    function maj() {
+      cta.classList.toggle('verrou', !(cgv.checked && ret.checked));
+    }
+    cgv.addEventListener('change', maj);
+    ret.addEventListener('change', maj);
+    maj();
+  })();
+</script>
 </body>
 </html>
