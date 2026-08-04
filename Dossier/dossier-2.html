@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouvre ton enquête — Gossip de Cécile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nuit:#14110D;          /* charbon chaud presque noir */
+    --encre:#1D1D1B;
+    --kraft:#CEAE88;
+    --creme:#F2EAD9;
+    --creme-2:#E4D7C0;
+    --brun:#7A3A14;
+    --brun-fonce:#5A2E0F;
+    --taupe-clair:#CBB99E;
+    --taupe-fonce:#7A6A55;
+    --rouge:#A8392C;
+    --rouge-vif:#E85B40;
+    --rouge-clair:#C0492F;
+    --or:#C49A3E;            /* mot accent doré */
+    --or-clair:#E0BD6A;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--nuit);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(120,92,52,.30), transparent 60%),
+      radial-gradient(ellipse 100% 60% at 50% 110%, rgba(8,6,4,.92), transparent 55%);
+    color:var(--creme);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:22px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{max-width:760px;margin:0 auto;padding:46px 22px 90px;position:relative;z-index:1;}
+
+  /* entête dossier */
+  .kicker{
+    text-align:center;font-family:'Special Elite',monospace;
+    font-size:14px;letter-spacing:.24em;color:var(--taupe-clair);
+    text-transform:uppercase;margin-bottom:22px;line-height:1.5;
+  }
+  .topstamp{text-align:center;margin-bottom:14px;}
+  .dossier-stamp{
+    display:inline-block;font-family:'Special Elite',monospace;text-transform:uppercase;
+    letter-spacing:.16em;font-size:clamp(15px,3.6vw,21px);color:var(--rouge-vif);
+    border:2px solid var(--rouge-vif);padding:9px 18px;transform:rotate(-1.4deg);
+    box-shadow:0 2px 0 rgba(0,0,0,.35);
+  }
+  .sous-ctrl{
+    text-align:center;font-family:'Special Elite',monospace;font-size:14px;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-clair);margin:0 0 40px;
+  }
+
+  /* hero — façon couverture de dossier */
+  .hero{text-align:center;margin-bottom:38px;}
+  .hero h1.poster{
+    font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(42px,11.5vw,84px);line-height:.97;letter-spacing:.005em;
+    color:var(--creme);text-shadow:0 2px 0 rgba(0,0,0,.45);
+  }
+  .hero h1.poster .l2{display:block;margin-top:.12em;}
+  .hero h1.poster .r{color:var(--rouge-vif);}
+  .hero .underrule{
+    display:block;width:120px;height:3px;background:var(--rouge);margin:26px auto 0;
+    transform:rotate(-.6deg);
+  }
+  .hero-sub{
+    max-width:560px;margin:30px auto 0;font-size:24px;
+    color:var(--creme-2);font-style:italic;line-height:1.5;
+  }
+
+  /* fiche papier */
+  .fiche{
+    position:relative;background:var(--creme);color:var(--encre);border-radius:2px;
+    padding:42px 34px 44px;margin:58px 0;
+    box-shadow:0 22px 45px rgba(0,0,0,.5), inset 0 0 60px rgba(180,150,110,.10);
+  }
+  .fiche.kraft{background:var(--kraft);}
+  .fiche.tilt-l{transform:rotate(-.7deg);}
+  .fiche.tilt-r{transform:rotate(.6deg);}
+
+  .scotch{
+    position:absolute;width:130px;height:36px;top:-17px;left:50%;
+    transform:translateX(-50%) rotate(-2deg);background:rgba(206,174,136,.5);
+    border-left:1px dashed rgba(120,95,60,.3);border-right:1px dashed rgba(120,95,60,.3);
+    box-shadow:0 2px 5px rgba(0,0,0,.15);
+  }
+  .scotch.left{left:34px;transform:rotate(-7deg);}
+  .scotch.right{left:auto;right:34px;transform:rotate(6deg);}
+
+  .fiche-title{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.05em;font-size:clamp(24px,6vw,30px);
+    color:var(--brun-fonce);line-height:1.15;margin-bottom:6px;
+  }
+  .fiche-rule{display:flex;align-items:center;gap:12px;color:var(--taupe-fonce);margin:16px 0 26px;}
+  .fiche-rule::before,.fiche-rule::after{content:"";height:1px;background:rgba(110,85,55,.5);flex:1;}
+  .fiche-rule span{font-family:'Special Elite',monospace;font-size:16px;}
+
+  .corner-stamp{
+    position:absolute;right:20px;bottom:18px;
+    font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--rouge);border:2px solid var(--rouge);
+    padding:6px 12px;border-radius:3px;transform:rotate(-2.2deg);background:rgba(255,255,255,.12);
+  }
+  @media(max-width:560px){.corner-stamp{position:static;display:inline-block;margin-top:22px;}}
+
+  ul.cases{list-style:none;}
+  ul.cases li{
+    position:relative;padding:14px 0 14px 42px;
+    border-bottom:1px dashed rgba(110,85,55,.35);
+    font-size:21px;line-height:1.5;color:var(--encre);
+  }
+  ul.cases li:last-child{border-bottom:none;}
+  ul.cases li::before{
+    content:"";position:absolute;left:2px;top:17px;width:20px;height:20px;
+    border:2.5px solid var(--brun);border-radius:2px;
+  }
+  ul.cases li::after{
+    content:"\2713";position:absolute;left:4px;top:9px;
+    font-family:'Special Elite',monospace;color:var(--rouge);font-size:22px;transform:rotate(-8deg);
+  }
+  ul.cases li b{color:var(--brun-fonce);font-weight:700;}
+
+  /* déroulé de l'enquête */
+  .fiche .enq-p{font-size:21px;line-height:1.55;color:var(--encre);margin-bottom:18px;}
+  .fiche .enq-p:last-child{margin-bottom:0;}
+  .fiche .enq-p.cle{border-left:2px solid var(--brun);padding-left:18px;color:var(--brun-fonce);}
+
+  /* note manuscrite */
+  .note{
+    position:relative;background:var(--creme);color:var(--encre);
+    font-family:'Caveat',cursive;font-size:30px;line-height:1.4;
+    padding:34px 32px 36px;margin:52px auto;max-width:480px;
+    transform:rotate(-1.4deg);box-shadow:0 16px 32px rgba(0,0,0,.45);
+    background-image:repeating-linear-gradient(transparent, transparent 43px, rgba(110,85,55,.2) 44px);
+  }
+  .note p{margin-bottom:10px;}
+  .note p:last-child{margin-bottom:0;}
+  .note .red{color:var(--rouge);font-weight:700;}
+
+  /* tampon */
+  .tampon-box{text-align:center;margin:48px 0;}
+  .tampon{
+    display:inline-block;font-family:'Special Elite',monospace;text-transform:uppercase;
+    letter-spacing:.12em;font-size:17px;color:var(--rouge-vif);
+    border:3px solid var(--rouge-vif);padding:13px 24px;border-radius:4px;
+    transform:rotate(-3deg);box-shadow:inset 0 0 10px rgba(232,91,64,.18);
+  }
+
+  /* ce que ce n'est pas */
+  .nope{text-align:center;margin:44px auto;max-width:580px;}
+  .nope .line{
+    font-family:'Oswald',sans-serif;font-weight:400;text-transform:uppercase;
+    letter-spacing:.05em;font-size:clamp(20px,5vw,26px);color:var(--creme);margin:8px 0;
+  }
+  .nope .line s{color:var(--taupe-clair);text-decoration-color:var(--rouge-vif);text-decoration-thickness:3px;}
+  .nope .what{margin-top:28px;font-style:italic;font-size:23px;color:var(--creme-2);line-height:1.5;}
+
+  /* témoignages — pièces versées, punaisées */
+  .preuves{margin:58px 0;}
+  .preuves .ptag{
+    font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--rouge-vif);margin:0 0 30px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .preuves .ptag::after{content:"";flex:1;height:1px;background:rgba(203,185,158,.3);}
+  .preuve{
+    position:relative;background:var(--creme);color:var(--encre);border-radius:2px;
+    padding:30px 30px 24px;margin:0 auto 26px;max-width:560px;
+    box-shadow:0 16px 32px rgba(0,0,0,.45);
+  }
+  .preuve.tl{transform:rotate(-.6deg);}
+  .preuve.tr{transform:rotate(.55deg);}
+  .preuve::before{               /* punaise rouge */
+    content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    width:16px;height:16px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #ff8366, var(--rouge) 72%);
+    box-shadow:0 4px 6px rgba(0,0,0,.5);
+  }
+  .preuve .stamp{
+    display:block;font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--rouge);margin-bottom:13px;
+  }
+  .preuve blockquote{font-style:italic;font-size:23px;line-height:1.42;color:var(--encre);}
+  .preuve .sign{font-family:'Caveat',cursive;font-size:28px;color:var(--brun);margin-top:14px;display:block;}
+
+  /* form-head */
+  .form-head{text-align:center;margin:74px 0 6px;}
+  .form-head .lbl{
+    font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--taupe-clair);
+  }
+  .form-head h2{
+    font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.03em;
+    font-size:clamp(32px,8vw,48px);color:var(--creme);margin-top:10px;
+  }
+  .form-head h2 .or{color:var(--or-clair);}
+  .form-head p{color:var(--creme-2);font-style:italic;margin-top:12px;font-size:22px;}
+
+  /* bloc paiement */
+  .pay{
+    position:relative;background:var(--creme);color:var(--encre);border-radius:2px;
+    padding:46px 34px 42px;margin:40px auto 0;max-width:520px;text-align:center;
+    box-shadow:0 22px 45px rgba(0,0,0,.5), inset 0 0 60px rgba(180,150,110,.10);
+  }
+  .pay .tarif{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(46px,12vw,64px);
+    color:var(--brun-fonce);line-height:1;letter-spacing:.01em;
+  }
+  .pay .tarif .dev{font-size:.5em;font-weight:500;vertical-align:super;margin-left:4px;}
+  .pay .detail{
+    font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--taupe-fonce);margin:14px 0 30px;line-height:1.6;
+  }
+  a.cta{
+    display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.1em;font-size:21px;color:#fff;background:var(--rouge);text-decoration:none;
+    border-radius:3px;padding:20px 46px;box-shadow:0 10px 24px rgba(168,57,44,.45);
+    transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  a.cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(168,57,44,.55);background:var(--rouge-clair);}
+  .pay .pay-note{font-family:'Caveat',cursive;font-size:23px;color:var(--taupe-fonce);margin-top:22px;line-height:1.4;}
+  .pay .scotch{background:rgba(206,174,136,.55);}
+  .pay .earlybird{
+    display:inline-block;font-family:'Special Elite',monospace;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--rouge);border:2px solid var(--rouge);
+    padding:7px 15px;border-radius:3px;transform:rotate(-1.5deg);margin-bottom:24px;
+  }
+  .pay .tarif .old{
+    font-size:.46em;font-weight:500;color:var(--taupe-fonce);vertical-align:middle;margin-right:14px;
+    text-decoration:line-through;text-decoration-color:var(--rouge);text-decoration-thickness:3px;
+  }
+
+  footer{text-align:center;margin-top:84px;padding-top:42px;border-top:1px solid rgba(203,185,158,.22);}
+  .logo{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.18em;font-size:28px;color:var(--creme);text-transform:uppercase;}
+  .logo .star{color:var(--or-clair);}
+  footer .tag{font-family:'Special Elite',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-clair);margin-top:10px;}
+
+  .consentements{
+    text-align:left;max-width:430px;margin:26px auto 0;
+    padding-top:22px;border-top:1px dashed rgba(122,58,20,.28);
+  }
+  .consentements label{
+    display:flex;align-items:flex-start;gap:11px;cursor:pointer;
+    font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.45;
+    color:var(--taupe-fonce);margin-bottom:14px;
+  }
+  .consentements input{
+    flex:0 0 auto;width:19px;height:19px;margin-top:2px;
+    accent-color:var(--rouge);cursor:pointer;
+  }
+  .consentements a{color:var(--brun);text-decoration:underline;}
+  .cta.verrou{
+    opacity:.4;pointer-events:none;background:var(--taupe-fonce);
+    box-shadow:none;cursor:not-allowed;
+  }
+
+  .legal-liens{
+    margin-top:26px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;
+  }
+  .legal-liens a{
+    font-family:'Special Elite',monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--taupe-clair);text-decoration:none;
+  }
+  .legal-liens a:hover{color:var(--or-clair);}
+
+  .reveal{opacity:0;transform:translateY(18px);animation:rise .8s ease forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}.d5{animation-delay:.6s}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker reveal d1">Gossip de Cécile · Enquêtes sur les comportements humains</div>
+
+  <div class="topstamp reveal d1"><span class="dossier-stamp">Dossier comportemental</span></div>
+  <div class="sous-ctrl reveal d1">Analyse sous contrôle</div>
+
+  <div class="hero reveal d2">
+    <h1 class="poster">
+      Tu fais tout ce qu'il faut.
+      <span class="l2">Et tu tournes <span class="r">en rond</span> quand même.</span>
+    </h1>
+    <span class="underrule"></span>
+    <p class="hero-sub">Parce que ce qui te bloque n'est jamais là où tu cherches. Et ton corps, lui, sait déjà où regarder.</p>
+  </div>
+
+  <div class="note reveal d3">
+    <p>Tu te dis&nbsp;:</p>
+    <p>«&nbsp;Pourquoi je gagne toujours <span class="red">moins</span> que ce que je vaux&nbsp;?&nbsp;»</p>
+    <p>«&nbsp;Pourquoi je suis <span class="red">bloquée</span> alors que je travaille sur moi depuis des années&nbsp;?&nbsp;»</p>
+    <p>«&nbsp;Pourquoi le même problème <span class="red">revient</span>, encore et encore, sous une autre forme&nbsp;?&nbsp;»</p>
+  </div>
+
+  <div class="fiche kraft tilt-l reveal d3">
+    <span class="scotch left"></span>
+    <span class="scotch right"></span>
+    <div class="fiche-title">Pour quels types de situations&nbsp;?</div>
+    <div class="fiche-rule"><span>&#10022;</span></div>
+    <ul class="cases">
+      <li>Tu bosses sur ton <b>business</b> depuis des mois, tu postes, tu te formes, tu te donnes à fond. Ton chiffre ne décolle pas.</li>
+      <li>Tu attires toujours le même type de <b>relation</b>, et elle réveille les mêmes blessures, encore et encore.</li>
+      <li>Tu sais qu'une <b>décision</b> pourrait tout changer, mais tu tournes en boucle depuis des semaines sans réussir à trancher.</li>
+      <li>Tu as testé le coaching, les formations, les soins, le développement perso. Quelque chose continue de te <b>bloquer</b>.</li>
+      <li>Tu te lèves avec cette sensation que tu n'es <b>pas à ta place</b>, sans réussir à comprendre pourquoi.</li>
+      <li>Ton intuition s'ouvre, tu ressens énormément de choses, mais tu te sens <b>perdue et incomprise</b>.</li>
+      <li>Tu répètes les mêmes <b>schémas</b>, malgré toute la conscience que tu as développée.</li>
+    </ul>
+    <span class="corner-stamp">Décryptage interne</span>
+  </div>
+
+  <div class="nope reveal d3">
+    <div class="line"><s>Un coaching</s></div>
+    <div class="line"><s>Une thérapie</s></div>
+    <div class="line"><s>Un accompagnement</s></div>
+    <p class="what">Une enquête. Un espace d'observation et d'investigation pour comprendre ce qui se joue vraiment derrière la situation que tu vis.</p>
+  </div>
+
+  <div class="fiche tilt-r reveal d3">
+    <span class="scotch"></span>
+    <div class="fiche-title">Ce qui se passe pendant l'enquête</div>
+    <div class="fiche-rule"><span>&#10022;</span></div>
+    <p class="enq-p">Tu arrives avec ta situation, celle que tu retournes dans tous les sens depuis des mois. Tu parles. Et pendant que tu parles, ton corps, lui, dit déjà autre chose.</p>
+    <p class="enq-p">Une tension passe sur ton visage à la seconde exacte où tu touches le vrai sujet sans le savoir. C'est là que tout se joue. Ce que tu répètes depuis des années à travers tes peurs et tes croyances remonte enfin à la surface.</p>
+    <p class="enq-p cle">À un moment précis, tu le sens, quelque chose se dépose. Une pièce se remet en place. Tu repars avec ce que des années de travail n'avaient pas trouvé.</p>
+    <span class="corner-stamp">Pièce n&deg;17</span>
+  </div>
+
+  <div class="preuves reveal d4">
+    <div class="ptag">Au dossier · déclarations</div>
+
+    <div class="preuve tl">
+      <span class="stamp">&#10022; Pièce versée au dossier</span>
+      <blockquote>«&nbsp;Avant, je n'étais jamais sûre de comment je fonctionne et le moindre nouveau territoire me faisait peur. Aujourd'hui je me fais confiance, je lâche prise, et le shift, je l'ai fait.&nbsp;»</blockquote>
+      <span class="sign">Marie</span>
+    </div>
+
+    <div class="preuve tr">
+      <span class="stamp">&#10022; Pièce versée au dossier</span>
+      <blockquote>«&nbsp;Beaucoup d'éclaircissement, de confirmation, et une vraie compréhension de mon fonctionnement.&nbsp;»</blockquote>
+      <span class="sign">Angélique</span>
+    </div>
+
+    <div class="preuve tl">
+      <span class="stamp">&#10022; Pièce versée au dossier</span>
+      <blockquote>«&nbsp;Mon questionnement sur la dissociation que je ressentais a trouvé une réponse.&nbsp;»</blockquote>
+      <span class="sign">Meï</span>
+    </div>
+  </div>
+
+  <div class="tampon-box reveal d4"><span class="tampon">Chaque dossier est lu personnellement</span></div>
+
+  <div class="form-head reveal d4">
+    <span class="lbl">L'enquête</span>
+    <h2>Ouvre ton <span class="or">enquête</span></h2>
+    <p>Une séance d'investigation en visio, rien que toi et moi, pour démêler ce qui se joue vraiment derrière ta situation.</p>
+  </div>
+
+  <div class="pay reveal d4">
+    <span class="scotch"></span>
+    <div class="tarif">199<span class="dev">€</span></div>
+    <div class="detail">Visio · 60 minutes · dossier préparé en amont</div>
+    <div class="consentements">
+      <label>
+        <input type="checkbox" id="ok-cgv">
+        <span>J'ai lu et j'accepte les <a href="../cgv.html" target="_blank" rel="noopener">conditions générales de vente</a>.</span>
+      </label>
+      <label>
+        <input type="checkbox" id="ok-retract">
+        <span>Je demande expressément que ma séance ait lieu avant la fin du délai de quatorze jours et je renonce à mon droit de rétractation une fois la séance réalisée.</span>
+      </label>
+    </div>
+
+    <a class="cta verrou" id="cta-paiement" href="https://buy.stripe.com/bJebJ1cCz52CabH6TR2oE0s">J'ouvre mon enquête</a>
+    <p class="pay-note">Tu règles ta place, puis tu choisis ton créneau et tu réponds aux questions du dossier.</p>
+  </div>
+
+  <p class="reveal d5" style="text-align:center;max-width:520px;margin:34px auto 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-style:italic;line-height:1.5;color:var(--taupe-clair);">
+    Si l'enquête montre quelque chose qui demande plus qu'une séance, je t'en parlerai.
+    <a href="../athena.html" style="color:var(--rouge-vif);text-decoration:underline;text-underline-offset:3px;">Athéna</a> est l'accompagnement de trois mois qui prend la suite.
+  </p>
+
+  <footer class="reveal d5">
+    <div class="logo">GOSSIP <span class="star">&#10022;</span> DE CÉCILE</div>
+    <div class="tag">Enquêtes sur les comportements humains</div>
+    <div class="legal-liens">
+      <a href="../cgv.html">Conditions générales de vente</a>
+      <a href="../mentions-legales.html">Mentions légales</a>
+      <a href="mailto:contact@cecilesoriano.fr">contact@cecilesoriano.fr</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var cgv = document.getElementById('ok-cgv');
+    var ret = document.getElementById('ok-retract');
+    var cta = document.getElementById('cta-paiement');
+    function maj() {
+      cta.classList.toggle('verrou', !(cgv.checked && ret.checked));
+    }
+    cgv.addEventListener('change', maj);
+    ret.addEventListener('change', maj);
+    maj();
+  })();
+</script>
+</body>
+</html>
