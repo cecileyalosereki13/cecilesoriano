@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Gossip de Cécile</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root{
+    --paper:#e9e0c8;
+    --paper-2:#ded2ab;
+    --paper-3:#f4eeda;
+    --ink:#221c16;
+    --ink-soft:#4d4133;
+    --red:#8c1d18;
+    --red-2:#b23a2e;
+    --line:#b7a37a;
+    --shadow:rgba(34,28,22,.32);
+    --stamp-ink:#221c16;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1b1712;
+      --paper-2:#151109;
+      --paper-3:#241f17;
+      --ink:#ece1c4;
+      --ink-soft:#c8b995;
+      --red:#d1503f;
+      --red-2:#e8654f;
+      --line:#4d4330;
+      --shadow:rgba(0,0,0,.6);
+      --stamp-ink:#ece1c4;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1b1712;
+    --paper-2:#151109;
+    --paper-3:#241f17;
+    --ink:#ece1c4;
+    --ink-soft:#c8b995;
+    --red:#d1503f;
+    --red-2:#e8654f;
+    --line:#4d4330;
+    --shadow:rgba(0,0,0,.6);
+    --stamp-ink:#ece1c4;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Vollkorn',Georgia,'Times New Roman',serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important;}
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--red-2); outline-offset:3px;}
+
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding-inline:20px;
+    padding-block:0 64px;
+  }
+
+  /* texture de fond kraft */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5; mix-blend-mode:multiply;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(34,28,22,.035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(34,28,22,.02) 0 1px, transparent 1px 4px);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .grain{ opacity:.35; mix-blend-mode:screen; } }
+  :root[data-theme="dark"] .grain{ opacity:.35; mix-blend-mode:screen; }
+
+  main{position:relative; z-index:1;}
+
+  .eyebrow{
+    font-family:'Special Elite', 'Courier New', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:inline-block;
+    border:1px dashed var(--line);
+    padding:4px 10px;
+    background:var(--paper-3);
+  }
+
+  h1,h2,h3{
+    font-family:'Anton', 'Arial Narrow', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+  }
+
+  p{ line-height:1.65; max-width:62ch; color:var(--ink-soft); }
+
+  /* --- HERO --- */
+  .hero{
+    padding-block:56px 40px;
+    position:relative;
+  }
+  .stamp{
+    position:absolute;
+    top:18px; right:8px;
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    border:2.5px solid var(--red);
+    border-radius:3px;
+    padding:6px 10px;
+    transform:rotate(7deg);
+    opacity:.85;
+    background:transparent;
+  }
+  .case-no{ margin-block-end:18px; }
+  .hero h1{
+    font-size:clamp(2.6rem, 9vw, 4.6rem);
+    line-height:.94;
+    margin-block-start:14px;
+  }
+  .hero h1 span{ color:var(--red); }
+  .hero .subtitle{
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:clamp(13px,2.6vw,15px);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-block-start:14px;
+  }
+  .hero .lede{
+    font-style:italic;
+    font-size:19px;
+    margin-block-start:20px;
+    color:var(--ink);
+    max-width:52ch;
+  }
+
+  .torn{
+    height:20px;
+    margin-block:8px 0;
+    background:
+      linear-gradient(135deg, var(--paper) 10px, transparent 0) 0 0/20px 20px repeat-x,
+      linear-gradient(-135deg, var(--paper) 10px, transparent 0) 0 0/20px 20px repeat-x;
+    background-color:var(--paper-2);
+  }
+
+  /* --- INTRO --- */
+  .intro{ padding-block:32px 12px; }
+  .intro p{ font-size:18px; max-width:56ch; }
+  .intro strong{ color:var(--ink); font-weight:700; }
+
+  /* --- SECTION TITLES --- */
+  .section-title{
+    padding-block:36px 8px;
+  }
+  .section-title h2{
+    font-size:clamp(1.5rem,5vw,2.1rem);
+  }
+
+  /* --- CARDS --- */
+  .board{
+    position:relative;
+    padding-inline-start:22px;
+    border-left:3px dashed var(--line);
+    margin-block-start:12px;
+  }
+  .card{
+    position:relative;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    box-shadow:5px 6px 0 var(--shadow);
+    padding:24px 22px;
+    margin-block-end:34px;
+    max-width:640px;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    left:-31px; top:22px;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 0 3px var(--paper), inset 0 -2px 3px rgba(0,0,0,.35);
+  }
+  .card:nth-of-type(odd){ transform:rotate(-.4deg); }
+  .card:nth-of-type(even){ transform:rotate(.4deg); }
+
+  .card .kicker{
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .card h3{
+    font-size:clamp(1.3rem,4.5vw,1.7rem);
+    margin-block-start:6px;
+  }
+  .card p{ margin-block-start:10px; font-size:16px; }
+
+  .price{
+    display:inline-block;
+    margin-block-start:14px;
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    color:var(--red);
+    border:2.5px solid var(--red);
+    padding:4px 12px;
+    transform:rotate(-3deg);
+  }
+  .price small{
+    display:block;
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    text-transform:none;
+    color:var(--ink-soft);
+    margin-block-start:2px;
+  }
+  .note{
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-block-start:8px;
+  }
+
+  .cta{
+    display:inline-block;
+    margin-block-start:18px;
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:14px;
+    letter-spacing:.03em;
+    text-decoration:none;
+    color:var(--paper-3);
+    background:var(--red);
+    padding:11px 18px;
+    border:1px solid var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:3px 3px 0 var(--shadow);
+  }
+  .cta:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--shadow); }
+  .cta:active{ transform:translate(0,0); box-shadow:1px 1px 0 var(--shadow); }
+  .cta.ghost{
+    background:transparent;
+    color:var(--red);
+    border-color:var(--red);
+  }
+
+  /* --- freebie block --- */
+  .freebie{
+    background:var(--paper-3);
+    border:1px dashed var(--line);
+    padding:26px 22px;
+    max-width:640px;
+    margin-block-start:14px;
+    position:relative;
+  }
+  .freebie::after{
+    content:"GRATUIT";
+    position:absolute; top:-12px; right:16px;
+    background:var(--red); color:var(--paper-3);
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:11px; letter-spacing:.08em;
+    padding:4px 10px;
+    transform:rotate(4deg);
+  }
+  .freebie h3{ font-size:1.6rem; }
+  .freebie p{ margin-block-start:10px; }
+
+  /* --- footer / discreet section --- */
+  .discreet{
+    padding-block:8px 30px;
+    max-width:600px;
+  }
+  .discreet .eyebrow{ margin-block-end:10px; }
+  .discreet p{ font-size:15.5px; }
+
+  .fork{ display:flex; flex-wrap:wrap; gap:14px; margin-block-start:22px; }
+  .fork-tile{
+    flex:1 1 190px;
+    text-align:center;
+    text-decoration:none;
+    font-family:'Anton',sans-serif;
+    font-size:1rem;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    padding:22px 14px;
+    box-shadow:3px 3px 0 var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease, color .15s ease;
+  }
+  .fork-tile:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--shadow); color:var(--red); }
+
+  footer{
+    padding-block:36px 20px;
+    border-top:1px dashed var(--line);
+    margin-block-start:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    align-items:baseline;
+    justify-content:space-between;
+    font-family:'Special Elite','Courier New',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:480px){
+    .board{ padding-inline-start:16px; }
+    .card{ padding:18px 16px; }
+    .card::before{ left:-25px; }
+    .stamp{ position:static; display:inline-block; margin-block-end:10px; transform:rotate(-3deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>GOSSIP <span>DE</span> CÉCILE</h1>
+    <p class="subtitle">Système nerveux · Corégulation · Comprendre les comportements</p>
+    <p class="lede">Comprendre ce qui se joue derrière nos réactions pour mieux agir : avec soi, ses enfants ou ses clientes.</p>
+  </section>
+
+  <div class="torn"></div>
+
+  <section class="section-title">
+    <span class="eyebrow">Trois chemins</span>
+    <h2>Tu veux travailler avec moi ?<br>Quel est ton besoin ?</h2>
+    <div class="fork">
+      <a class="fork-tile" href="#praticienne">Je suis praticienne</a>
+      <a class="fork-tile" href="#perso">Je viens pour moi</a>
+      <a class="fork-tile" href="#parent">Je viens pour moi et mon enfant</a>
+    </div>
+  </section>
+
+  <section id="praticienne" class="section-title" style="padding-block:26px 4px;">
+    <h3 style="font-size:1.25rem; color:var(--red);">Tu es praticienne ?</h3>
+  </section>
+
+  <section class="board">
+
+    <article class="card">
+      <span class="kicker">Gratuit, pour commencer</span>
+      <h3>Mini Mètis</h3>
+      <p>Un mini-quiz pour découvrir ton propre regard face aux comportements et aux situations que tu rencontres en séance.</p>
+      <a class="cta" href="https://minimetis.cecilesoriano.fr" target="_blank" rel="noopener">→ Faire le Mini Mètis</a>
+    </article>
+
+    <article class="card" style="background:var(--paper);">
+      <span class="kicker">Un aperçu de la formation</span>
+      <h3 style="font-size:1.3rem;">Le Livret Mètis</h3>
+      <p>Un premier pas accessible dans le regard neuro-corporel, pour commencer avant de rejoindre la formation.</p>
+      <div class="price" style="font-size:18px;"><del style="opacity:.55;">39 €</del> 29 €</div>
+      <br>
+      <a class="cta ghost" href="https://metis.cecilesoriano.fr/Livret/" target="_blank" rel="noopener">→ Découvrir le Livret</a>
+    </article>
+
+    <article class="card">
+      <span class="kicker">La formation complète</span>
+      <h3>Mètis</h3>
+      <p>Comprendre le système nerveux de tes clientes, lire leurs signaux corporels, adapter ton accompagnement. Le regard neuro-corporel : la méthode qui fait la différence.</p>
+      <a class="cta" href="https://metis.cecilesoriano.fr/Rejoindre/" target="_blank" rel="noopener">→ Découvrir Mètis</a>
+    </article>
+
+  </section>
+
+  <div class="torn"></div>
+
+  <section id="perso" class="section-title" style="padding-block:26px 4px;">
+    <h3 style="font-size:1.25rem; color:var(--red);">Tu viens pour toi ?</h3>
+  </section>
+
+  <section class="board">
+
+    <article class="card">
+      <span class="kicker">Tu veux comprendre des choses sur toi-même ?</span>
+      <h3>L'Enquête</h3>
+      <p>Quand tu sens qu'il y a quelque chose qui bloque, sans savoir clairement quoi. Un diagnostic personnalisé pour aller chercher ce qui se joue derrière la difficulté.</p>
+      <div class="price">199 €</div>
+      <br>
+      <a class="cta" href="https://site.cecilesoriano.fr/enquete.html" target="_blank" rel="noopener">→ Découvrir L'Enquête</a>
+    </article>
+
+    <article class="card">
+      <span class="kicker">Tu veux te réguler ?</span>
+      <h3>Athéna</h3>
+      <p>Un accompagnement de corégulation avec moi, en direct.</p>
+      <div class="price">1000 €<small>1 mois</small></div>
+      <br>
+      <a class="cta" href="https://cecilesoriano.fr/athena-1mois.html" target="_blank" rel="noopener">→ Découvrir Athéna</a>
+    </article>
+
+  </section>
+
+  <div class="torn"></div>
+
+  <section id="parent" class="section-title" style="padding-block:26px 4px;">
+    <h3 style="font-size:1.25rem; color:var(--red);">Tu veux te comprendre en tant que parent ?</h3>
+  </section>
+
+  <section class="board">
+
+    <article class="card">
+      <span class="kicker">Gratuit, pour commencer</span>
+      <h3>Ton enfant pète un câble ?</h3>
+      <p>Un test de 2 minutes pour comprendre ta vraie réaction, celle que personne ne voit.</p>
+      <a class="cta" href="https://cecilesoriano.fr/quizparent.html" target="_blank" rel="noopener">→ Faire le test</a>
+      <p style="margin-block-start:18px;"><strong>Kit « Pétage de plomb »</strong> : 29 €, bientôt disponible</p>
+      <a class="cta ghost" href="https://cecilesoriano.fr/athena-1mois.html" target="_blank" rel="noopener" style="margin-block-start:8px;">→ Envie de te réguler toi aussi ? Voir Athéna</a>
+    </article>
+
+  </section>
+
+  <div class="torn"></div>
+
+  <footer>
+    <span>Podcast Gossip de Cécile, tous les vendredis</span>
+    <span>@gossipdececile</span>
+  </footer>
+
+</main>
+</body>
+</html>
