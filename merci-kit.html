@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci — Le kit anti-pétage de plombs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4ecd8;
+    --card:#fffcf4;
+    --ink:#2e2620;
+    --ink-soft:#5c5044;
+    --accent:#b8422f;
+    --teal:#3a5a78;
+    --yellow:#e8b84b;
+    --border:#d9c6a0;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184,66,47,0.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(58,90,120,0.07), transparent 40%);
+    color:var(--ink);
+    font-family:'Quicksand',sans-serif;
+    line-height:1.6;
+    padding:20px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    max-width:560px;
+    width:100%;
+    padding:50px 40px;
+    text-align:center;
+  }
+  .stamp{
+    display:inline-block;
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.04em;
+    color:var(--accent);
+    border:2px solid var(--accent);
+    border-radius:100px;
+    padding:5px 16px;
+    transform:rotate(-3deg);
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:2.1rem;
+    margin:0 0 18px;
+  }
+  p{
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    margin:0 0 30px;
+  }
+  .download-btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:16px 32px;
+    border-radius:100px;
+    transition:opacity .2s;
+  }
+  .download-btn:hover{opacity:.9;}
+  .note{
+    margin-top:28px;
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="stamp">Dossier famille</span>
+    <h1>Merci, ton kit t'attend</h1>
+    <p>Ta commande est confirmée. Clique ci-dessous pour télécharger ton kit en PDF, garde-le précieusement, tu peux y revenir autant de fois que tu en as besoin.</p>
+    <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="download-btn" download>Télécharger mon kit en PDF</a>
+    <p class="note">Un souci avec ton téléchargement ? Écris-moi directement, je te le renvoie par email.</p>
+  </div>
+</body>
+</html>
