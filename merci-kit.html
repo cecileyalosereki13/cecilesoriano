@@ -80,6 +80,25 @@
     transition:opacity .2s;
   }
   .download-btn:hover{opacity:.9;}
+  .secondary-btn{
+    display:inline-block;
+    background:transparent;
+    color:var(--teal);
+    text-decoration:none;
+    font-weight:700;
+    font-size:.98rem;
+    padding:14px 28px;
+    border-radius:100px;
+    border:2px solid var(--teal);
+    transition:opacity .2s;
+  }
+  .secondary-btn:hover{opacity:.75;}
+  .btn-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+  }
   .note{
     margin-top:28px;
     font-size:.85rem;
@@ -91,8 +110,11 @@
   <div class="card">
     <span class="stamp">Dossier famille</span>
     <h1>Merci, ton kit t'attend</h1>
-    <p>Ta commande est confirmée. Clique ci-dessous pour télécharger ton kit en PDF, garde-le précieusement, tu peux y revenir autant de fois que tu en as besoin.</p>
-    <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="download-btn" download>Télécharger mon kit en PDF</a>
+    <p>Ta commande est confirmée. Télécharge ton kit en PDF, ou consulte-le directement en ligne, avec les audios qui se lancent en un clic.</p>
+    <div class="btn-row">
+      <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="download-btn" download>Télécharger en PDF</a>
+      <a href="https://claude.ai/artifact/BW14s3oQjHirMNzDaHJSHW" class="secondary-btn" target="_blank">Consulter en ligne</a>
+    </div>
     <p class="note">Un souci avec ton téléchargement ? Écris-moi directement, je te le renvoie par email.</p>
   </div>
 </body>
