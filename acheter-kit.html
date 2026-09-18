@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Le kit anti-pétage de plombs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root{
+    --paper:#e9e0c8; --paper-2:#ded2ab; --paper-3:#f4eeda;
+    --ink:#221c16; --ink-soft:#4d4133;
+    --red:#8c1d18; --red-2:#b23a2e;
+    --line:#b7a37a; --shadow:rgba(34,28,22,.32);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1b1712; --paper-2:#151109; --paper-3:#241f17;
+      --ink:#ece1c4; --ink-soft:#c8b995;
+      --red:#d1503f; --red-2:#e8654f;
+      --line:#4d4330; --shadow:rgba(0,0,0,.6);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Vollkorn',Georgia,serif; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:560px; margin:0 auto; padding:60px 20px 80px; text-align:center; }
+  h1{ font-family:'Anton','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:.01em; font-size:clamp(1.8rem,7vw,2.6rem); line-height:1.05; margin:0 0 18px; color:var(--ink); }
+  h1 span{ color:var(--red); }
+  p{ line-height:1.65; color:var(--ink-soft); max-width:44ch; margin:0 auto 30px; }
+  .price{ font-family:'Special Elite','Courier New',monospace; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--red); border:1px dashed var(--line); display:inline-block; padding:6px 12px; margin-bottom:26px; background:var(--paper-3); }
+  .buy{ font-family:'Special Elite','Courier New',monospace; font-size:16px; letter-spacing:.03em; color:var(--paper-3); background:var(--red); border:1px solid var(--ink); padding:16px 30px; box-shadow:4px 4px 0 var(--shadow); cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; }
+  .buy:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--shadow); }
+  .buy:disabled{ opacity:.6; cursor:wait; }
+  footer{ margin-top:40px; font-family:'Special Elite','Courier New',monospace; font-size:11.5px; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Le kit <span>anti-pétage</span> de plombs</h1>
+  <p>Le geste concret à sortir dans la seconde où ton enfant explose. PDF + page en ligne, accès immédiat après paiement.</p>
+  <div class="price">19&nbsp;€ &middot; paiement unique</div>
+  <br>
+  <button class="buy" id="buyBtn" data-ms-price:add="prc_kit-app-l29k0wgi">Commander le kit</button>
+  <footer>Paiement sécurisé via Stripe.</footer>
+</div>
+
+<script>
+  window.$memberstackDom = window.$memberstackDom || {};
+</script>
+<script data-memberstack-app="app_cmrw9yskg008v0stpc5llgjeg" src="https://static.memberstack.com/scripts/v1/memberstack.js"></script>
+</body>
+</html>
