@@ -41,10 +41,26 @@
   <p>Le geste concret à sortir dans la seconde où ton enfant explose. PDF + page en ligne, accès immédiat après paiement.</p>
   <div class="price">19&nbsp;€ &middot; paiement unique</div>
   <br>
-  <button class="buy" id="buyBtn" data-ms-price:add="prc_kit-app-l29k0wgi">Commander le kit</button>
+  <button class="buy" id="buyBtn">Commander le kit</button>
   <footer>Paiement sécurisé via Stripe.</footer>
 </div>
 
 <script data-memberstack-app="app_cmrw9yskg008v0stpc5llgjeg" src="https://static.memberstack.com/scripts/v1/memberstack.js"></script>
+<script>
+  document.getElementById('buyBtn').addEventListener('click', function(){
+    var btn = this;
+    if (!window.$memberstackDom || !window.$memberstackDom.purchasePlansWithCheckout) {
+      alert("Ça charge encore, réessaie dans une seconde.");
+      return;
+    }
+    btn.disabled = true;
+    window.$memberstackDom.purchasePlansWithCheckout({ priceId: 'prc_kit-app-l29k0wgi' })
+      .catch(function(err){
+        console.error('Checkout error', err);
+        alert('Erreur au paiement : ' + (err && err.message ? err.message : err));
+        btn.disabled = false;
+      });
+  });
+</script>
 </body>
 </html>
