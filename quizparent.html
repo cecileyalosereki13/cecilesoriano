@@ -75,7 +75,7 @@
   <div class="card" id="email-card" hidden>
     <span class="stamp">Dernière étape</span>
     <h2 style="font-size:1.5rem;">Ton profil est prêt.</h2>
-    <p>Dis-moi où te l'envoyer, et je te préviens aussi quand le Kit « Pétage de plomb » sort.</p>
+    <p>Dis-moi où te l'envoyer, et je te parle du Kit « Pétage de plomb », dispo dès maintenant.</p>
     <form id="email-form" style="margin-block-start:16px;">
       <input id="email-input" type="email" required placeholder="ton@email.fr" autocomplete="email"
         style="width:100%; box-sizing:border-box; font-family:'Vollkorn',Georgia,serif; font-size:16px; color:var(--ink); background:var(--paper); border:1px solid var(--line); padding:14px 16px;">
@@ -88,7 +88,7 @@
     <h2 id="result-title"></h2>
     <p id="result-text"></p>
     <p id="result-cta-text"></p>
-    <a class="btn" id="result-cta-btn" href="#" target="_blank" rel="noopener">→ Suivre @gossipdececile</a>
+    <a class="btn" id="result-cta-btn" href="#" target="_blank" rel="noopener">→ Découvrir le kit</a>
   </div>
 
   <footer>Gossip de Cécile</footer>
@@ -237,10 +237,10 @@
     document.getElementById('result-tag').textContent = r.tag;
     document.getElementById('result-title').textContent = r.title;
     document.getElementById('result-text').textContent = r.text;
-    document.getElementById('result-cta-text').textContent = 'Le Kit « Pétage de plomb » est fait pour ça. Il arrive très bientôt, et tu seras prévenue par email dès qu\'il sort.';
+    document.getElementById('result-cta-text').textContent = 'Le Kit « Pétage de plomb » est fait pour ça. Il est disponible dès maintenant.';
     var btn = document.getElementById('result-cta-btn');
-    btn.textContent = '→ Suivre @gossipdececile en attendant';
-    btn.href = 'https://instagram.com/gossipdececile';
+    btn.textContent = '→ Découvrir le kit';
+    btn.href = 'https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u';
     document.getElementById('result-card').hidden = false;
   }
 
