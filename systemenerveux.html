@@ -145,6 +145,11 @@
     color:var(--ink);
     max-width:52ch;
   }
+  .hero .about{
+    font-size:15.5px;
+    margin-block-start:22px;
+    max-width:56ch;
+  }
 
   .torn{
     height:20px;
@@ -208,6 +213,17 @@
     margin-block-start:6px;
   }
   .card p{ margin-block-start:10px; font-size:16px; }
+
+  .card blockquote{
+    margin:14px 0 0;
+    padding-inline-start:14px;
+    border-left:3px solid var(--red);
+    font-style:italic;
+    font-size:17px;
+    line-height:1.55;
+    color:var(--ink);
+    max-width:56ch;
+  }
 
   .price{
     display:inline-block;
@@ -335,7 +351,9 @@
   <section class="hero">
     <h1>GOSSIP <span>DE</span> CÉCILE</h1>
     <p class="subtitle">Système nerveux · Corégulation · Comprendre les comportements</p>
-    <p class="lede">Comprendre ce qui se joue derrière nos réactions pour mieux agir : avec soi, ses enfants ou ses clientes.</p>
+    <p class="lede">Comprendre ce qui se joue derrière les crises de ton enfant, et derrière ta propre réaction.</p>
+    <a class="cta" href="https://cecilesoriano.fr/quizparent.html" target="_blank" rel="noopener">→ Faire le test (2 minutes)</a>
+    <p class="about">Je m'appelle Cécile. J'accompagne depuis 3 ans, avec plus de 300 séances, sur le fonctionnement du système nerveux : celui des adultes, des enfants et des praticiennes que je forme.</p>
   </section>
 
   <div class="torn"></div>
@@ -344,39 +362,38 @@
     <span class="eyebrow">Trois chemins</span>
     <h2>Tu veux travailler avec moi ?<br>Quel est ton besoin ?</h2>
     <div class="fork">
-      <a class="fork-tile" href="#praticienne">Je suis praticienne</a>
-      <a class="fork-tile" href="#perso">Je viens pour moi</a>
       <a class="fork-tile" href="#parent">Je viens pour moi et mon enfant</a>
+      <a class="fork-tile" href="#perso">Je viens pour moi</a>
+      <a class="fork-tile" href="#praticienne">Je suis praticienne</a>
     </div>
   </section>
 
-  <section id="praticienne" class="section-title" style="padding-block:26px 4px;">
-    <h3 style="font-size:1.25rem; color:var(--red);">Tu es praticienne ?</h3>
+  <section id="parent" class="section-title" style="padding-block:26px 4px;">
+    <h3 style="font-size:1.25rem; color:var(--red);">Tu veux te comprendre en tant que parent ?</h3>
   </section>
 
   <section class="board">
 
     <article class="card">
       <span class="kicker">Gratuit, pour commencer</span>
-      <h3>Mini Mètis</h3>
-      <p>Un mini-quiz pour découvrir ton propre regard face aux comportements et aux situations que tu rencontres en séance.</p>
-      <a class="cta" href="https://minimetis.cecilesoriano.fr" target="_blank" rel="noopener">→ Faire le Mini Mètis</a>
+      <h3>Ton enfant pète un câble ?</h3>
+      <p>Un test de 2 minutes pour comprendre ta vraie réaction, celle que personne ne voit.</p>
+      <a class="cta" href="https://cecilesoriano.fr/quizparent.html" target="_blank" rel="noopener">→ Faire le test</a>
     </article>
 
     <article class="card" style="background:var(--paper);">
-      <span class="kicker">Un aperçu de la formation</span>
-      <h3 style="font-size:1.3rem;">Le Livret Mètis</h3>
-      <p>Un premier pas accessible dans le regard neuro-corporel, pour commencer avant de rejoindre la formation.</p>
-      <div class="price" style="font-size:18px;"><del style="opacity:.55;">39 €</del> 29 €</div>
+      <span class="kicker">Le kit à garder sous la main</span>
+      <h3>Le kit « anti-pétage de plombs »</h3>
+      <p>Devoirs, rangement, coucher, crise. Un exercice pour lui, un pour toi, et deux audios guidés, à chaque situation qui fait déraper la journée.</p>
+      <div class="price">19 €</div>
       <br>
-      <a class="cta ghost" href="https://metis.cecilesoriano.fr/Livret/" target="_blank" rel="noopener">→ Découvrir le Livret</a>
+      <a class="cta" href="https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u?client_reference_id=hub" target="_blank" rel="noopener">→ Je veux le kit</a>
     </article>
 
     <article class="card">
-      <span class="kicker">La formation complète</span>
-      <h3>Mètis</h3>
-      <p>Comprendre le système nerveux de tes clientes, lire leurs signaux corporels, adapter ton accompagnement. Le regard neuro-corporel : la méthode qui fait la différence.</p>
-      <a class="cta" href="https://metis.cecilesoriano.fr/Rejoindre/" target="_blank" rel="noopener">→ Découvrir Mètis</a>
+      <span class="kicker">Ce que disent les parents</span>
+      <blockquote>« Je suis contente de pouvoir avoir accès à cette ressource pour mon fils. »</blockquote>
+      <p class="note">Une maman, à l'achat du kit</p>
     </article>
 
   </section>
@@ -407,37 +424,64 @@
       <a class="cta" href="https://cecilesoriano.fr/athena-1mois.html" target="_blank" rel="noopener">→ Découvrir Athéna</a>
     </article>
 
+    <article class="card" style="background:var(--paper);">
+      <span class="kicker">Ce que disent mes clientes</span>
+      <blockquote>« Elle a tout de suite perçu mon véritable besoin : sortir du mode survie »</blockquote>
+      <blockquote>« Je repars avec un véritable mode d'emploi de mon système nerveux. »</blockquote>
+      <p class="note">Cliente Athéna, 3 mois</p>
+    </article>
+
+    <article class="card">
+      <span class="kicker">Ce que disent mes clientes</span>
+      <blockquote>« J'ai la sensation d'une clarté profonde ! »</blockquote>
+      <blockquote>« Tu étais là dans ma vie au bon moment pour cette transition tellement importante ! »</blockquote>
+      <p class="note">Cliente Athéna, 1 mois</p>
+    </article>
+
+    <article class="card" style="background:var(--paper);">
+      <span class="kicker">Ce que dit Marie de notre travail</span>
+      <blockquote>« Je bosse en collaboration avec @gossipdececile sur ember et la gestion des gros cap qui me challenge dans mon business. »</blockquote>
+      <p class="note">Marie, @marie_amelibre</p>
+    </article>
+
   </section>
 
   <div class="torn"></div>
 
-  <section id="parent" class="section-title" style="padding-block:26px 4px;">
-    <h3 style="font-size:1.25rem; color:var(--red);">Tu veux te comprendre en tant que parent ?</h3>
+  <section id="praticienne" class="section-title" style="padding-block:26px 4px;">
+    <h3 style="font-size:1.25rem; color:var(--red);">Tu es praticienne ?</h3>
   </section>
 
   <section class="board">
 
     <article class="card">
       <span class="kicker">Gratuit, pour commencer</span>
-      <h3>Ton enfant pète un câble ?</h3>
-      <p>Un test de 2 minutes pour comprendre ta vraie réaction, celle que personne ne voit.</p>
-      <a class="cta" href="https://cecilesoriano.fr/quizparent.html" target="_blank" rel="noopener">→ Faire le test</a>
+      <h3>Mini Mètis</h3>
+      <p>Un mini-quiz pour découvrir ton propre regard face aux comportements et aux situations que tu rencontres en séance.</p>
+      <a class="cta" href="https://minimetis.cecilesoriano.fr" target="_blank" rel="noopener">→ Faire le Mini Mètis</a>
     </article>
 
     <article class="card" style="background:var(--paper);">
-      <span class="kicker">Le kit à garder sous la main</span>
-      <h3>Le kit « Pétage de plombs »</h3>
-      <p>Devoirs, rangement, coucher, crise. Un exercice pour lui, un pour toi, et deux audios guidés, à chaque situation qui fait déraper la journée.</p>
-      <div class="price">29 €</div>
+      <span class="kicker">Un aperçu de la formation</span>
+      <h3 style="font-size:1.3rem;">Le Livret Mètis</h3>
+      <p>Un premier pas accessible dans le regard neuro-corporel, pour commencer avant de rejoindre la formation.</p>
+      <div class="price" style="font-size:18px;"><del style="opacity:.55;">39 €</del> 29 €</div>
       <br>
-      <a class="cta" href="https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u" target="_blank" rel="noopener">→ Je veux le kit</a>
+      <a class="cta ghost" href="https://metis.cecilesoriano.fr/Livret/" target="_blank" rel="noopener">→ Découvrir le Livret</a>
     </article>
 
     <article class="card">
-      <span class="kicker">Tu veux te réguler toi aussi ?</span>
-      <h3 style="font-size:1.3rem;">Athéna</h3>
-      <p>Un accompagnement de corégulation avec moi, en direct.</p>
-      <a class="cta ghost" href="https://cecilesoriano.fr/athena-1mois.html" target="_blank" rel="noopener">→ Découvrir Athéna</a>
+      <span class="kicker">La formation complète</span>
+      <h3>Mètis</h3>
+      <p>Comprendre le système nerveux de tes clientes, lire leurs signaux corporels, adapter ton accompagnement. Le regard neuro-corporel : la méthode qui fait la différence.</p>
+      <a class="cta" href="https://metis.cecilesoriano.fr/Rejoindre/" target="_blank" rel="noopener">→ Découvrir Mètis</a>
+    </article>
+
+    <article class="card" style="background:var(--paper);">
+      <span class="kicker">Ce que disent les élèves</span>
+      <blockquote>« Cécile parvient à simplifier et à rendre accessibles des notions qui restent pourtant complexes autour du système nerveux. »</blockquote>
+      <blockquote>« Je pense même pouvoir commencer à avoir un œil différent en séance. »</blockquote>
+      <p class="note">Élèves de la formation Mètis</p>
     </article>
 
   </section>
