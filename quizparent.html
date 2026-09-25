@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ton enfant pète un câble</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root{
+    --paper:#e9e0c8; --paper-2:#ded2ab; --paper-3:#f4eeda;
+    --ink:#221c16; --ink-soft:#4d4133;
+    --red:#8c1d18; --red-2:#b23a2e;
+    --line:#b7a37a; --shadow:rgba(34,28,22,.32);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1b1712; --paper-2:#151109; --paper-3:#241f17;
+      --ink:#ece1c4; --ink-soft:#c8b995;
+      --red:#d1503f; --red-2:#e8654f;
+      --line:#4d4330; --shadow:rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1b1712; --paper-2:#151109; --paper-3:#241f17;
+    --ink:#ece1c4; --ink-soft:#c8b995;
+    --red:#d1503f; --red-2:#e8654f;
+    --line:#4d4330; --shadow:rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Vollkorn',Georgia,serif; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:640px; margin:0 auto; padding:20px 20px 70px; }
+  h1,h2,h3{ font-family:'Anton','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink); }
+  p{ line-height:1.65; color:var(--ink-soft); }
+  .eyebrow{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); display:inline-block; border:1px dashed var(--line); padding:4px 10px; background:var(--paper-3); }
+  .hero{ padding-block:44px 28px; }
+  .hero h1{ font-size:clamp(2rem,8vw,3.2rem); line-height:1; margin-block-start:14px; }
+  .hero h1 span{ color:var(--red); }
+  .hero .lede{ font-style:italic; font-size:18px; margin-block-start:16px; color:var(--ink); max-width:52ch; }
+  .card{ background:var(--paper-3); border:1px solid var(--line); box-shadow:5px 6px 0 var(--shadow); padding:26px 22px; margin-block-end:24px; }
+  .qnum{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--red); }
+  .qtext{ font-family:'Anton',sans-serif; font-size:1.2rem; text-transform:none; letter-spacing:0; margin-block-start:8px; line-height:1.25; }
+  .opts{ display:flex; flex-direction:column; gap:10px; margin-block-start:18px; }
+  .opt{ text-align:left; font-family:'Vollkorn',Georgia,serif; font-size:16px; color:var(--ink); background:var(--paper); border:1px solid var(--line); padding:14px 16px; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease; }
+  .opt:hover{ transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--shadow); background:var(--paper-3); }
+  .opt:focus-visible{ outline:3px solid var(--red-2); outline-offset:2px; }
+  .opt.picked{ background:var(--red); color:var(--paper-3); border-color:var(--ink); }
+  .progress{ display:flex; gap:6px; margin-block-end:22px; }
+  .progress span{ flex:1; height:5px; background:var(--line); opacity:.4; }
+  .progress span.done{ opacity:1; background:var(--red); }
+  .btn{ display:inline-block; margin-block-start:10px; font-family:'Special Elite','Courier New',monospace; font-size:14px; letter-spacing:.03em; text-decoration:none; color:var(--paper-3); background:var(--red); padding:12px 20px; border:1px solid var(--ink); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s ease, box-shadow .15s ease; }
+  .btn:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--shadow); }
+  .stamp{ font-family:'Special Elite','Courier New',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--red); border:2.5px solid var(--red); border-radius:3px; padding:6px 10px; display:inline-block; transform:rotate(-3deg); margin-block-end:16px; }
+  [hidden]{ display:none !important; }
+  footer{ padding-block:30px 10px; border-top:1px dashed var(--line); margin-block-start:20px; font-family:'Special Elite','Courier New',monospace; font-size:12.5px; color:var(--ink-soft); text-align:center; }
+  @media (prefers-reduced-motion: reduce){ *{ transition-duration:.01ms !important; } }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Test · 2 minutes</span>
+    <h1>Ton enfant pète <span>un câble</span>. Et toi ?</h1>
+    <p class="lede">Cinq situations. Ta vraie réaction, celle que personne ne voit. À la fin, on te dit ce que ton système nerveux fait pendant que le sien explose.</p>
+  </section>
+
+  <div id="quiz">
+    <div class="progress" id="progress"></div>
+    <div class="card" id="question-card"></div>
+  </div>
+
+  <div class="card" id="email-card" hidden>
+    <span class="stamp">Dernière étape</span>
+    <h2 style="font-size:1.5rem;">Ton profil est prêt.</h2>
+    <p>Dis-moi où te l'envoyer, et je te parle du Kit « Pétage de plomb », dispo dès maintenant.</p>
+    <form id="email-form" style="margin-block-start:16px;">
+      <input id="email-input" type="email" required placeholder="ton@email.fr" autocomplete="email"
+        style="width:100%; box-sizing:border-box; font-family:'Vollkorn',Georgia,serif; font-size:16px; color:var(--ink); background:var(--paper); border:1px solid var(--line); padding:14px 16px;">
+      <button class="btn" type="submit" style="border:1px solid var(--ink); cursor:pointer; margin-block-start:12px;">→ Voir mon profil</button>
+    </form>
+  </div>
+
+  <div class="card" id="result-card" hidden>
+    <span class="stamp" id="result-tag">Profil établi</span>
+    <h2 id="result-title"></h2>
+    <p id="result-text"></p>
+    <p id="result-cta-text"></p>
+    <a class="btn" id="result-cta-btn" href="#" target="_blank" rel="noopener">→ Découvrir le kit</a>
+  </div>
+
+  <footer>Gossip de Cécile</footer>
+
+</main>
+
+<script>
+(function(){
+  var questions = [
+    {
+      text: "Ton enfant s'effondre par terre au supermarché parce que tu as dit non au paquet de bonbons. Ta première réaction intérieure ?",
+      opts: [
+        ["Tu te fige, tu regardes ailleurs, tu attends que ça passe.", "A"],
+        ["La chaleur monte, t'as envie de hausser le ton direct.", "B"],
+        ["Tu t'accroupis, tu négocies, tu réexpliques pour la troisième fois.", "C"],
+        ["Tu sens son désespoir comme si c'était le tien.", "D"]
+      ]
+    },
+    {
+      text: "Le matin, il refuse de mettre ses chaussures et l'heure tourne. Tu…",
+      opts: [
+        ["Tu te tais, tu fais à sa place, t'as plus l'énergie de te battre.", "A"],
+        ["Tu hausses le ton, tu menaces de partir sans lui.", "B"],
+        ["Tu proposes trois façons de faire, tu cherches LE bon argument.", "C"],
+        ["Tu stresses autant que lui, ton cœur s'accélère aussi.", "D"]
+      ]
+    },
+    {
+      text: "Il te crie dessus parce que t'as coupé son dessin animé. Après coup, ce qui te reste, c'est…",
+      opts: [
+        ["Un vide. Tu sais même plus ce que t'as ressenti sur le moment.", "A"],
+        ["La honte d'avoir crié plus fort que lui.", "B"],
+        ["L'épuisement d'avoir tout expliqué en boucle sans que ça change rien.", "C"],
+        ["La sensation d'avoir vécu sa crise en double, dans ton corps à toi aussi.", "D"]
+      ]
+    },
+    {
+      text: "Une crise éclate devant d'autres parents. Ton vrai réflexe, celui que personne ne voit…",
+      opts: [
+        ["Tu te coupes de la scène, tu deviens spectatrice de ton propre enfant.", "A"],
+        ["Tu veux que ça s'arrête tout de suite, par n'importe quel moyen.", "B"],
+        ["Tu sur-expliques pour les autres qui regardent, pas pour lui.", "C"],
+        ["Tu absorbes la honte, la sienne et la tienne, en même temps.", "D"]
+      ]
+    },
+    {
+      text: "Le soir, la crise est passée depuis longtemps mais toi, tu…",
+      opts: [
+        ["Es vidée, sans trop savoir pourquoi.", "A"],
+        ["Rejoues la scène, tu t'en veux d'avoir explosé.", "B"],
+        ["Repenses à tout ce que t'aurais pu mieux dire.", "C"],
+        ["Es encore secouée, comme si la crise ne t'avait jamais vraiment quittée.", "D"]
+      ]
+    }
+  ];
+
+  var results = {
+    A: {
+      tag: "Profil établi : Le Bouclier",
+      title: "Tu coupes le courant avant l'explosion.",
+      text: "Ce vide que tu sens pendant sa crise, ce n'est pas de l'indifférence. C'est ton système qui débranche tout pour t'éviter une surcharge. Une vraie stratégie de protection, sauf qu'elle te laisse spectatrice de ton propre enfant, et ça, ça se travaille."
+    },
+    B: {
+      tag: "Profil établi : La Cocotte-minute",
+      title: "L'alarme sonne avant que tu aies choisi.",
+      text: "Tu n'es pas une mère qui crie par manque de patience. Ton système appuie sur le bouton alerte avant que la partie réfléchie de ton cerveau ait eu le temps d'intervenir. La honte qui suit, c'est le signe que tu vois juste. Ça se travaille."
+    },
+    C: {
+      tag: "Profil établi : La Traductrice épuisée",
+      title: "Tu négocies pour éviter la tempête.",
+      text: "Réexpliquer en boucle, chercher le bon angle, la bonne phrase : c'est une stratégie pour désamorcer avant que ça explose. Elle marche parfois. Elle t'épuise toujours. Et elle ne dit rien de ta fermeté, ça se travaille."
+    },
+    D: {
+      tag: "Profil établi : L'Éponge",
+      title: "Sa crise, tu la vis en double.",
+      text: "Sentir son désespoir dans ton propre corps, ce n'est pas un manque de limites. C'est un système hyper connecté au sien, qui n'a pas encore appris à rester à sa place à lui pendant que tu restes à la tienne. Ça se travaille."
+    }
+  };
+
+  var answers = [];
+  var qCard = document.getElementById('question-card');
+  var progress = document.getElementById('progress');
+
+  // --- Tracking : à remplacer par ton URL Formspree ---
+  var TRACKING_ENDPOINT = 'https://test-tracking.sorianoc.workers.dev/track';
+  var sessionId = 'q_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
+  function track(step, extra){
+    if (TRACKING_ENDPOINT.indexOf('REMPLACE_MOI') !== -1) return; // désactivé tant que l'URL n'est pas configurée
+    var payload = { session: sessionId, step: step, ts: new Date().toISOString() };
+    if (extra) { for (var k in extra) payload[k] = extra[k]; }
+    fetch(TRACKING_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  }
+
+  track('quiz_start');
+
+  function renderProgress(){
+    progress.innerHTML = '';
+    for (var i = 0; i < questions.length; i++){
+      var s = document.createElement('span');
+      if (i < answers.length) s.className = 'done';
+      progress.appendChild(s);
+    }
+  }
+
+  function renderQuestion(i){
+    renderProgress();
+    var q = questions[i];
+    var html = '<div class="qnum">Question ' + (i+1) + ' / ' + questions.length + '</div>';
+    html += '<div class="qtext">' + q.text + '</div>';
+    html += '<div class="opts">';
+    for (var j = 0; j < q.opts.length; j++){
+      html += '<button class="opt" type="button" data-letter="' + q.opts[j][1] + '">' + q.opts[j][0] + '</button>';
+    }
+    html += '</div>';
+    qCard.innerHTML = html;
+    var btns = qCard.querySelectorAll('.opt');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        answers.push(this.getAttribute('data-letter'));
+        track('answered_question_' + (i + 1));
+        if (i + 1 < questions.length){
+          renderQuestion(i + 1);
+        } else {
+          renderProgress();
+          track('quiz_completed_all_questions');
+          showEmailGate();
+        }
+      });
+    });
+  }
+
+  function showEmailGate(){
+    document.getElementById('quiz').hidden = true;
+    document.getElementById('email-card').hidden = false;
+  }
+
+  var MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2498577/forms/198852599371269819/subscribe';
+
+  document.getElementById('email-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('email-input').value;
+    track('email_submitted');
+    var fd = new FormData();
+    fd.append('fields[email]', email);
+    fd.append('ml-submit', '1');
+    fetch(MAILERLITE_ACTION, { method: 'POST', body: fd, mode: 'no-cors' })
+      .catch(function(){})
+      .finally(function(){
+        document.getElementById('email-card').hidden = true;
+        showResult();
+      });
+  });
+
+  function showResult(){
+    var counts = {A:0,B:0,C:0,D:0};
+    answers.forEach(function(a){ counts[a]++; });
+    var top = 'A';
+    Object.keys(counts).forEach(function(k){ if (counts[k] > counts[top]) top = k; });
+
+    var r = results[top];
+    document.getElementById('result-tag').textContent = r.tag;
+    document.getElementById('result-title').textContent = r.title;
+    document.getElementById('result-text').textContent = r.text;
+    document.getElementById('result-cta-text').textContent = 'Le Kit « Pétage de plomb » est fait pour ça. Il est disponible dès maintenant.';
+    var btn = document.getElementById('result-cta-btn');
+    btn.textContent = '→ Découvrir le kit';
+    btn.href = 'https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u';
+    document.getElementById('result-card').hidden = false;
+    track('result_shown', { profile: top });
+    btn.addEventListener('click', function(){ track('kit_cta_clicked', { profile: top }); });
+  }
+
+  renderQuestion(0);
+})();
+</script>
+
+</body>
+</html>
