@@ -34,11 +34,14 @@
   h1,h2,h3{ font-family:'Anton','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink); }
   p{ line-height:1.65; color:var(--ink-soft); }
   .eyebrow{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); display:inline-block; border:1px dashed var(--line); padding:4px 10px; background:var(--paper-3); }
-  .hero{ padding-block:44px 28px; }
-  .hero h1{ font-size:clamp(2rem,8vw,3.2rem); line-height:1; margin-block-start:14px; }
+  .hero{ padding-block:14px 14px; }
+  .hero h1{ font-size:clamp(1.6rem,7vw,2.4rem); line-height:1.05; margin-block-start:10px; }
   .hero h1 span{ color:var(--red); }
-  .hero .lede{ font-style:italic; font-size:18px; margin-block-start:16px; color:var(--ink); max-width:52ch; }
-  .card{ background:var(--paper-3); border:1px solid var(--line); box-shadow:5px 6px 0 var(--shadow); padding:26px 22px; margin-block-end:24px; }
+  .hero .lede{ font-style:italic; font-size:16px; margin-block:10px 0; color:var(--ink); max-width:52ch; line-height:1.4; }
+  .opt{ padding:12px 14px; font-size:15px; }
+  .opts{ gap:8px; margin-block-start:12px; }
+  .progress{ margin-block-end:14px; }
+  .card{ background:var(--paper-3); border:1px solid var(--line); box-shadow:5px 6px 0 var(--shadow); padding:18px 16px; margin-block-end:24px; }
   .qnum{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--red); }
   .qtext{ font-family:'Anton',sans-serif; font-size:1.2rem; text-transform:none; letter-spacing:0; margin-block-start:8px; line-height:1.25; }
   .opts{ display:flex; flex-direction:column; gap:10px; margin-block-start:18px; }
@@ -62,9 +65,9 @@
 <main class="wrap">
 
   <section class="hero">
-    <span class="eyebrow">Test · 2 minutes</span>
+    <span class="eyebrow">5 questions · 2 minutes</span>
     <h1>Ton enfant pète <span>un câble</span>. Et toi ?</h1>
-    <p class="lede">Cinq situations. Ta vraie réaction, celle que personne ne voit. À la fin, on te dit ce que ton système nerveux fait pendant que le sien explose.</p>
+    <p class="lede">Réponds à 5 situations, découvre ce que ton corps fait pendant sa crise.</p>
   </section>
 
   <div id="quiz">
@@ -99,12 +102,12 @@
 (function(){
   var questions = [
     {
-      text: "Ton enfant s'effondre par terre au supermarché parce que tu as dit non au paquet de bonbons. Ta première réaction intérieure ?",
+      text: "Il s'effondre au supermarché parce que tu as dit non. Ta réaction ?",
       opts: [
-        ["Tu te fige, tu regardes ailleurs, tu attends que ça passe.", "A"],
-        ["La chaleur monte, t'as envie de hausser le ton direct.", "B"],
-        ["Tu t'accroupis, tu négocies, tu réexpliques pour la troisième fois.", "C"],
-        ["Tu sens son désespoir comme si c'était le tien.", "D"]
+        ["Tu te figes, tu attends que ça passe.", "A"],
+        ["La chaleur monte, tu veux hausser le ton.", "B"],
+        ["Tu négocies, tu réexpliques encore.", "C"],
+        ["Tu sens son désespoir comme le tien.", "D"]
       ]
     },
     {
@@ -188,6 +191,20 @@
   }
 
   track('quiz_start');
+
+  // Vrais visiteurs : question 1 réellement visible à l'écran, ou scroll
+  var seenQ1 = false, scrolled = false;
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting && !seenQ1){ seenQ1 = true; track('question_1_visible'); io.disconnect(); }
+      });
+    }, { threshold: 0.6 });
+    io.observe(qCard);
+  }
+  window.addEventListener('scroll', function(){
+    if (scrolled) return; scrolled = true; track('scrolled');
+  }, { passive: true, once: true });
 
   function renderProgress(){
     progress.innerHTML = '';
