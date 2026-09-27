@@ -255,6 +255,7 @@
     track('email_submitted');
     var fd = new FormData();
     fd.append('fields[email]', email);
+    fd.append('fields[profil]', PROFILS[topProfile()]);
     fd.append('ml-submit', '1');
     fetch(MAILERLITE_ACTION, { method: 'POST', body: fd, mode: 'no-cors' })
       .catch(function(){})
@@ -264,11 +265,18 @@
       });
   });
 
-  function showResult(){
+  var PROFILS = { A: 'bouclier', B: 'cocotte-minute', C: 'traductrice-epuisee', D: 'eponge' };
+
+  function topProfile(){
     var counts = {A:0,B:0,C:0,D:0};
     answers.forEach(function(a){ counts[a]++; });
     var top = 'A';
     Object.keys(counts).forEach(function(k){ if (counts[k] > counts[top]) top = k; });
+    return top;
+  }
+
+  function showResult(){
+    var top = topProfile();
 
     var r = results[top];
     document.getElementById('result-tag').textContent = r.tag;
