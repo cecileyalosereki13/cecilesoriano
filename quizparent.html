@@ -256,6 +256,7 @@
     var fd = new FormData();
     fd.append('fields[email]', email);
     fd.append('fields[profil]', PROFILS[topProfile()]);
+    fd.append('fields[profil_texte]', TEXTES_MAIL[topProfile()]);
     fd.append('ml-submit', '1');
     fetch(MAILERLITE_ACTION, { method: 'POST', body: fd, mode: 'no-cors' })
       .catch(function(){})
@@ -266,6 +267,13 @@
   });
 
   var PROFILS = { A: 'bouclier', B: 'cocotte-minute', C: 'traductrice-epuisee', D: 'eponge' };
+
+  var TEXTES_MAIL = {
+    A: "Ton profil, c'est le Bouclier. Pendant sa crise, tu coupes le courant. De l'extérieur, on croit que tu gères. De l'intérieur, t'es plus vraiment là. Ton système te protège d'une surcharge. Il fait bien son boulot, juste un peu trop bien.",
+    B: "Ton profil, c'est la Cocotte-minute. La pression monte, la soupape siffle, et le cri sort avant que t'aies décidé quoi que ce soit. Ta patience n'y est pour rien. Ton alarme interne appuie sur le bouton plus vite que ta tête.",
+    C: "Ton profil, c'est la Traductrice épuisée. Tu expliques. Tu réexpliques. Tu reformules en version courte, en version longue, en version dessin animé. Tout ça pour que la tempête n'éclate pas. Et le soir, t'as la voix d'une prof un vendredi de juin.",
+    D: "Ton profil, c'est l'Éponge. Sa crise ne reste pas dans son corps à lui. Elle déborde dans le tien. Son cœur s'emballe, le tien aussi. Il pleure, et c'est toi qui es rincée le soir. Ton système est branché sur le sien. Il lui manque juste un interrupteur."
+  };
 
   function topProfile(){
     var counts = {A:0,B:0,C:0,D:0};
