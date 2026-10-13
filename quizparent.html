@@ -3,70 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
 <title>Ton enfant pète un câble</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
   :root{
-    --paper:#e9e0c8; --paper-2:#ded2ab; --paper-3:#f4eeda;
-    --ink:#221c16; --ink-soft:#4d4133;
-    --red:#8c1d18; --red-2:#b23a2e;
-    --line:#b7a37a; --shadow:rgba(34,28,22,.32);
+    --burgundy:#580811;
+    --cafe:#1D0302;
+    --feather:#EEEADE;
+    --papier:#FAF8F2;
+    --stylo:#B3121F;
+    --texte:#2A0B09;
+    --doux:#6B4A45;
+    --ligne:rgba(88,8,17,.16);
   }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper:#1b1712; --paper-2:#151109; --paper-3:#241f17;
-      --ink:#ece1c4; --ink-soft:#c8b995;
-      --red:#d1503f; --red-2:#e8654f;
-      --line:#4d4330; --shadow:rgba(0,0,0,.6);
-    }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:radial-gradient(ellipse at 50% 0%,#7E1824 0%,#580811 45%,#320509 100%) fixed;
+    background-color:#320509;
+    color:var(--texte);
+    font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    font-size:17px;line-height:1.6;
+    min-height:100vh;
+    padding:28px 16px 60px;
   }
-  :root[data-theme="dark"]{
-    --paper:#1b1712; --paper-2:#151109; --paper-3:#241f17;
-    --ink:#ece1c4; --ink-soft:#c8b995;
-    --red:#d1503f; --red-2:#e8654f;
-    --line:#4d4330; --shadow:rgba(0,0,0,.6);
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
   }
-  *{box-sizing:border-box;}
-  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Vollkorn',Georgia,serif; -webkit-font-smoothing:antialiased; }
-  .wrap{ max-width:640px; margin:0 auto; padding:20px 20px 70px; }
-  h1,h2,h3{ font-family:'Anton','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0; color:var(--ink); }
-  p{ line-height:1.65; color:var(--ink-soft); }
-  .eyebrow{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); display:inline-block; border:1px dashed var(--line); padding:4px 10px; background:var(--paper-3); }
-  .hero{ padding-block:14px 14px; }
-  .hero h1{ font-size:clamp(1.6rem,7vw,2.4rem); line-height:1.05; margin-block-start:10px; }
-  .hero h1 span{ color:var(--red); }
-  .hero .lede{ font-style:italic; font-size:16px; margin-block:10px 0; color:var(--ink); max-width:52ch; line-height:1.4; }
-  .opt{ padding:12px 14px; font-size:15px; }
-  .opts{ gap:8px; margin-block-start:12px; }
-  .progress{ margin-block-end:14px; }
-  .card{ background:var(--paper-3); border:1px solid var(--line); box-shadow:5px 6px 0 var(--shadow); padding:18px 16px; margin-block-end:24px; }
-  .qnum{ font-family:'Special Elite','Courier New',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--red); }
-  .qtext{ font-family:'Anton',sans-serif; font-size:1.2rem; text-transform:none; letter-spacing:0; margin-block-start:8px; line-height:1.25; }
-  .opts{ display:flex; flex-direction:column; gap:10px; margin-block-start:18px; }
-  .opt{ text-align:left; font-family:'Vollkorn',Georgia,serif; font-size:16px; color:var(--ink); background:var(--paper); border:1px solid var(--line); padding:14px 16px; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease; }
-  .opt:hover{ transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--shadow); background:var(--paper-3); }
-  .opt:focus-visible{ outline:3px solid var(--red-2); outline-offset:2px; }
-  .opt.picked{ background:var(--red); color:var(--paper-3); border-color:var(--ink); }
-  .progress{ display:flex; gap:6px; margin-block-end:22px; }
-  .progress span{ flex:1; height:5px; background:var(--line); opacity:.4; }
-  .progress span.done{ opacity:1; background:var(--red); }
-  .btn{ display:inline-block; margin-block-start:10px; font-family:'Special Elite','Courier New',monospace; font-size:14px; letter-spacing:.03em; text-decoration:none; color:var(--paper-3); background:var(--red); padding:12px 20px; border:1px solid var(--ink); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s ease, box-shadow .15s ease; }
-  .btn:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--shadow); }
-  .stamp{ font-family:'Special Elite','Courier New',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--red); border:2.5px solid var(--red); border-radius:3px; padding:6px 10px; display:inline-block; transform:rotate(-3deg); margin-block-end:16px; }
-  [hidden]{ display:none !important; }
-  footer{ padding-block:30px 10px; border-top:1px dashed var(--line); margin-block-start:20px; font-family:'Special Elite','Courier New',monospace; font-size:12.5px; color:var(--ink-soft); text-align:center; }
-  @media (prefers-reduced-motion: reduce){ *{ transition-duration:.01ms !important; } }
+  .marque{
+    position:relative;z-index:1;text-align:center;color:var(--feather);
+    font-family:'Hanken Grotesk',sans-serif;font-weight:600;letter-spacing:.28em;font-size:12px;
+    text-transform:uppercase;margin-bottom:18px;opacity:.85;
+  }
+  .feuille{
+    position:relative;z-index:1;max-width:640px;margin:0 auto;
+    background:var(--papier);
+    padding:48px 30px 44px;
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
+    clip-path:polygon(0 1.2%,4% 0,9% .9%,15% .2%,22% 1%,30% .3%,38% 1.1%,46% .2%,55% .9%,63% .1%,71% 1%,79% .3%,87% 1.1%,94% .2%,100% .9%,100% 99%,95% 100%,88% 99.2%,80% 99.9%,72% 99.1%,64% 99.8%,56% 99%,48% 99.9%,40% 99.2%,32% 99.9%,24% 99.1%,16% 99.8%,8% 99.1%,0 99.8%);
+  }
+  .ecran{display:none;animation:fade .45s ease}
+  .ecran.actif{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .tampon{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--burgundy);border:1.5px solid var(--burgundy);padding:5px 12px;margin-bottom:22px;
+    transform:rotate(-2deg);
+  }
+  h1{
+    font-family:'DM Serif Display',serif;font-weight:400;color:var(--cafe);
+    font-size:clamp(34px,8vw,48px);line-height:1.08;margin-bottom:22px;
+  }
+  h1 em,h2 em{font-style:italic;color:var(--burgundy)}
+  h2{
+    font-family:'DM Serif Display',serif;font-weight:400;color:var(--cafe);
+    font-size:clamp(25px,5.6vw,31px);line-height:1.2;margin-bottom:18px;
+  }
+  .chapo p{margin-bottom:12px;font-size:18px}
+  .meta{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--doux);font-weight:600}
+  .main{font-family:'Lavishly Yours',cursive;color:var(--stylo);line-height:1.15}
+
+  .btn{
+    display:block;width:100%;text-align:center;cursor:pointer;text-decoration:none;
+    background:var(--burgundy);color:var(--feather);border:none;
+    font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;
+    padding:18px 20px;transition:background .2s,transform .1s;
+  }
+  .btn:hover{background:#7E1824}
+  .btn:active{transform:scale(.99)}
+  .btn:disabled{opacity:.6;cursor:wait}
+  .btn-ghost{background:transparent;color:var(--burgundy);border:1.5px solid var(--burgundy)}
+  .btn-ghost:hover{background:rgba(88,8,17,.06)}
+
+  /* questions */
+  .jauge-fond{height:3px;background:var(--ligne);margin-bottom:26px}
+  .jauge{height:3px;background:var(--stylo);width:0;transition:width .4s ease}
+  .num{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);font-weight:700;margin-bottom:14px}
+  .situation{font-family:'DM Serif Display',serif;font-size:clamp(23px,5vw,27px);line-height:1.28;color:var(--cafe);margin-bottom:12px}
+  .precision{color:var(--doux);margin-bottom:16px}
+  .consigne{font-weight:600;color:var(--texte);margin:20px 0 14px}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+  .opt{
+    text-align:left;cursor:pointer;background:#fff;border:1px solid var(--ligne);color:var(--texte);
+    font-family:'Hanken Grotesk',sans-serif;font-size:16px;line-height:1.5;padding:16px 18px;
+    transition:border-color .2s,background .2s;
+  }
+  .opt:hover{border-color:var(--burgundy);background:#FBF3F0}
+
+  /* formulaire */
+  label{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--doux);margin:16px 0 6px}
+  input{
+    width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:17px;color:var(--texte);
+    background:#fff;border:1px solid var(--ligne);padding:14px 16px;outline:none;
+  }
+  input:focus{border-color:var(--burgundy)}
+  #form .btn{margin-top:24px}
+  .erreur{display:none;color:var(--stylo);font-size:15px;margin-top:12px}
+  .rgpd{font-size:13px;color:var(--doux);margin-top:14px;text-align:center}
+
+  /* résultat */
+  .profil-nom{font-family:'DM Serif Display',serif;font-size:clamp(27px,6vw,34px);line-height:1.18;color:var(--cafe);margin-bottom:22px}
+  .profil-texte p{margin-bottom:15px}
+  .profil-texte p strong{color:var(--burgundy);font-weight:700}
+  .sep{height:1px;background:var(--ligne);margin:34px 0}
+  .bascule{background:var(--feather);padding:28px 24px;margin:0 -6px}
+  .these{font-family:'Lavishly Yours',cursive;color:var(--stylo);font-size:clamp(30px,7vw,38px);line-height:1.15;margin-top:18px;text-align:center}
+  .cta-bloc{margin-top:22px}
+  .signature p{margin-bottom:12px}
+  .signature .main{font-size:40px;margin-top:6px}
+
+  @media (max-width:420px){
+    .feuille{padding:40px 20px 36px}
+    .bascule{padding:24px 18px;margin:0}
+  }
+
+  .hero{margin-bottom:26px}
+  .hero h1{margin:4px 0 14px}
+  .lede{font-size:18px;font-style:italic;color:var(--doux)}
+  .progress{display:flex;gap:6px;margin-bottom:22px}
+  .progress span{flex:1;height:4px;background:var(--ligne)}
+  .progress span.done{background:var(--stylo)}
+  .card{border-top:1px solid var(--ligne);padding-top:26px}
+  .qnum{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);font-weight:700;margin-bottom:12px}
+  .qtext{font-family:'DM Serif Display',serif;font-size:clamp(23px,5vw,27px);line-height:1.28;color:var(--cafe)}
+  .opts{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+  .stamp{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);border:1.5px solid var(--burgundy);padding:5px 12px;margin-bottom:20px;transform:rotate(-2deg)}
+  #result-title{font-size:clamp(27px,6vw,34px)}
+  #result-text,#result-cta-text{margin-bottom:15px}
+  #result-cta-btn{margin-top:10px}
+  .signe{font-family:'Lavishly Yours',cursive;color:var(--stylo);font-size:40px;text-align:center;margin-top:30px;line-height:1}
+  [hidden]{display:none !important}
 </style>
 </head>
 <body>
-
-<main class="wrap">
+<p class="marque">Gossip de Cécile</p>
+<main class="feuille">
 
   <section class="hero">
-    <span class="eyebrow">5 questions · 2 minutes</span>
-    <h1>Ton enfant pète <span>un câble</span>. Et toi ?</h1>
+    <div class="tampon">5 questions · 2 minutes</div>
+    <h1>Ton enfant pète <em>un câble</em>. Et toi&nbsp;?</h1>
     <p class="lede">Réponds à 5 situations, découvre ce que ton corps fait pendant sa crise.</p>
   </section>
 
@@ -77,12 +157,11 @@
 
   <div class="card" id="email-card" hidden>
     <span class="stamp">Dernière étape</span>
-    <h2 style="font-size:1.5rem;">Ton profil est prêt.</h2>
+    <h2>Ton profil est <em>prêt</em>.</h2>
     <p>Dis-moi où te l'envoyer, et je te parle du Kit « Pétage de plomb », dispo dès maintenant.</p>
-    <form id="email-form" style="margin-block-start:16px;">
-      <input id="email-input" type="email" required placeholder="ton@email.fr" autocomplete="email"
-        style="width:100%; box-sizing:border-box; font-family:'Vollkorn',Georgia,serif; font-size:16px; color:var(--ink); background:var(--paper); border:1px solid var(--line); padding:14px 16px;">
-      <button class="btn" type="submit" style="border:1px solid var(--ink); cursor:pointer; margin-block-start:12px;">→ Voir mon profil</button>
+    <form id="email-form" style="margin-top:20px">
+      <input id="email-input" type="email" required placeholder="ton@email.fr" autocomplete="email">
+      <button class="btn" type="submit" style="margin-top:14px">Voir mon profil</button>
     </form>
   </div>
 
@@ -91,11 +170,10 @@
     <h2 id="result-title"></h2>
     <p id="result-text"></p>
     <p id="result-cta-text"></p>
-    <a class="btn" id="result-cta-btn" href="#" target="_blank" rel="noopener">→ Découvrir le kit</a>
+    <a class="btn" id="result-cta-btn" href="#" target="_blank" rel="noopener">Découvrir le kit</a>
   </div>
 
-  <footer>Gossip de Cécile</footer>
-
+  <p class="signe">Cécile</p>
 </main>
 
 <script>
@@ -292,7 +370,7 @@
     document.getElementById('result-text').textContent = r.text;
     document.getElementById('result-cta-text').textContent = 'Le Kit « Pétage de plomb » est fait pour ça. Il est disponible dès maintenant.';
     var btn = document.getElementById('result-cta-btn');
-    btn.textContent = '→ Découvrir le kit';
+    btn.textContent = 'Découvrir le kit';
     btn.href = 'https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u';
     document.getElementById('result-card').hidden = false;
     track('result_shown', { profile: top });
