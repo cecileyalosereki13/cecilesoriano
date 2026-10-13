@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Régul'action | Gossip de Cécile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#580811; --v1:#7E1824; --v3:#320509;
+    --cafe:#1D0302; --noir:#000; --feather:#EEEADE; --papier:#FAF8F2; --stylo:#B3121F;
+    --line:rgba(29,3,2,.14);
+    --serif:"DM Serif Display",Georgia,serif;
+    --sans:"Hanken Grotesk",Arial,sans-serif;
+    --main:"Lavishly Yours",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;color-scheme:only light;overflow-x:hidden}
+  body{background:var(--feather);color:var(--cafe);font-family:var(--sans);font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:740px;margin:0 auto;padding:0 clamp(18px,5vw,36px)}
+  a{color:inherit}
+  a:focus-visible,input:focus-visible{outline:3px solid var(--stylo);outline-offset:3px}
+
+  .velours{background:radial-gradient(ellipse at 28% 20%,var(--v1) 0%,var(--burgundy) 45%,var(--v3) 100%);color:var(--feather)}
+  .cafe{background:var(--cafe);color:var(--feather)}
+  .dechire-bas{clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),94% 100%,86% calc(100% - 12px),77% 100%,66% calc(100% - 14px),55% 100%,44% calc(100% - 10px),33% 100%,22% calc(100% - 15px),11% 100%,0 calc(100% - 9px))}
+
+  .label{font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--burgundy)}
+  .velours .label,.cafe .label{color:var(--feather);opacity:.8}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;color:var(--noir)}
+  h2 em,h3 em{font-style:italic;color:var(--burgundy)}
+  .velours h1,.velours h2,.cafe h2,.cafe h3{color:var(--feather)}
+  .velours h2 em,.cafe h2 em{color:var(--feather)}
+  .main{font-family:var(--main);font-weight:400;line-height:1;display:inline-block;transform:rotate(-4deg)}
+
+  .hero{padding:clamp(52px,10vw,96px) 0 clamp(70px,11vw,110px)}
+  .marque{font-family:var(--serif);font-size:24px;margin-bottom:46px}
+  .hero h1{font-size:clamp(2.3rem,7vw,3.6rem);margin:14px 0 6px}
+  .hero h1 em{font-style:italic}
+  .hero .main{font-size:clamp(2.8rem,8vw,3.8rem);margin:4px 0 22px 4px}
+  .hero p.sous{font-size:20px;max-width:52ch;opacity:.93}
+  .btn{display:inline-block;margin-top:30px;padding:18px 34px;border-radius:999px;background:var(--feather);color:var(--burgundy);
+    font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+  .btn:hover{background:var(--papier)}
+
+  section{padding:clamp(48px,8vw,84px) 0}
+  section h2{font-size:clamp(1.8rem,5vw,2.5rem);margin:12px 0 24px}
+
+  /* profils */
+  .profils{display:grid;gap:22px}
+  .profil{background:var(--papier);padding:26px 26px 22px;box-shadow:0 14px 30px rgba(29,3,2,.12);position:relative}
+  .profil:nth-child(odd){transform:rotate(-.5deg)}
+  .profil:nth-child(even){transform:rotate(.4deg)}
+  .profil h3{font-size:clamp(1.35rem,4vw,1.6rem);margin-bottom:12px}
+  .profil h3 em{color:var(--burgundy)}
+  .profil ul{list-style:none}
+  .profil li{position:relative;padding:8px 0 8px 26px}
+  .profil li::before{content:"";position:absolute;left:0;top:18px;width:12px;height:12px;border:2px solid var(--stylo);border-radius:50%}
+
+  /* avant / après */
+  .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .duo article{padding:26px 26px 22px}
+  .duo .avant{background:var(--papier);box-shadow:0 14px 30px rgba(29,3,2,.1)}
+  .duo .apres{background:var(--burgundy);color:var(--feather)}
+  .duo h3{font-size:1.5rem;margin-bottom:12px}
+  .duo .apres h3{color:var(--feather)}
+  .duo ul{list-style:none}
+  .duo li{padding:8px 0;border-bottom:1px solid var(--line)}
+  .duo .apres li{border-bottom-color:rgba(238,234,222,.2)}
+  .duo li:last-child{border-bottom:0}
+
+  /* parcours */
+  .temps{display:grid;gap:22px;margin-top:10px}
+  .temps article{background:rgba(238,234,222,.06);border:1px solid rgba(238,234,222,.22);padding:28px 28px 26px}
+  .temps .num{font-family:var(--main);font-size:64px;line-height:.8;display:block;margin-bottom:10px;transform:rotate(-4deg)}
+  .temps h3{font-size:clamp(1.4rem,4vw,1.75rem);margin-bottom:10px}
+  .temps p{opacity:.92}
+  .repars{margin-top:34px;padding:26px 28px;background:var(--burgundy);font-family:var(--serif);font-size:clamp(1.25rem,3.5vw,1.5rem);line-height:1.35}
+  .repars .label{display:block;margin-bottom:10px;font-family:var(--sans)}
+
+  /* qui je suis */
+  .moi p{font-size:20px;max-width:58ch}
+  .moi .chiffre{font-family:var(--serif);font-size:clamp(2.4rem,8vw,3.2rem);color:var(--burgundy);line-height:1;margin-bottom:14px}
+
+  /* preuves */
+  .preuve{background:var(--papier);padding:30px 30px 24px;margin:0 auto 26px;box-shadow:0 16px 32px rgba(29,3,2,.14);position:relative}
+  .preuve:nth-child(odd){transform:rotate(-.6deg)}
+  .preuve:nth-child(even){transform:rotate(.5deg)}
+  .preuve::before{content:"";position:absolute;top:-12px;right:40px;width:110px;height:28px;transform:rotate(4deg);background:rgba(160,20,30,.85)}
+  .preuve blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3.4vw,1.4rem);line-height:1.42;color:var(--noir)}
+  .preuve .sign{font-family:var(--main);font-size:40px;line-height:1;color:var(--burgundy);margin-top:12px;display:block}
+
+  /* paiement */
+  .pay{text-align:center}
+  .pay .tarif{font-family:var(--serif);font-size:clamp(3.4rem,12vw,4.6rem);line-height:1;margin:6px 0 10px}
+  .pay .detail{font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin-bottom:30px}
+  .consentements{text-align:left;max-width:470px;margin:0 auto 26px;padding:20px 22px;border:1px solid rgba(238,234,222,.3);background:rgba(238,234,222,.06)}
+  .consentements label{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.5;cursor:pointer}
+  .consentements label+label{margin-top:14px}
+  .consentements input{flex:0 0 auto;width:20px;height:20px;margin-top:3px;accent-color:var(--feather);cursor:pointer}
+  .consentements a{color:var(--feather)}
+  .pay .btn{margin-top:0}
+  .btn.verrou{opacity:.4;pointer-events:none}
+  .pay-note{margin-top:20px;font-size:16px;opacity:.8}
+
+  footer{background:var(--cafe);color:var(--feather);text-align:center;padding:40px 0 54px;border-top:1px solid rgba(238,234,222,.15)}
+  footer .marque{margin-bottom:6px}
+  footer .tag{font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+  .legal{margin-top:22px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .legal a{text-decoration:none;opacity:.75}
+  .legal a:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<header class="velours dechire-bas">
+  <div class="wrap hero">
+    <div class="marque">Gossip de Cécile</div>
+    <span class="label">Régul'action · pour les pros de l'accompagnement et les indépendantes</span>
+    <h1>Tu sais exactement comment tu voudrais réagir. <em>Et sur le moment, c'est ton corps qui décide.</em></h1>
+    <span class="main">on va lire ce qu'il protège</span>
+    <p class="sous">Un parcours en trois temps pour comprendre ce que ton système nerveux fait, dans ta vie professionnelle comme dans ta vie de tous les jours, et savoir quoi faire quand il s'emballe.</p>
+    <a class="btn" href="#reserver">Réserver mon parcours</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="label">Six profils</span>
+    <h2>Laquelle <em>es-tu&nbsp;?</em></h2>
+    <div class="profils">
+      <article class="profil">
+        <h3>Celle qui veut <em>tout contrôler</em></h3>
+        <ul>
+          <li>Ton conjoint propose de s'occuper des vacances. Tu dis oui, et tu passes la soirée à revérifier toutes les réservations derrière lui.</li>
+          <li>Tu as de la fièvre, et tu maintiens quand même toutes tes séances de la journée.</li>
+        </ul>
+      </article>
+      <article class="profil">
+        <h3>Celle qui <em>ne rate rien</em></h3>
+        <ul>
+          <li>Au repas de famille, tu captes la tension entre ta sœur et ta mère avant l'entrée, et tu passes la soirée à désamorcer.</li>
+          <li>Ton conjoint répond «&nbsp;rien&nbsp;» sur un ton un peu différent, et tu ne dors pas de la nuit.</li>
+        </ul>
+      </article>
+      <article class="profil">
+        <h3>Celle qui <em>gère</em></h3>
+        <ul>
+          <li>Ta mère tombe malade. Tu organises tout pour toute la famille, et personne ne te demande comment toi, tu tiens.</li>
+          <li>Tu reportes ton propre rendez-vous médical pour la troisième fois.</li>
+        </ul>
+      </article>
+      <article class="profil">
+        <h3>Celle qui est <em>adorable</em></h3>
+        <ul>
+          <li>Une cliente déborde de quarante minutes. Tu ne dis rien, et tu décales ton dîner.</li>
+          <li>Tu acceptes de garder les enfants de ta sœur le seul week-end où tu devais souffler.</li>
+        </ul>
+      </article>
+      <article class="profil">
+        <h3>Celle qui a <em>tout essayé</em></h3>
+        <ul>
+          <li>Thérapie, stage de respiration, naturopathe, méditation&nbsp;: ça allait mieux pendant deux semaines, et à la première dispute, tout est revenu.</li>
+          <li>Tu sais exactement ce que tu conseillerais à une cliente, et tu n'arrives pas à te l'appliquer.</li>
+        </ul>
+      </article>
+      <article class="profil">
+        <h3>Celle qui est <em>discrète</em></h3>
+        <ul>
+          <li>Entre pros, tu as la bonne idée, tu la gardes pour toi, et quelqu'un d'autre la dit dix minutes plus tard.</li>
+          <li>Une cliente ne t'a pas payée, et tu n'oses pas la relancer.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="duo">
+      <article class="avant">
+        <h3>Avant Régul'action</h3>
+        <ul>
+          <li>Tu tiens en séance, et c'est à la maison que tout lâche.</li>
+          <li>Tu te dis «&nbsp;je suis comme ça&nbsp;», et tu fais avec.</li>
+        </ul>
+      </article>
+      <article class="apres">
+        <h3>Après Régul'action</h3>
+        <ul>
+          <li>Tu comprends pourquoi ton corps fonctionne comme ça, et ce qu'il protège.</li>
+          <li>Tu repères le moment où ça monte, avant de dire oui ou de partir dans le scénario du pire, et tu sais quoi faire à ce moment-là.</li>
+          <li>Tu as une feuille de route avec tes exercices, pour les moments précis qui te font déraper.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cafe">
+  <div class="wrap">
+    <span class="label">Le parcours</span>
+    <h2>Le parcours <em>en 3 temps</em></h2>
+    <div class="temps">
+      <article>
+        <span class="num">1.</span>
+        <h3>Avant&nbsp;: l'enquête commence</h3>
+        <p>Dès ta réservation, tu réponds à un questionnaire. Je travaille ton profil à partir de tes réponses et de ton Human Design, et j'arrive au rendez-vous avec des observations et des hypothèses précises sur toi.</p>
+      </article>
+      <article>
+        <span class="num">2.</span>
+        <h3>Pendant&nbsp;: 1h15 rien que pour toi</h3>
+        <p>75 minutes avec mon regard, mes 300 séances d'expérience et toute mon attention tournés vers toi. Je mets à ton service la lecture du système nerveux, mes outils de praticienne (hypnose, synergologie, EFT) et mon côté énergéticienne (Reiki, énergétique, Human Design). On vérifie mes hypothèses en direct, on creuse ce qui a besoin de l'être, et tu poses toutes les questions que tu n'oses pas poser d'habitude.</p>
+      </article>
+      <article>
+        <span class="num">3.</span>
+        <h3>Après&nbsp;: ta feuille de route</h3>
+        <p>Tu reçois une lecture écrite de ton fonctionnement, illustrée par tes propres situations, et un ou deux exercices de régulation avec le moment précis où les utiliser&nbsp;: quand l'angoisse te réveille la nuit, quand tu sens que tu vas dire oui alors que tu penses non, quand tu n'arrives pas à redescendre après ta journée.</p>
+      </article>
+    </div>
+    <div class="repars">
+      <span class="label">Avec quoi tu repars</span>
+      Tu sais comment fonctionne ton système nerveux, pourquoi tu réagis comme ça, et quoi faire concrètement quand il s'emballe.
+    </div>
+  </div>
+</section>
+
+<section class="moi">
+  <div class="wrap">
+    <span class="label">Qui je suis</span>
+    <p class="chiffre">+300 séances</p>
+    <p>Je m'appelle Cécile, j'ai mené plus de 300 séances. Je reçois en séance, je forme les pros de l'accompagnement avec Mètis, et j'interviens dans des mentorats. Certaines personnes font appel à moi toute l'année.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="label">Elles l'ont fait</span>
+    <h2>Ce qu'elles <em>en disent</em></h2>
+    <div class="preuve">
+      <blockquote>«&nbsp;Avant, je n'étais jamais sûre de comment je fonctionne et le moindre nouveau territoire me faisait peur. Aujourd'hui je me fais confiance, je lâche prise, et le shift, je l'ai fait.&nbsp;»</blockquote>
+      <span class="sign">Marie</span>
+    </div>
+    <div class="preuve">
+      <blockquote>«&nbsp;Beaucoup d'éclaircissement, de confirmation, et une vraie compréhension de mon fonctionnement.&nbsp;»</blockquote>
+      <span class="sign">Angélique</span>
+    </div>
+    <div class="preuve">
+      <blockquote>«&nbsp;Mon questionnement sur la dissociation que je ressentais a trouvé une réponse.&nbsp;»</blockquote>
+      <span class="sign">Meï</span>
+    </div>
+  </div>
+</section>
+
+<section class="velours pay" id="reserver">
+  <div class="wrap">
+    <span class="label">Régul'action</span>
+    <h2>Réserve <em>ton parcours</em></h2>
+    <p class="tarif">199&nbsp;€</p>
+    <p class="detail">Questionnaire · préparation · 1h15 en visio avec moi · feuille de route écrite</p>
+    <div class="consentements">
+      <label>
+        <input type="checkbox" id="ok-cgv">
+        <span>J'ai lu et j'accepte les <a href="../cgv.html" target="_blank" rel="noopener">conditions générales de vente</a>.</span>
+      </label>
+      <label>
+        <input type="checkbox" id="ok-retract">
+        <span>Je demande expressément que ma séance ait lieu avant la fin du délai de quatorze jours et je renonce à mon droit de rétractation une fois la séance réalisée.</span>
+      </label>
+    </div>
+    <a class="btn verrou" id="cta-paiement" href="https://buy.stripe.com/aFa3cv5a7br05Vrfqn2oE0v">Je réserve mon parcours</a>
+    <p class="pay-note">Tu règles ta place, puis tu choisis ton créneau et tu réponds au questionnaire.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="marque">Gossip de Cécile</div>
+    <div class="tag">Système nerveux et régulation</div>
+    <div class="legal">
+      <a href="../cgv.html">Conditions générales de vente</a>
+      <a href="../mentions-legales.html">Mentions légales</a>
+      <a href="mailto:contact@cecilesoriano.fr">contact@cecilesoriano.fr</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var cgv = document.getElementById('ok-cgv');
+    var ret = document.getElementById('ok-retract');
+    var cta = document.getElementById('cta-paiement');
+    function maj() { cta.classList.toggle('verrou', !(cgv.checked && ret.checked)); }
+    cgv.addEventListener('change', maj);
+    ret.addEventListener('change', maj);
+    maj();
+  })();
+</script>
+</body>
+</html>
