@@ -6,116 +6,42 @@
 <title>Merci — Le kit anti-pétage de plombs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f4ecd8;
-    --card:#fffcf4;
-    --ink:#2e2620;
-    --ink-soft:#5c5044;
-    --accent:#b8422f;
-    --teal:#3a5a78;
-    --yellow:#e8b84b;
-    --border:#d9c6a0;
-    --radius:14px;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--bg);
-    background-image:
-      radial-gradient(circle at 20% 10%, rgba(184,66,47,0.06), transparent 40%),
-      radial-gradient(circle at 80% 90%, rgba(58,90,120,0.07), transparent 40%);
-    color:var(--ink);
-    font-family:'Quicksand',sans-serif;
-    line-height:1.6;
-    padding:20px;
-  }
-  .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    max-width:560px;
-    width:100%;
-    padding:50px 40px;
-    text-align:center;
-  }
-  .stamp{
-    display:inline-block;
-    font-family:'Quicksand',sans-serif;
-    font-weight:700;
-    font-size:.78rem;
-    letter-spacing:.04em;
-    color:var(--accent);
-    border:2px solid var(--accent);
-    border-radius:100px;
-    padding:5px 16px;
-    transform:rotate(-3deg);
-    margin-bottom:20px;
-  }
-  h1{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:700;
-    font-size:2.1rem;
-    margin:0 0 18px;
-  }
-  p{
-    color:var(--ink-soft);
-    font-size:1.02rem;
-    margin:0 0 30px;
-  }
-  .download-btn{
-    display:inline-block;
-    background:var(--accent);
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    font-size:1.05rem;
-    padding:16px 32px;
-    border-radius:100px;
-    transition:opacity .2s;
-  }
-  .download-btn:hover{opacity:.9;}
-  .secondary-btn{
-    display:inline-block;
-    background:transparent;
-    color:var(--teal);
-    text-decoration:none;
-    font-weight:700;
-    font-size:.98rem;
-    padding:14px 28px;
-    border-radius:100px;
-    border:2px solid var(--teal);
-    transition:opacity .2s;
-  }
-  .secondary-btn:hover{opacity:.75;}
-  .btn-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    justify-content:center;
-  }
-  .note{
-    margin-top:28px;
-    font-size:.85rem;
-    color:var(--ink-soft);
-  }
-</style>
+:root{--burgundy:#580811;--cafe:#1D0302;--feather:#EEEADE;--papier:#FAF8F2;--stylo:#B3121F;--texte:#2A0B09;--doux:#6B4A45;--ligne:rgba(88,8,17,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:radial-gradient(ellipse at 50% 0%,#7E1824 0%,#580811 45%,#320509 100%) fixed;background-color:#320509;color:var(--texte);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.65;min-height:100vh;padding:28px 16px 60px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.marque{position:relative;z-index:1;display:block;text-align:center;color:var(--feather);font-weight:600;letter-spacing:.28em;font-size:12px;text-transform:uppercase;margin-bottom:18px;opacity:.85;text-decoration:none}
+.marque span{opacity:.7}
+.feuille{position:relative;z-index:1;max-width:620px;margin:0 auto;background:var(--papier);padding:52px 32px 46px;box-shadow:0 30px 60px rgba(0,0,0,.35);clip-path:polygon(0 1.2%,4% 0,9% .9%,15% .2%,22% 1%,30% .3%,38% 1.1%,46% .2%,55% .9%,63% .1%,71% 1%,79% .3%,87% 1.1%,94% .2%,100% .9%,100% 99%,95% 100%,88% 99.2%,80% 99.9%,72% 99.1%,64% 99.8%,56% 99%,48% 99.9%,40% 99.2%,32% 99.9%,24% 99.1%,16% 99.8%,8% 99.1%,0 99.8%)}
+.tampon,.stamp{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);border:1.5px solid var(--burgundy);padding:5px 12px;margin-bottom:22px;transform:rotate(-2deg)}
+h1{font-family:'DM Serif Display',serif;font-weight:400;color:var(--cafe);font-size:clamp(34px,8vw,48px);line-height:1.08;margin-bottom:20px}
+h1 em,h1 span{font-style:italic;color:var(--burgundy)}
+.btn{display:block;width:100%;text-align:center;cursor:pointer;text-decoration:none;background:var(--burgundy);color:var(--feather);border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;padding:18px 20px;transition:background .2s}
+.btn:hover{background:#7E1824}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn-ghost{background:transparent;color:var(--burgundy);border:1.5px solid var(--burgundy)}
+.btn-ghost:hover{background:rgba(88,8,17,.06)}
+.signe{font-family:'Lavishly Yours',cursive;color:var(--stylo);font-size:40px;line-height:1;margin-top:28px}
+.pied{position:relative;z-index:1;text-align:center;margin-top:26px}
+.pied a{color:var(--feather);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;opacity:.8}
+@media (max-width:420px){.feuille{padding:42px 20px 38px}}
+.lede{font-size:18px;max-width:44ch;margin:0 auto 28px}.btn-row{display:flex;flex-direction:column;gap:12px}.note{margin-top:24px;font-size:14px;color:var(--doux)}</style>
 </head>
 <body>
-  <div class="card">
-    <span class="stamp">Dossier famille</span>
-    <h1>Merci, ton kit t'attend</h1>
-    <p>Ta commande est confirmée. Télécharge ton kit en PDF, ou consulte-le directement en ligne, avec les audios qui se lancent en un clic.</p>
-    <div class="btn-row">
-      <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="download-btn" download>Télécharger en PDF</a>
-      <a href="https://cecilesoriano.fr/kit-anti-petage-de-plombs.html" class="secondary-btn" target="_blank">Consulter en ligne</a>
-    </div>
-    <p class="note">Un souci avec ton téléchargement ? Écris-moi directement, je te le renvoie par email.</p>
+<p class="marque">Gossip de Cécile</p>
+<div class="feuille" style="text-align:center">
+  <span class="stamp">Dossier famille</span>
+  <h1>Merci, ton kit <em>t'attend</em></h1>
+  <p class="lede">Ta commande est confirmée. Télécharge ton kit en PDF, ou consulte-le directement en ligne, avec les audios qui se lancent en un clic.</p>
+  <div class="btn-row">
+    <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="btn" download>Télécharger en PDF</a>
+    <a href="https://cecilesoriano.fr/kit-anti-petage-de-plombs.html" class="btn btn-ghost" target="_blank">Consulter en ligne</a>
   </div>
+  <p class="note">Un souci avec ton téléchargement ? Écris-moi directement, je te le renvoie par email.</p>
+  <p class="signe">Cécile</p>
+</div>
 </body>
 </html>
