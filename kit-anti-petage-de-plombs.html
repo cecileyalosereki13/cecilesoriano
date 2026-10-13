@@ -7,344 +7,109 @@
 <title>Le kit anti-pétage de plombs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f4ecd8;
-    --card:#fffcf4;
-    --ink:#2e2620;
-    --ink-soft:#5c5044;
-    --accent:#b8422f;
-    --accent-soft:#e2c9a8;
-    --teal:#3a5a78;
-    --yellow:#e8b84b;
-    --border:#d9c6a0;
-    --radius:14px;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    background-image:
-      radial-gradient(circle at 20% 10%, rgba(184,66,47,0.05), transparent 40%),
-      radial-gradient(circle at 80% 90%, rgba(79,139,130,0.06), transparent 40%);
-    color:var(--ink);
-    font-family:'Quicksand',sans-serif;
-    line-height:1.6;
-  }
-  h1,h2,h3{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:700;
-    margin:0 0 .4em;
-    color:var(--ink);
-  }
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px 100px;}
+  :root{--burgundy:#580811;--cafe:#1D0302;--feather:#EEEADE;--papier:#FAF8F2;--stylo:#B3121F;--texte:#2A0B09;--doux:#6B4A45;--ligne:rgba(88,8,17,.16)}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(ellipse at 50% 0%,#7E1824 0%,#580811 45%,#320509 100%) fixed;background-color:#320509;color:var(--texte);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.65;padding:28px 16px 60px}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400;margin:0 0 .4em;color:var(--cafe);line-height:1.15}
+  .wrap{position:relative;z-index:1;max-width:760px;margin:12px auto;background:var(--papier);padding:20px 32px 60px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  .wrap::before,.wrap::after{content:"";position:absolute;left:0;right:0;height:12px;background-repeat:repeat-x;background-size:60px 12px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 12 L0 6 L7 2 L15 7 L24 1 L32 6 L41 3 L50 8 L60 4 L60 12Z' fill='%23FAF8F2'/%3E%3C/svg%3E")}
+  .wrap::before{top:-11px}.wrap::after{bottom:-11px;transform:scaleY(-1)}
+  @media(max-width:480px){.wrap{padding:16px 20px 50px}}
 
-  /* HERO */
-  .hero{
-    padding:70px 20px 50px;
-    text-align:center;
-    position:relative;
-  }
-  .hero .stamp{
-    display:inline-block;
-    font-family:'Quicksand',sans-serif;
-    font-weight:700;
-    font-size:.72rem;
-    letter-spacing:.04em;
-    color:var(--accent);
-    border:2px solid var(--accent);
-    border-radius:100px;
-    padding:5px 16px;
-    transform:rotate(-3deg);
-    margin-bottom:22px;
-  }
-  .hero h1{
-    font-size:2.6rem;
-    line-height:1.15;
-    max-width:520px;
-    margin:0 auto .5em;
-  }
-  .hero p.lead{
-    max-width:480px;
-    margin:0 auto;
-    color:var(--ink-soft);
-    font-size:1.05rem;
-  }
+  .hero{padding:40px 0 30px;text-align:center}
+  .stamp{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);border:1.5px solid var(--burgundy);padding:5px 12px;transform:rotate(-2deg);margin-bottom:22px}
+  .hero h1{font-size:clamp(34px,8vw,50px);line-height:1.08;max-width:560px;margin:0 auto .5em}
+  .hero p.lead{max-width:500px;margin:0 auto;color:var(--doux);font-size:18px}
 
-  /* MODE D'EMPLOI CARD */
-  .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px 26px;
-    margin:24px 0;
-    box-shadow:0 2px 0 rgba(46,38,32,0.04);
-  }
-  .card h3{font-size:1.25rem;margin-bottom:.5em;}
-  .disclaimer{
-    border-left:4px solid var(--teal);
-    background:rgba(79,139,130,0.08);
-    font-size:.92rem;
-    color:var(--ink-soft);
-    padding:16px 20px;
-    border-radius:4px;
-    margin:26px 0;
-  }
-  .disclaimer strong{color:var(--ink);}
+  .card{background:var(--feather);padding:26px 24px;margin:24px 0}
+  .card h3{font-size:1.3rem}
+  .disclaimer{border-left:3px solid var(--burgundy);background:var(--feather);font-size:15px;color:var(--texte);padding:16px 20px;margin:20px 0}
+  .disclaimer strong{color:var(--burgundy)}
 
-  /* NAV FOLDER TABS */
-  .toc{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    justify-content:center;
-    margin:34px 0 8px;
-  }
-  .toc a{
-    text-decoration:none;
-    font-family:'Quicksand',sans-serif;
-    font-weight:600;
-    font-size:.88rem;
-    color:var(--ink);
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:100px;
-    padding:9px 18px;
-    transition:background .15s ease;
-  }
-  .toc a:hover{background:var(--accent-soft);}
-  .toc a.crise{color:var(--accent);border-color:var(--accent);}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:34px 0 8px}
+  .toc a{text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--burgundy);border:1.5px solid var(--burgundy);padding:9px 16px;transition:background .15s}
+  .toc a:hover{background:rgba(88,8,17,.06)}
+  .toc a.crise{background:var(--burgundy);color:var(--feather)}
 
-  /* SECTIONS */
-  .section{
-    margin-top:80px;
-    scroll-margin-top:30px;
-  }
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    gap:14px;
-    margin-bottom:6px;
-    border-bottom:2px solid var(--ink);
-    padding-bottom:14px;
-  }
-  .section-head .num{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:700;
-    font-size:2.4rem;
-    color:var(--accent);
-    line-height:1;
-  }
-  .section-head h2{font-size:1.9rem;margin:0;}
-  .section-head .tag{
-    font-size:.78rem;
-    color:var(--ink-soft);
-    margin-left:auto;
-    white-space:nowrap;
-  }
+  .section{margin-top:70px;scroll-margin-top:30px}
+  .section-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;border-bottom:1.5px solid var(--cafe);padding-bottom:14px;margin-bottom:6px}
+  .section-head .num{font-family:'DM Serif Display',serif;font-style:italic;font-size:2.6rem;color:var(--stylo);line-height:1}
+  .section-head h2{font-size:clamp(26px,6vw,34px);margin:0}
+  .section-head .tag{font-family:'Lavishly Yours',cursive;font-size:26px;color:var(--stylo);margin-left:auto;line-height:1.1}
+  @media(max-width:560px){.section-head .tag{margin-left:0;width:100%}}
 
-  .block{margin:26px 0;}
-  .block .label{
-    display:inline-block;
-    font-size:.76rem;
-    font-weight:700;
-    letter-spacing:.03em;
-    color:var(--teal);
-    margin-bottom:8px;
-  }
-  .block p{margin:0 0 1em;color:var(--ink);}
-  .block p:last-child{margin-bottom:0;}
+  .block{margin:26px 0}
+  .block .label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px}
+  .block p{margin:0 0 1em}
+  .block p:last-child{margin-bottom:0}
 
-  .checkin{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px 22px;
-  }
-  .checkin ul{margin:10px 0 0;padding-left:20px;}
-  .checkin li{margin-bottom:8px;}
+  .checkin{background:var(--feather);padding:20px 22px}
+  .checkin ul{margin:10px 0 0;padding-left:20px}
+  .checkin li{margin-bottom:8px}
+  .checkin li::marker{color:var(--stylo)}
+  .checkin strong{color:var(--burgundy)}
 
-  blockquote.question{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:1.3rem;
-    color:var(--accent);
-    margin:0;
-    padding:14px 0 14px 22px;
-    border-left:3px solid var(--accent);
-  }
+  blockquote.question{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.4rem;line-height:1.35;color:var(--burgundy);margin:0;padding:12px 0 12px 22px;border-left:3px solid var(--stylo)}
 
-  .audio-block{
-    background:linear-gradient(135deg,var(--teal),#26405a);
-    border-radius:var(--radius);
-    padding:22px 24px;
-    color:#fff;
-  }
-  .audio-block .label{color:#e8f2f0;}
-  .audio-block p{color:#eef6f4;}
-  .audio-placeholder{
-    margin-top:14px;
-    background:rgba(255,255,255,0.14);
-    border:1px dashed rgba(255,255,255,0.5);
-    border-radius:10px;
-    padding:14px 16px;
-    font-size:.85rem;
-    color:#f2f8f7;
-  }
+  .audio-block{background:radial-gradient(ellipse at 30% 0%,#7E1824 0%,#580811 60%,#320509 100%);padding:24px;color:var(--feather)}
+  .audio-block .label{color:var(--feather);opacity:.85}
+  .audio-block p{color:var(--feather)}
+  .audio-placeholder{margin-top:14px;border:1px dashed rgba(238,234,222,.5);padding:14px 16px;font-size:14px}
 
-  .felicitation{
-    background:rgba(232,184,75,0.18);
-    border-radius:var(--radius);
-    padding:18px 22px;
-    font-size:.98rem;
-  }
+  .felicitation{border:1.5px solid var(--burgundy);padding:18px 22px}
+  .mini-action{background:var(--cafe);color:var(--feather);padding:20px 22px}
+  .mini-action .label{color:#E9A3A8}
+  .mini-action p{color:var(--feather)}
 
-  .mini-action{
-    background:var(--ink);
-    color:#fff;
-    border-radius:var(--radius);
-    padding:20px 22px;
-  }
-  .mini-action .label{color:var(--yellow);}
-  .mini-action p{color:#f4ecd8;}
+  .recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+  @media(max-width:560px){.recap-grid{grid-template-columns:1fr}}
+  .recap-item{background:var(--feather);overflow:hidden}
+  .recap-item img{width:100%;height:150px;object-fit:cover;display:block}
+  .recap-item .recap-body{padding:16px 18px}
+  .recap-item .recap-num{display:inline-block;font-family:'DM Serif Display',serif;font-style:italic;font-size:1.2rem;color:var(--stylo);margin-bottom:4px}
+  .recap-item h3{font-size:1.25rem;margin:0 0 8px}
+  .recap-item p{margin:0;font-size:15px;color:var(--doux)}
 
-  .recap-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin:24px 0;
-  }
-  @media(max-width:560px){.recap-grid{grid-template-columns:1fr;}}
-  .recap-item{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .recap-item img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
-    display:block;
-  }
-  .recap-item .recap-body{padding:16px 18px;}
-  .recap-item .recap-num{
-    display:inline-block;
-    font-family:'Cormorant Garamond',serif;
-    font-weight:700;
-    font-size:1.1rem;
-    color:var(--accent);
-    margin-bottom:4px;
-  }
-  .recap-item h3{font-size:1.15rem;margin:0 0 8px;}
-  .recap-item p{margin:0;font-size:.92rem;color:var(--ink-soft);}
+  .cut-intro{margin:40px 0 18px;text-align:center;font-family:'Lavishly Yours',cursive;font-size:28px;line-height:1.2;color:var(--stylo)}
+  .cut-grid{display:grid;grid-template-columns:1fr 1fr;border:1px dashed var(--doux)}
+  @media(max-width:560px){.cut-grid{grid-template-columns:1fr}}
+  .cut-card{position:relative;background:var(--papier);border:1px dashed var(--doux);padding:18px 18px 20px;text-align:center}
+  .cut-card img{width:100%;max-width:220px;height:180px;object-fit:cover;margin:0 auto 12px;display:block}
+  .cut-card h3{font-size:1.25rem;margin:0 0 6px}
+  .cut-card p{font-size:14px;color:var(--doux);margin:0}
+  .cut-card .scissors{position:absolute;top:8px;left:10px;font-size:.9rem;opacity:.5}
+  .cut-card.parent{padding-top:26px}
+  .cut-card .parent-icon{font-size:1.8rem;margin-bottom:10px;display:block}
 
-  .cut-intro{margin:36px 0 18px;text-align:center;color:var(--ink-soft);font-size:.9rem;}
-  .cut-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0;
-    border:1px dashed var(--ink-soft);
-  }
-  @media(max-width:560px){.cut-grid{grid-template-columns:1fr;}}
-  .cut-card{
-    position:relative;
-    background:var(--card);
-    border:1px dashed var(--ink-soft);
-    padding:18px 18px 20px;
-    text-align:center;
-  }
-  .cut-card img{
-    width:100%;
-    max-width:220px;
-    height:180px;
-    object-fit:cover;
-    border-radius:10px;
-    margin:0 auto 12px;
-    display:block;
-  }
-  .cut-card h3{font-size:1.15rem;margin:0 0 6px;}
-  .cut-card p{font-size:.85rem;color:var(--ink-soft);margin:0;}
-  .cut-card .scissors{
-    position:absolute;
-    top:8px;
-    left:8px;
-    font-size:.9rem;
-    opacity:.5;
-  }
+  .upsell{margin-top:40px;background:radial-gradient(ellipse at 30% 0%,#7E1824 0%,#580811 60%,#320509 100%);padding:30px 26px;color:var(--feather);text-align:center}
+  .upsell .stamp-small{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--feather);opacity:.8;margin-bottom:10px}
+  .upsell h3{color:var(--feather);font-size:1.7rem;margin:0 0 10px}
+  .upsell p{color:var(--feather);margin:0 0 18px}
+  .upsell .download-btn{background:var(--feather);color:var(--burgundy)}
+
+  .todo-section{margin-top:70px;text-align:center;padding:40px 20px;border:1.5px dashed var(--ligne);color:var(--doux)}
+  .download-btn{display:inline-block;margin-top:34px;background:var(--burgundy);color:var(--feather);text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.06em;padding:16px 30px;transition:background .2s}
+  .download-btn:hover{background:#7E1824}
+  .upsell .download-btn{margin-top:0}
+  .footer-note{text-align:center;margin-top:60px;font-family:'Lavishly Yours',cursive;font-size:30px;color:var(--stylo)}
+  audio{accent-color:var(--burgundy)}
+
   @media print{
-    .cut-card{break-inside:avoid;page-break-inside:avoid;}
-    .block{break-inside:avoid;page-break-inside:avoid;}
-    p{orphans:3;widows:3;}
-    .section-head{break-after:avoid;page-break-after:avoid;}
-    h2,h3{break-after:avoid;page-break-after:avoid;}
-    .felicitation,.mini-action,.audio-block,.checkin{break-inside:avoid;page-break-inside:avoid;}
-    .recap-grid{break-inside:avoid;page-break-inside:avoid;display:block;}
-    .cut-grid{break-inside:avoid;page-break-inside:avoid;display:block;border:none;}
-    .recap-item{display:block;margin-bottom:16px;width:100%;break-inside:avoid;break-inside:avoid-page;page-break-inside:avoid;}
-    .cut-card{display:block;margin-bottom:16px;width:100%;border:1px dashed var(--ink-soft);break-inside:avoid;break-inside:avoid-page;page-break-inside:avoid;}
-    .cut-intro{break-after:avoid;page-break-after:avoid;}
-    .upsell{break-inside:avoid;page-break-inside:avoid;}
+    body{background:#fff;padding:0}body::before{display:none}
+    .wrap{box-shadow:none;margin:0;max-width:none}.wrap::before,.wrap::after{display:none}
+    .block,.cut-card,.felicitation,.mini-action,.audio-block,.checkin,.upsell,.recap-item{break-inside:avoid;page-break-inside:avoid}
+    p{orphans:3;widows:3}
+    .section-head,h2,h3,.cut-intro{break-after:avoid;page-break-after:avoid}
+    .recap-grid,.cut-grid{display:block;border:none}
+    .recap-item,.cut-card{display:block;margin-bottom:16px;width:100%}
+    .audio-block,.upsell,.mini-action{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
-
-  .cut-card.parent{padding-top:26px;}
-  .cut-card .parent-icon{
-    font-size:1.8rem;
-    margin-bottom:10px;
-    display:block;
-  }
-
-  .upsell{
-    margin-top:36px;
-    background:linear-gradient(135deg,var(--teal),#26405a);
-    border-radius:var(--radius);
-    padding:28px 26px;
-    color:#fff;
-    text-align:center;
-  }
-  .upsell .stamp-small{
-    display:inline-block;
-    font-size:.72rem;
-    font-weight:700;
-    letter-spacing:.04em;
-    color:var(--yellow);
-    margin-bottom:10px;
-  }
-  .upsell h3{color:#fff;font-size:1.5rem;margin:0 0 10px;}
-  .upsell p{color:#eef6f4;margin:0 0 18px;font-size:.98rem;}
-  .upsell .download-btn{background:var(--yellow);color:var(--ink);}
-
-  .todo-section{
-    margin-top:80px;
-    text-align:center;
-    padding:40px 20px;
-    border:2px dashed var(--border);
-    border-radius:var(--radius);
-    color:var(--ink-soft);
-  }
-  .todo-section h2{color:var(--ink-soft);font-size:1.5rem;}
-
-  .download-btn{
-    display:inline-block;
-    margin-top:34px;
-    background:var(--accent);
-    color:#fff;
-    text-decoration:none;
-    font-weight:600;
-    padding:12px 26px;
-    border-radius:100px;
-    font-size:.92rem;
-  }
-  .footer-note{
-    text-align:center;
-    margin-top:70px;
-    font-size:.82rem;
-    color:var(--ink-soft);
-  }
-
-  @media (prefers-reduced-motion: reduce){*{transition:none !important;}}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important}}
 </style>
+
 </head>
 <body>
 
@@ -360,7 +125,7 @@
     <strong>Avant de commencer :</strong> rien ici n'est un protocole médical ni un substitut à un accompagnement TDAH, dys ou autre. Si ton enfant a un diagnostic, adapte, transforme, prends ce qui te sert et laisse le reste, parce que ce qu'on travaille c'est l'état du système nerveux, pas le trouble, et ça concerne tous les enfants.
   </div>
 
-  <div class="disclaimer" style="border-left-color:var(--accent);background:rgba(184,66,47,0.08);">
+  <div class="disclaimer" style="border-left-color:var(--stylo);">
     <strong>Une règle simple pour tous les exercices :</strong> pas de téléphone pendant. Lance l'audio, pose-le, et sois avec lui. Ton enfant a besoin de te voir sans écran entre vous, pas seulement d'entendre une consigne.
   </div>
 
@@ -408,7 +173,8 @@
     </div>
 
     <div class="block audio-block">
-      <span class="label">EXERCICE PARTAGÉ · AUDIO GUIDÉ PAR CÉCILE</span>, guidée en direct : 4 secondes d'inspiration, 6 secondes d'expiration, cinq fois de suite. Version assise (mains sur le ventre) ou version mouvement en marchant, pour les enfants qui ne tiennent pas en place.</p>
+      <span class="label">EXERCICE PARTAGÉ · AUDIO GUIDÉ PAR CÉCILE</span>
+      <p>Une respiration rythmée, guidée en direct : 4 secondes d'inspiration, 6 secondes d'expiration, cinq fois de suite. Version assise (mains sur le ventre) ou version mouvement en marchant, pour les enfants qui ne tiennent pas en place.</p>
       <audio controls style="width:100%;margin-top:8px;"><source src="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/Audio_devoir.mp3" type="audio/mpeg"></audio>
     </div>
 
@@ -695,7 +461,7 @@
   </section>
 
   <div style="text-align:center;">
-    <a href="https://buy.stripe.com/00w7sL0TRfHgabHceb2oE0u" class="download-btn">Télécharger en PDF</a>
+    <a href="https://pub-2da992c542b74d2f8b6398a3a23721d4.r2.dev/kit-anti-petage-de-plombs.pdf" class="download-btn" download>Télécharger en PDF</a>
   </div>
 
   <p class="footer-note">Gossip de Cécile, le kit anti-pétage de plombs</p>
