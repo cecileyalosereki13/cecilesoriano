@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Gossip de Cécile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#580811; --v1:#7E1824; --v3:#320509;
+    --cafe:#1D0302; --noir:#000; --feather:#EEEADE; --papier:#FAF8F2; --stylo:#B3121F;
+    --line:rgba(29,3,2,.14);
+    --serif:"DM Serif Display",Georgia,serif;
+    --sans:"Hanken Grotesk",Arial,sans-serif;
+    --main:"Lavishly Yours",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;color-scheme:only light;overflow-x:hidden}
+  body{background:var(--feather);color:var(--cafe);font-family:var(--sans);font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:740px;margin:0 auto;padding:0 clamp(18px,5vw,36px)}
+  a{color:inherit}
+  a:focus-visible{outline:3px solid var(--stylo);outline-offset:3px}
+
+  .velours{background:radial-gradient(ellipse at 28% 20%,var(--v1) 0%,var(--burgundy) 45%,var(--v3) 100%);color:var(--feather)}
+  .cafe{background:var(--cafe);color:var(--feather)}
+  .dechire-bas{clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),94% 100%,86% calc(100% - 12px),77% 100%,66% calc(100% - 14px),55% 100%,44% calc(100% - 10px),33% 100%,22% calc(100% - 15px),11% 100%,0 calc(100% - 9px))}
+
+  .label{font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--burgundy)}
+  .velours .label,.cafe .label{color:var(--feather);opacity:.8}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;color:var(--noir)}
+  h2 em,h3 em{font-style:italic;color:var(--burgundy)}
+  .cafe h2,.cafe h3{color:var(--feather)}
+  .cafe h2 em,.cafe h3 em{color:var(--feather)}
+
+  /* HERO */
+  .hero{padding:clamp(52px,10vw,96px) 0 clamp(70px,11vw,110px)}
+  .marque{font-family:var(--serif);font-size:24px;margin-bottom:46px}
+  .hero h1{font-size:clamp(2.6rem,8vw,4rem);color:var(--feather);margin:14px 0 14px}
+  .hero h1 em{font-style:italic}
+  .hero .main{font-family:var(--main);font-size:clamp(2.2rem,6.4vw,3rem);line-height:1.05;display:block;transform:rotate(-3deg);transform-origin:left;margin:6px 0 26px;max-width:15em}
+  .hero p.bio{font-size:19px;max-width:54ch;opacity:.93}
+  .preuve-chiffre{margin-top:22px;font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+
+  section{padding:clamp(48px,8vw,84px) 0}
+  section h2{font-size:clamp(1.8rem,5vw,2.5rem);margin:12px 0 24px}
+
+  /* choix */
+  .fork{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .fork a{display:block;text-decoration:none;background:var(--papier);padding:26px 24px;box-shadow:0 14px 30px rgba(29,3,2,.12);border-top:4px solid var(--burgundy)}
+  .fork a:hover{border-top-color:var(--stylo)}
+  .fork .t{font-family:var(--serif);font-size:1.45rem;line-height:1.2;color:var(--noir);display:block}
+  .fork .d{font-size:16px;margin-top:8px;display:block}
+
+  /* offres */
+  .offre{background:var(--papier);padding:30px 30px 32px;margin-bottom:26px;box-shadow:0 16px 32px rgba(29,3,2,.12);position:relative}
+  .cafe .offre{background:rgba(238,234,222,.06);border:1px solid rgba(238,234,222,.22);box-shadow:none}
+  .offre .label{display:block;margin-bottom:8px}
+  .offre h3{font-size:clamp(1.6rem,4.6vw,2rem);margin-bottom:12px}
+  .offre .prix{font-family:var(--serif);font-size:1.9rem;line-height:1;margin-top:18px}
+  .offre .prix small{font-family:var(--sans);font-size:13px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;opacity:.75}
+  .gratuit::before{content:"Gratuit";position:absolute;top:-14px;right:24px;background:var(--stylo);color:var(--feather);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:6px 12px;transform:rotate(3deg)}
+  .btn{display:inline-block;margin-top:22px;padding:15px 28px;border-radius:999px;background:var(--burgundy);color:var(--feather);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+  .btn:hover{background:var(--v1)}
+  .cafe .btn{background:var(--feather);color:var(--burgundy)}
+  .cafe .btn:hover{background:var(--papier)}
+
+  .avis{padding:6px 0 8px 22px;border-left:4px solid var(--burgundy);margin:30px 0}
+  .cafe .avis{border-left-color:var(--feather)}
+  .avis blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3.4vw,1.4rem);line-height:1.42}
+  .avis blockquote+blockquote{margin-top:12px}
+  .avis .qui{font-family:var(--main);font-size:36px;line-height:1;display:block;margin-top:10px;color:var(--burgundy)}
+  .cafe .avis .qui{color:var(--feather)}
+
+  footer{background:var(--cafe);color:var(--feather);text-align:center;padding:40px 0 54px;border-top:1px solid rgba(238,234,222,.15)}
+  footer .marque{margin-bottom:6px}
+  footer .tag{font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+</style>
+</head>
+<body>
+
+<header class="velours dechire-bas">
+  <div class="wrap hero">
+    <div class="marque">Gossip de Cécile</div>
+    <span class="label">Système nerveux · comportements · régulation</span>
+    <h1>Sniper de réactions <em>inconscientes.</em></h1>
+    <span class="main">Régulation dans la vraie vie, pas sur un transat à Bali.</span>
+    <p class="bio">Je m'appelle Cécile. Je lis ce qu'il y a derrière une réaction, ce que le système nerveux fait dans ton dos, et j'aide à réagir autrement. Je forme aussi les pros de l'accompagnement à poser ce regard sur leurs clientes, avec Mètis.</p>
+    <p class="preuve-chiffre">+300 séances · une soixantaine de personnes accompagnées</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="label">Travailler avec moi</span>
+    <h2>Tu viens <em>pour quoi&nbsp;?</em></h2>
+    <div class="fork">
+      <a href="#pro"><span class="t">Je suis pro de l'accompagnement</span><span class="d">Je veux mieux lire mes clientes et savoir où aller en séance.</span></a>
+      <a href="#moi"><span class="t">Je viens pour moi</span><span class="d">Je veux comprendre pourquoi je réagis comme ça, et le changer.</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="pro" style="padding-top:0">
+  <div class="wrap">
+    <span class="label">Pros de l'accompagnement</span>
+    <h2>Pour les praticiennes <em>et les soignantes</em></h2>
+
+    <article class="offre gratuit">
+      <span class="label">Pour commencer</span>
+      <h3>Mini Mètis</h3>
+      <p>Un mini-quiz pour découvrir ton propre regard face aux comportements et aux situations que tu rencontres en séance.</p>
+      <a class="btn" href="https://minimetis.cecilesoriano.fr" target="_blank" rel="noopener">Faire le Mini Mètis</a>
+    </article>
+
+    <article class="offre">
+      <span class="label">Le livret</span>
+      <h3>Son système nerveux la protège. <em>C'est exactement ce qui la bloque.</em></h3>
+      <p>Six portraits de clientes que tu as déjà reçues, pour comprendre ce que leur système nerveux protège et pourquoi rien ne bouge en séance.</p>
+      <p class="prix">29&nbsp;€</p>
+      <a class="btn" href="https://metis.cecilesoriano.fr/Livret/" target="_blank" rel="noopener">Découvrir le livret</a>
+    </article>
+
+    <article class="offre">
+      <span class="label">La formation</span>
+      <h3>Mètis</h3>
+      <p>La formation pour savoir où aller avec ta cliente, pourquoi, et quand faire autrement. Tu apprends à lire ce que son corps dit pendant que ses mots disent autre chose, et à décider en séance sans dépendre d'un protocole de plus.</p>
+      <a class="btn" href="https://metis.cecilesoriano.fr/Rejoindre/" target="_blank" rel="noopener">Découvrir Mètis</a>
+    </article>
+
+    <div class="avis">
+      <blockquote>«&nbsp;Cécile parvient à simplifier et à rendre accessibles des notions qui restent pourtant complexes autour du système nerveux.&nbsp;»</blockquote>
+      <blockquote>«&nbsp;Je pense même pouvoir commencer à avoir un œil différent en séance.&nbsp;»</blockquote>
+      <span class="qui">Élèves de la formation Mètis</span>
+    </div>
+  </div>
+</section>
+
+<section id="moi" class="cafe">
+  <div class="wrap">
+    <span class="label">Pour toi</span>
+    <h2>Comprendre ce que ton système <em>fait dans ton dos</em></h2>
+
+    <article class="offre">
+      <span class="label">Le parcours en 3 temps</span>
+      <h3>Régul'action</h3>
+      <p>Avant, tu remplis un questionnaire et je prépare ton profil avec ton Human Design. Pendant 1h15 en visio, on décortique ensemble ce que ton système nerveux fait et pourquoi. Après, tu reçois ton compte rendu personnel avec ton fonctionnement et des exercices adaptés à toi pour commencer ta régulation seule.</p>
+      <p class="prix">199&nbsp;€</p>
+      <a class="btn" href="https://cecilesoriano.fr/Dossier/dossier.html">Découvrir Régul'action</a>
+    </article>
+
+    <article class="offre">
+      <span class="label">L'accompagnement</span>
+      <h3>Athéna</h3>
+      <p>Un mois d'accompagnement en corégulation avec moi&nbsp;: je te suis 20 jours sur 30, avec 3 rendez-vous en privé, au début, au milieu et à la fin du mois.</p>
+      <p class="prix">1&nbsp;000&nbsp;€<small>1 mois</small></p>
+      <a class="btn" href="https://cecilesoriano.fr/athena-1mois.html">Découvrir Athéna</a>
+    </article>
+
+    <div class="avis">
+      <blockquote>«&nbsp;Elle a tout de suite perçu mon véritable besoin&nbsp;: sortir du mode survie&nbsp;»</blockquote>
+      <blockquote>«&nbsp;Je repars avec un véritable mode d'emploi de mon système nerveux.&nbsp;»</blockquote>
+      <span class="qui">Cliente Athéna, 3 mois</span>
+    </div>
+    <div class="avis">
+      <blockquote>«&nbsp;J'ai la sensation d'une clarté profonde&nbsp;!&nbsp;»</blockquote>
+      <blockquote>«&nbsp;Tu étais là dans ma vie au bon moment pour cette transition tellement importante&nbsp;!&nbsp;»</blockquote>
+      <span class="qui">Cliente Athéna, 1 mois</span>
+    </div>
+    <div class="avis">
+      <blockquote>«&nbsp;Je bosse en collaboration avec @gossipdececile sur ember et la gestion des gros cap qui me challenge dans mon business.&nbsp;»</blockquote>
+      <span class="qui">Marie, @marie_amelibre</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="marque">Gossip de Cécile</div>
+    <div class="tag">Podcast tous les vendredis · @gossipdececile</div>
+  </div>
+</footer>
+
+</body>
+</html>
